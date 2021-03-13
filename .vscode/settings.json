@@ -1,0 +1,7 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "Lenguaje/lib/jlex.jar",
+        "Lenguaje/lib/cup.jar"
+    ]
+}

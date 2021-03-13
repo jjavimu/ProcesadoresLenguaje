@@ -1,0 +1,35 @@
+package asint;
+
+import java_cup.runtime.*;
+import alex.AnalizadorLexicoTiny;
+import alex.UnidadLexica;
+import errors.GestionErroresTiny;
+
+scan with {: return getScanner().next_token(); :};
+parser code {: 
+   private GestionErroresTiny errores;
+   public void syntax_error(Symbol unidadLexica) {
+     errores.errorSintactico((UnidadLexica)unidadLexica);
+   }
+:};
+init with {: 
+   errores = new GestionErroresTiny();
+   AnalizadorLexicoTiny alex = (AnalizadorLexicoTiny)getScanner();
+   alex.fijaGestionErrores(errores);
+:};
+
+
+terminal     IDEN, ENT, REAL, MAS,
+             MENOS, POR, DIV, IGUAL, PAP, PCIERRE, CAP, CCIERRE,
+             MAYOR, MENOR, MAYORIGUAL, 
+             MENORIGUAL, DISTINTO, 
+             COMA, PUNTOYCOMA;
+
+
+
+non terminal P, LInst, Ins;
+
+
+P ::= LInst ;
+LInst ::= Ins LInst | ;
+Ins ::= IDEN IDEN IGUAL ENT PUNTOYCOMA;
