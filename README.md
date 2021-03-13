@@ -2,7 +2,7 @@
 
 ________
 
-En esta carpeta encontrarás:
+En la carpeta **Lengauje/** encontrarás:
 
 - **`bin/`**
   
