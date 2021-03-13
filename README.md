@@ -2,7 +2,7 @@
 
 ________
 
-En la carpeta **Lengauje/** encontrarás:
+En la carpeta **Lenguaje/** encontrarás:
 
 - **`bin/`**
   
