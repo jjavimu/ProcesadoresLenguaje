@@ -4,12 +4,6 @@ ________
 
 En la carpeta **Lenguaje/** encontrarás:
 
-- **`bin/`**
-  
-  En esta carpeta se guardan los *.class* generados al compilar los archivos de java.
-  
-  (El archivo *.gitignore* hace que esos archivos no se suban a GitHub).
-
 - **`lib/`** 
 
   En esta carpeta están los archivos *jlex.jar* y *cup.jar* necesarios para la compilación del analizador léxico y del analizador sintáctico.
@@ -34,3 +28,5 @@ En la carpeta **Lenguaje/** encontrarás:
 - **`input.txt`**
 
   Archivo de entrada para que reconozca nuestro lenguaje.
+
+**Observación:** el archivo *.gitignore* se utiliza para que git ignore ciertos tipos de archivos, entre ellos los *.class*. También lo podremos utilizar para ignorar los archivos que se crean automáticamente, como *AnalizadorSintacticoTiny.java, AnalizadorLexicoTiny.java y ClaseLexica.java*.
