@@ -12,9 +12,9 @@ public class Main {
      Reader input = new InputStreamReader(new FileInputStream(args[0]));
 	 AnalizadorLexicoTiny alex = new AnalizadorLexicoTiny(input);
 	 sacaLexemas(alex);
-	 AnalizadorSintacticoTiny asint = new AnalizadorSintacticoTiny(alex);
+	 // AnalizadorSintacticoTiny asint = new AnalizadorSintacticoTiny(alex);
 	 // asint.setScanner(alex);
-	 asint.parse();
+	 // asint.parse();
  }
  	public static void sacaLexemas(AnalizadorLexicoTiny alex) throws IOException{
 		UnidadLexica unidad;

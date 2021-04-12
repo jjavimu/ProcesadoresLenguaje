@@ -27,54 +27,144 @@ import errors.GestionErroresTiny;
   ops = new ALexOperations(this);
 %init}
 
+separador = [ \t\r\b\n]
+comentario = \/\/[^\n]* 
+
 letra  = ([A-Z]|[a-z])
 digitoPositivo = [1-9]
 digito = ({digitoPositivo}|0)
 parteEntera = {digitoPositivo}{digito}*
 parteDecimal = {digito}* {digitoPositivo}
-separador = [ \t\r\b\n]
-comentario = \/\/[^\n]* 
-identificador = {letra}({letra}|{digito})*
 numeroEntero = {parteEntera}
 numeroReal = {parteEntera}\.{parteDecimal}
+identificador = {letra}({letra}|{digito})*
+
 operadorSuma = \+
 operadorResta = \-
 operadorMultiplicacion = \*
 operadorDivision = /
+operadorPotencia = \^
+operadorMod = %
+
 operadorMayor = >
 operadorMenor = <
 operadorMayorIgual = >\=
 operadorMenorIgual = <\=
 operadorDistinto = !\=
-parentesisApertura = \(
-parentesisCierre = \)
+operadorIgual = \=\=
+
+operadorAnd = \&\&
+operadorOr = \|\|
+operadorNegacion = \!
+
+
+
 igual = \=
 coma  = \,
 puntoycoma = ;
+dospuntos = :
+parentesisApertura = \(
+parentesisCierre = \)
 corcheteApertura = \[
 corcheteCierre = \]
+llaveApertura = \{
+llaveCierre = \}
+comilla = '
+comillaDoble = "
+
+
+int = int
+void = void
+char = char
+float = float
+bool = bool
+enum = enum
+
+true = true
+false = false
+caracter = '.'
+cadenaCaracteres = ".*" 
+new = new
+referencia = &
+
+while = while
+for = for
+if = if
+elsif = elsif
+else = else
+struct = struct
+switch = switch
+case = case
+break = break
+default = default
+return = return
+print = print
+main = main
+
+
+
+
 
 
 %%
 {separador}               {}
 {comentario}              {}
-{identificador}           {return ops.unidadId();}
+
 {numeroEntero}            {return ops.unidadEnt();}
 {numeroReal}              {return ops.unidadReal();}
+
 {operadorSuma}            {return ops.unidadSuma();}
 {operadorResta}           {return ops.unidadResta();}
 {operadorMultiplicacion}  {return ops.unidadMul();}
 {operadorDivision}        {return ops.unidadDiv();}
+{operadorPotencia}        {return ops.unidadPot();}
+{operadorMod}             {return ops.unidadMod();}
 {operadorMayor}           {return ops.unidadMayor();}
 {operadorMenor}           {return ops.unidadMenor();}
 {operadorMayorIgual}      {return ops.unidadMayorIgual();}
 {operadorMenorIgual}      {return ops.unidadMenorIgual();}
 {operadorDistinto}        {return ops.unidadDistinto();}
-{parentesisApertura}      {return ops.unidadPAp();}
-{parentesisCierre}        {return ops.unidadPCierre();} 
+{operadorIgual}           {return ops.unidadIgual();}
+{operadorAnd}             {return ops.unidadAnd();}
+{operadorOr}              {return ops.unidadOr();}
+{operadorNegacion}        {return ops.unidadNegacion();}
+
 {igual}                   {return ops.unidadIgual();} 
 {coma}                    {return ops.unidadComa();}
 {puntoycoma}              {return ops.unidadPuntoyComa();}
+{dospuntos}               {return ops.unidadDospuntos();}
+{parentesisApertura}      {return ops.unidadPAp();}
+{parentesisCierre}        {return ops.unidadPCierre();} 
 {corcheteApertura}        {return ops.unidadCAp();}
 {corcheteCierre}          {return ops.unidadCCierre();} 
+{llaveApertura}           {return ops.unidadLlaveApertura();}
+{llaveCierre}             {return ops.unidadLlaveCierre();}
+
+{int} {return ops.unidadInt();}
+{void} {return ops.unidadVoid();}
+{char} {return ops.unidadChar();}
+{float} {return ops.unidadFloat();}
+{bool} {return ops.unidadBool();}
+{enum} {return ops.unidadEnum();}
+{true} {return ops.unidadTrue();}
+{false} {return ops.unidadFalse();}
+{caracter} {return ops.unidadCaracter();}
+{cadenaCaracteres} {return ops.unidadCadenaCaracteres();}
+{new} {return ops.unidadNew();}
+{referencia} {return ops.unidadReferencia();}
+{while} {return ops.unidadWhile();}
+{for} {return ops.unidadFor();}
+{if} {return ops.unidadIf();}
+{elsif} {return ops.unidadElsif();}
+{else} {return ops.unidadElse();}
+{struct} {return ops.unidadStruct();}
+{switch} {return ops.unidadSwitch();}
+{case} {return ops.unidadCase();}
+{break} {return ops.unidadBreak();}
+{default} {return ops.unidadDefault();}
+{return} {return ops.unidadReturn();}
+{print} {return ops.unidadPrint();}
+{main} {return ops.unidadMain();}
+
+{identificador}           {return ops.unidadId();}
 
