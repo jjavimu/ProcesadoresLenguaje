@@ -20,10 +20,15 @@ init with {:
 
 
 terminal     IDEN, ENT, REAL, MAS,
-             MENOS, POR, DIV, IGUAL, PAP, PCIERRE, CAP, CCIERRE,
+             MENOS, POR, DIV, IGUAL, POTENCIA,MOD,
+             PAP, PCIERRE, CAP, CCIERRE,
              MAYOR, MENOR, MAYORIGUAL, 
              MENORIGUAL, DISTINTO, 
-             COMA, PUNTOYCOMA;
+             COMA, PUNTOYCOMA, DOSPUNTOS, IGUALDAD, AND, OR, NEG,
+             LAP, LCIERRE, INT, VOID, CHAR, FLOAT, BOOL, ENUM,
+             TRUE, FALSE, CARACTER, STRING, NEW, REF, WHILE, FOR,
+             IF, ELSIF, ELSE, SWITCH, STRUCT, CASE, BREAK, DEFAULT,
+             RETURN, MAIN, PRINT;
 
 
 

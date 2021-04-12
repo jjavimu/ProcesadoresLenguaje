@@ -9,4 +9,6 @@ del ClaseLexica.java
 cd src
 javac -cp "../lib/cup.jar" alex/*.java asint/*.java errors/*.java
 java -cp ".;../lib/cup.jar" asint/Main ../input.txt
+
+cd ../
 pause

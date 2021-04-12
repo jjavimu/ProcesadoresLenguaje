@@ -158,7 +158,7 @@ public class ALexOperations {
    }
 
    public UnidadLexica unidadCaracter() {
-      return new UnidadLexica(alex.fila(), ClaseLexica.CHAR, alex.lexema());
+      return new UnidadLexica(alex.fila(), ClaseLexica.CARACTER, alex.lexema());
    }
 
    public UnidadLexica unidadCadenaCaracteres() {

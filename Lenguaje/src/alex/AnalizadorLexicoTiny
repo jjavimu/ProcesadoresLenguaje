@@ -37,7 +37,6 @@ parteEntera = {digitoPositivo}{digito}*
 parteDecimal = {digito}* {digitoPositivo}
 numeroEntero = {parteEntera}
 numeroReal = {parteEntera}\.{parteDecimal}
-identificador = {letra}({letra}|{digito})*
 
 operadorSuma = \+
 operadorResta = \-
@@ -101,8 +100,7 @@ return = return
 print = print
 main = main
 
-
-
+identificador = {letra}({letra}|{digito})*
 
 
 
