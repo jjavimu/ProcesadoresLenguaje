@@ -1,1 +1,1 @@
-int numero = 5;
+:
