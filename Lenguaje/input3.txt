@@ -1,0 +1,4 @@
+int * a = new int();
+*a = 3;
+int * b = &a; // b ahora tiene el valor 3
+b = b + 1; // tanto a como b valen ahora 4
