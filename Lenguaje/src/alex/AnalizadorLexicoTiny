@@ -35,14 +35,14 @@ digitoPositivo = [1-9]
 digito = ({digitoPositivo}|0)
 parteEntera = {digitoPositivo}{digito}*
 parteDecimal = {digito}* {digitoPositivo}
-numeroEntero = {parteEntera}
+numeroEntero = ({parteEntera}|0)
 numeroReal = {parteEntera}\.{parteDecimal}
 
 operadorSuma = \+
 operadorResta = \-
 operadorMultiplicacion = \*
 operadorDivision = /
-operadorPotencia = \^
+operadorPotencia = exp
 operadorMod = %
 
 operadorMayor = >
@@ -50,7 +50,7 @@ operadorMenor = <
 operadorMayorIgual = >\=
 operadorMenorIgual = <\=
 operadorDistinto = !\=
-operadorIgual = \=\=
+operadorIgualdad = \=\=
 
 operadorAnd = \&\&
 operadorOr = \|\|
@@ -60,6 +60,7 @@ operadorNegacion = \!
 
 igual = \=
 coma  = \,
+punto = \.
 puntoycoma = ;
 dospuntos = :
 parentesisApertura = \(
@@ -68,8 +69,6 @@ corcheteApertura = \[
 corcheteCierre = \]
 llaveApertura = \{
 llaveCierre = \}
-comilla = '
-comillaDoble = "
 
 
 int = int
@@ -82,7 +81,7 @@ enum = enum
 true = true
 false = false
 caracter = '.'
-cadenaCaracteres = ".*" 
+cadenaCaracteres = \".*\" 
 new = new
 referencia = &
 
@@ -122,13 +121,14 @@ identificador = {letra}({letra}|{digito})*
 {operadorMayorIgual}      {return ops.unidadMayorIgual();}
 {operadorMenorIgual}      {return ops.unidadMenorIgual();}
 {operadorDistinto}        {return ops.unidadDistinto();}
-{operadorIgual}           {return ops.unidadIgual();}
+{operadorIgualdad}        {return ops.unidadIgualdad();}
 {operadorAnd}             {return ops.unidadAnd();}
 {operadorOr}              {return ops.unidadOr();}
 {operadorNegacion}        {return ops.unidadNegacion();}
 
 {igual}                   {return ops.unidadIgual();} 
 {coma}                    {return ops.unidadComa();}
+{punto}                    {return ops.unidadPunto();}
 {puntoycoma}              {return ops.unidadPuntoyComa();}
 {dospuntos}               {return ops.unidadDospuntos();}
 {parentesisApertura}      {return ops.unidadPAp();}
@@ -138,31 +138,31 @@ identificador = {letra}({letra}|{digito})*
 {llaveApertura}           {return ops.unidadLlaveApertura();}
 {llaveCierre}             {return ops.unidadLlaveCierre();}
 
-{int} {return ops.unidadInt();}
-{void} {return ops.unidadVoid();}
-{char} {return ops.unidadChar();}
-{float} {return ops.unidadFloat();}
-{bool} {return ops.unidadBool();}
-{enum} {return ops.unidadEnum();}
-{true} {return ops.unidadTrue();}
-{false} {return ops.unidadFalse();}
-{caracter} {return ops.unidadCaracter();}
-{cadenaCaracteres} {return ops.unidadCadenaCaracteres();}
-{new} {return ops.unidadNew();}
-{referencia} {return ops.unidadReferencia();}
-{while} {return ops.unidadWhile();}
-{for} {return ops.unidadFor();}
-{if} {return ops.unidadIf();}
-{elsif} {return ops.unidadElsif();}
-{else} {return ops.unidadElse();}
-{struct} {return ops.unidadStruct();}
-{switch} {return ops.unidadSwitch();}
-{case} {return ops.unidadCase();}
-{break} {return ops.unidadBreak();}
-{default} {return ops.unidadDefault();}
-{return} {return ops.unidadReturn();}
-{print} {return ops.unidadPrint();}
-{main} {return ops.unidadMain();}
+{int}                     {return ops.unidadInt();}
+{void}                    {return ops.unidadVoid();}
+{char}                    {return ops.unidadChar();}
+{float}                   {return ops.unidadFloat();}
+{bool}                    {return ops.unidadBool();}
+{enum}                    {return ops.unidadEnum();}
+{true}                    {return ops.unidadTrue();}
+{false}                   {return ops.unidadFalse();}
+{caracter}                {return ops.unidadCaracter();}
+{cadenaCaracteres}        {return ops.unidadCadenaCaracteres();}
+{new}                     {return ops.unidadNew();}
+{referencia}              {return ops.unidadReferencia();}
+{while}                   {return ops.unidadWhile();}
+{for}                     {return ops.unidadFor();}
+{if}                      {return ops.unidadIf();}
+{elsif}                   {return ops.unidadElsif();}
+{else}                    {return ops.unidadElse();}
+{struct}                  {return ops.unidadStruct();}
+{switch}                  {return ops.unidadSwitch();}
+{case}                    {return ops.unidadCase();}
+{break}                   {return ops.unidadBreak();}
+{default}                 {return ops.unidadDefault();}
+{return}                  {return ops.unidadReturn();}
+{print}                   {return ops.unidadPrint();}
+{main}                    {return ops.unidadMain();}
 
 {identificador}           {return ops.unidadId();}
 

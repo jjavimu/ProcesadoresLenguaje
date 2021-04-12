@@ -28,7 +28,7 @@ terminal     IDEN, ENT, REAL, MAS,
              LAP, LCIERRE, INT, VOID, CHAR, FLOAT, BOOL, ENUM,
              TRUE, FALSE, CARACTER, STRING, NEW, REF, WHILE, FOR,
              IF, ELSIF, ELSE, SWITCH, STRUCT, CASE, BREAK, DEFAULT,
-             RETURN, MAIN, PRINT;
+             RETURN, MAIN, PRINT, PUNTO;
 
 
 
