@@ -4,6 +4,7 @@ import errors.GestionErroresTiny;
 
 %%
 %cup
+%char
 %line
 %class AnalizadorLexicoTiny
 %unicode
@@ -14,6 +15,10 @@ import errors.GestionErroresTiny;
   private GestionErroresTiny errores;
   public String lexema() {return yytext();}
   public int fila() {return yyline+1;}
+  public int columna() {return yychar +1 - charline;}
+  private void refrescaColumna() {
+    charline = yychar + yytext().length();
+  }
   public void fijaGestionErrores(GestionErroresTiny errores) {
    this.errores = errores;
   }
