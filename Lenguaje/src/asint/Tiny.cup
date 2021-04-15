@@ -31,10 +31,90 @@ terminal     IDEN, ENT, REAL, MAS,
              RETURN, MAIN, PRINT, PUNTO;
 
 
+non terminal S
+non terminal Struct 
+non terminal DentroStruct
+non terminal Enumerado
+non terminal DentroEnumerado
+non terminal FuncionMain
+non terminal Funcion
+non terminal Args
 
-non terminal P, LInst, Ins;
+non terminal Instrucciones
+non terminal BloqueInstrucciones
+non terminal Declaracion
+non terminal Asignacion
+non terminal If 
+non terminal Elsif
+non terminal While 
+non terminal Switch 
+non terminal BloqueCase
+non terminal For
+
+non terminal Expresion 
+non terminal Operador
+
+non terminal Print 
+non terminal Tipo
 
 
-P ::= LInst ;
-LInst ::= Ins LInst | ;
-Ins ::= IDEN IDEN IGUAL ENT PUNTOYCOMA;
+S ::= Enumerado S 
+      | Struct S 
+      | Funcion S 
+      | FuncionMain;
+
+Enumerado ::= ENUM IDEN IGUAL LAP Dentro LCIERRE PUNTOYCOMA;
+DentroEnumerado ::= IDEN COMA DentroEnumerado | IDEN;
+
+Struct ::= STRUCT IDEN LAP DentroStruct LCIERRE PUNTOYCOMA;
+DentroStruct ::= Declaracion DentroStruct | Declaracion;
+
+Tipo ::= INT 
+         | VOID 
+         | FLOAT 
+         | BOOL 
+         | CHAR 
+         | STRING;
+
+Funcion ::= Tipo IDEN PAP Args PCIERRE BloqueInstrucciones
+FuncionMain ::= VOID MAIN PAP PCIERRE BloqueInstrucciones
+Args ::= Tipo IDEN
+
+BloqueInstrucciones ::= LAP Instrucciones LCIERRE;
+Instrucciones ::= Declaracion Instrucciones 
+                  | Asignacion Instrucciones    
+                  | If Instrucciones
+                  | While Instrucciones 
+                  | Switch Instrucciones 
+                  | For Instrucciones 
+                  | Print Instrucciones 
+                  | RETURN Expresion
+                  | ;
+
+Declaracion ::= Tipo IDEN PUNTOYCOMA | Tipo Asignacion;
+
+Asignacion ::= IDEN IGUAL Expresion PUNTOYCOMA;
+
+If ::= IF PAP ExpresionBool PCIERRE BloqueInstrucciones
+      | IF PAP ExpresionBool PCIERRE BloqueInstrucciones ELSE BloqueInstrucciones
+      | IF PAP ExpresionBool PCIERRE BloqueInstrucciones Elsif;
+Elsif ::= ELSIF PAP ExpresionBool PCIERRE BloqueInstrucciones Elsif
+         | ELSE BloqueInstrucciones
+         | ;
+
+While ::= WHILE PAP ExpresionBool PCIERRE BloqueInstrucciones;
+
+
+
+Switch ::= SWITCH PAP IDEN PCIERRE LAP BloqueCase LCIERRE
+BloqueCase ::= CASE Expresion DOSPUNTOS Instrucciones BREAK PUNTOYCOMA BloqueCase 
+               | DEFAULT DOSPUNTOS Instrucciones;
+
+Print ::= PRINT PAP Expresion PCIERRE PUNTOYCOMA;
+
+Return ::= RETURN Expresion | RETURN;
+
+
+
+
+

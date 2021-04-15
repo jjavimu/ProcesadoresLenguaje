@@ -12,6 +12,7 @@ import errors.GestionErroresTiny;
 
 %{
   private ALexOperations ops;
+  private int charline = 0;
   private GestionErroresTiny errores;
   public String lexema() {return yytext();}
   public int fila() {return yyline+1;}
@@ -32,8 +33,9 @@ import errors.GestionErroresTiny;
   ops = new ALexOperations(this);
 %init}
 
-separador = [ \t\r\b\n]
-comentario = \/\/[^\n]* 
+separador = [ \t\b]
+newline = [\r\n]
+comentario = (\/\/[^\n]*|/\*[^\*/]\*/)
 
 letra  = ([A-Z]|[a-z])
 digitoPositivo = [1-9]
@@ -110,7 +112,8 @@ identificador = {letra}({letra}|{digito})*
 
 %%
 {separador}               {}
-{comentario}              {}
+{newline}                 {refrescaColumna();}
+{comentario}              {refrescaColumna();}
 
 {numeroEntero}            {return ops.unidadEnt();}
 {numeroReal}              {return ops.unidadReal();}

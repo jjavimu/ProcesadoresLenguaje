@@ -1,3 +1,12 @@
 string 
 read 
 operadorPotencia lexico
+expresiones y operadores (prioridad)
+expresion, new, asignar como?
+return exigir en funcion? break?
+comentarios programa
+
+
+cosas añadir:
+constantes
+llamadas dentro de una expresion
