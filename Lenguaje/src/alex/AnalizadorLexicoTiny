@@ -35,7 +35,7 @@ import errors.GestionErroresTiny;
 
 separador = [ \t\b]
 newline = [\r\n]
-comentario = (\/\/[^\n]*|/\*[^\*/]\*/)
+comentario = (\/\/[^\n]*|/\*[^\*/]*\*/)
 
 letra  = ([A-Z]|[a-z])
 digitoPositivo = [1-9]
