@@ -173,4 +173,5 @@ identificador = {letra}({letra}|{digito})*
 {main}                    {return ops.unidadMain();}
 
 {identificador}           {return ops.unidadId();}
+[^]                       {errores.errorLexico(fila(),columna(),lexema());}  
 

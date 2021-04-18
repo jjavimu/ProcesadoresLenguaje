@@ -31,31 +31,31 @@ terminal     IDEN, ENT, REAL, MAS,
              RETURN, MAIN, PRINT, PUNTO;
 
 
-non terminal S
-non terminal Struct 
-non terminal DentroStruct
-non terminal Enumerado
-non terminal DentroEnumerado
-non terminal FuncionMain
-non terminal Funcion
-non terminal Args
+non terminal S;
+non terminal Struct ;
+non terminal DentroStruct;
+non terminal Enumerado;
+non terminal DentroEnumerado;
+non terminal FuncionMain;
+non terminal Funcion;
+non terminal Args;
 
-non terminal Instrucciones
-non terminal BloqueInstrucciones
-non terminal Declaracion
-non terminal Asignacion
-non terminal If 
-non terminal Elsif
-non terminal While 
-non terminal Switch 
-non terminal BloqueCase
-non terminal For
+non terminal Instrucciones;
+non terminal BloqueInstrucciones;
+non terminal Declaracion;
+non terminal Asignacion;
+non terminal If; 
+non terminal Elsif;
+non terminal While;
+non terminal Switch;
+non terminal BloqueCase;
+non terminal For;
 
-non terminal Expresion 
-non terminal Operador
+non terminal Expresion; 
+non terminal Operador;
 
-non terminal Print 
-non terminal Tipo
+non terminal Print;
+non terminal Tipo;
 
 
 S ::= Enumerado S 

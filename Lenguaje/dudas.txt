@@ -1,12 +1,36 @@
-string 
-read 
 operadorPotencia lexico
 expresiones y operadores (prioridad)
 expresion, new, asignar como?
+
+
+mirar:
+comentarios programa: saca mal columna algo /*...*/ caractermalo
+read
+string
 return exigir en funcion? break?
-comentarios programa
 
 
 cosas añadir:
 constantes
 llamadas dentro de una expresion
+
+
+
+DOCUMENTO:
+Comentarios a la entrega:
+
+- Indicad si se puede inicializar en la declaración.
+
+- En las funciones: los parámetros se pasan por valor o por referencia? Hay restricciones en los tipos de los parámetros y/o resultados? Puede haber varios return?
+
+- solo se pueden definir nuevos tipos enumerado?
+
+- En comprobación de tipos decid por ejemplo como se comparan enumerados. Valen como enteros? Si se incluyen otras definiciones de tipos entonces si se compara su estructura o si se comparan por nombre.
+
+- Las funciones se pueden llamar en cualquier sitio (si el tipo coincide)? Debe ser posible llamarlas dentro de expresiones.
+
+- La operación read siempre tiene que estar asociada a una declaración?
+
+  En el texto la descripción del read está inacabada.
+
+Podéis hacer una nueva entrega del documento en la siguiente entrega.G
