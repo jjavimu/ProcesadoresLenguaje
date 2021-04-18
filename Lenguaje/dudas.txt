@@ -4,27 +4,29 @@
 
 mirar:
 - comentarios programa: saca mal columna algo /*...*/ caractermalo
+- operadorPotencia lexico
+
 - read
 - string corregir tam variable y demas
 - constantes
-- operadorPotencia lexico
 - Enumerados y structs declaracion -- IDEN IDEN
 - memoria dinamica
 - Arrays
 - For/elsif
 - añadir la columna
 
-- recursividad instrucciones/argumentos/parametros
-- identificador
+- en el enumerado, son identificadores?
 
 
 
 DOCUMENTO:
 Comentarios a la entrega:
 
-- Indicad si se puede inicializar en la declaración.
+- Indicad si se puede inicializar en la declaración. si
 
-- En las funciones: los parámetros se pasan por valor o por referencia? Hay restricciones en los tipos de los parámetros y/o resultados? Puede haber varios return?
+- En las funciones: los parámetros se pasan por valor o por referencia? 
+Hay restricciones en los tipos de los parámetros y/o resultados? 
+Puede haber varios return?
 
 - solo se pueden definir nuevos tipos enumerado?
 
@@ -38,3 +40,8 @@ Comentarios a la entrega:
 
 - Tabla operadores actualizar (* acceso a memoria, & acceso a memoria, menos unario)
 
+
+
+
+Dudas angela
+- Analizador lexico ¿cuando le paso el lexema a alexoperations?

@@ -1,9 +1,16 @@
 package asint;
 
 import java_cup.runtime.*;
-import alex.AnalizadorLexicoTiny;
-import alex.UnidadLexica;
+import alex.*;
+import asint.*;
+import ast.*;
+import ast.estructuras.*;
+import ast.expresiones.*;
+import ast.funciones.*;
+import ast.instrucciones.*;
+import ast.tipos.*;
 import errors.GestionErroresTiny;
+
 
 scan with {: return getScanner().next_token(); :};
 parser code {: 
@@ -31,30 +38,34 @@ terminal UnidadLexica IDEN, ENT, REAL, MAS,
              RETURN, MAIN, PRINT, PUNTO;
 
 
-non terminal Entrada S;
-non terminal Struct Struct ;
-non terminal CuerpoStruct DentroStruct;
+non terminal Programa S;
+non terminal StructClass Struct ;
+non terminal List<DecClass> DentroStruct;
 non terminal EnumClass Enumerado;
-non terminal CuerpoEnum DentroEnumerado;
+non terminal List<String> DentroEnumerado;
 non terminal Fmain FuncionMain;
 non terminal Funcion Funcion;
-non terminal List<Expresion> Args;
-non terminal Funcall LlamadaFuncion;
+non terminal List<ParTipoIden> Args;
 non terminal List<Expresion> Params;
 
 non terminal Ins Instruccion;
 non terminal List<Ins> Instrucciones;
 non terminal List<Ins> BloqueInstrucciones;
-non terminal Dec Declaracion;
-non terminal Asig Asignacion;
-non terminal If If; 
+non terminal DecClass Declaracion;
+non terminal AsigClass Asignacion;
+non terminal IfClass If; 
 //non terminal Elsif;
-non terminal While While;
-non terminal Switch Switch;
-non terminal CuerpoCase BloqueCase;
+non terminal WhileClass While;
+non terminal SwitchClass Switch;
+non terminal List<CaseSwitch> BloqueCase;
+non terminal CaseSwitch Case;
+non terminal CaseSwitch Default;
 //non terminal For;
-non terminal InsFuncall InsLlamadaFuncion;
+non terminal ReturnClass Return;
+non terminal FuncallClass InsLlamadaFuncion;
+non terminal PrintClass Print;
 
+non terminal FuncallExp LlamadaFuncion;
 non terminal Expresion E0;
 non terminal Expresion E1;
 non terminal Expresion E2;
@@ -62,13 +73,11 @@ non terminal Expresion E3;
 non terminal Expresion E4;
 non terminal Expresion E5;
 
-non terminal Print Print;
-non terminal Return Return;
-non terminal Tipo Tipo;
 
-non terminal Identificador Identificador
+non terminal TipoClass Tipo;
 
 
+// Programa //********************************************************FALTA HACER ESTO
 S ::= S:entrada Bloque: elem
       {: RESULT = entrada; entrada.add(elem); :} 
 	|
@@ -81,61 +90,61 @@ S:= Enumerado: enum S
             | FuncionMain: funmain S 
             | {: RESULT = new Programa(enum,struct,fun,funmain);:};
 
+// Enumerado
 Enumerado ::= ENUM IDEN:nombre IGUAL LAP DentroEnumerado:valores LCIERRE PUNTOYCOMA
-{: RESULT = new EnumClass(nombre,valores); :};
+      {: RESULT = new EnumClass(nombre,valores); :};
 
 DentroEnumerado ::= DentroEnumerado:restoValores COMA IDEN:valor
-                  {: RESULT = restoValores; restoValores.add(valor); :}
+                  {: RESULT = restoValores; restoValores.add(valor.lexema()); :}
                   | IDEN:valor
-                  {: RESULT = new ArrayList<Identificador>(); RESULT.add(valor); :};
+                  {: RESULT = new ArrayList<String>(); RESULT.add(valor.lexema()); :};
 
-Struct ::= STRUCT IDEN LAP DentroStruct LCIERRE PUNTOYCOMA
-{: RESULT = new StructClass(nombre,valores); :};
+// Struct
+Struct ::= STRUCT IDEN:nombre LAP DentroStruct:valores LCIERRE PUNTOYCOMA
+      {: RESULT = new StructClass(nombre,valores); :};
 
 DentroStruct ::= DentroStruct:resto Declaracion:decl
                   {: RESULT = resto; resto.add(decl); :}
                   | Declaracion:decl
-                  {: RESULT = new ArrayList<Declaracion>(); RESULT.add(decl); :};
+                  {: RESULT = new ArrayList<DecClass>(); RESULT.add(decl); :};
 
 
-Tipo ::= INT: idInt
-         {: RESULT = new IntClass(); :}
-         | VOID: idVoid 
-         {: RESULT = new VoidClass(); :}
-         | FLOAT: idFloat
-         {: RESULT = new FloatClass(); :}
-         | BOOL: idBool
-         {: RESULT = new BoolClass(); :}
-         | CHAR: idChar
-         {: RESULT = new CharClass(); :}
-         | STRING: idString
-         {: RESULT = new StringClass(); :};
+// Tipo de funciones/variables
+//************************************* Array, Puntero, String
+Tipo ::= INT: id
+         {: RESULT = new TipoBasicoClass(id.lexema()); :}  
+         | VOID: id
+         {: RESULT = new TipoBasicoClass(id.lexema()); :} 
+         | FLOAT: id
+         {: RESULT = new TipoBasicoClass(id.lexema()); :} 
+         | BOOL: id
+         {: RESULT = new TipoBasicoClass(id.lexema()); :}  
+         | CHAR: id
+         {: RESULT = new TipoBasicoClass(id.lexema()); :}  
+         | STRING: id
+         {: RESULT = new TipoBasicoClass(id.lexema()); :};
 
+//Funcion y funcion main
 Funcion ::= Tipo:tipo IDEN:nombre PAP Args:args PCIERRE BloqueInstrucciones:ins
-{: RESULT = new Funcion(tipo, nombre, args, ins); :};
+      {: RESULT = new Funcion(tipo, nombre, args, ins); :};
 
-FuncionMain ::= VOID MAIN PAP PCIERRE BloqueInstrucciones: ins
-{: RESULT = new MainFuncion("main", ins); :};
+FuncionMain ::= VOID MAIN PAP PCIERRE BloqueInstrucciones:ins
+      {: RESULT = new MainFuncion("main", ins); :};
 
-Args ::= Tipo:t IDEN COMA Args:args 
+Args ::= Args:args COMA Tipo:t IDEN
             {: RESULT = args; RESULT.add(new ParTipoIden(iden.lexema(), t)); :}
             | Tipo:t IDEN:iden 
-            {: RESULT.add(new ParTipoIden(iden.lexema(), t)); :}
-            |   
-            {: RESULT = new ArrayList<ParTipoIden>(); :};                    
+            {: RESULT = new ArrayList<ParTipoIden>(); RESULT.add(new ParTipoIden(iden.lexema(), t)); :}                    
 
-LlamadaFuncion ::= IDEN:nombre PAP Params:params PCIERRE
-{: RESULT = new Funcall(nombre,params); :}; 
 
-Params ::= E0:exp COMA Params:params 
+Params ::= Params:params COMA E0:exp 
             {: RESULT = params ; RESULT.add(new Expresion()); :}
             | E0: exp
-            {: RESULT.add(new Expresion()); :}
-            | 
-            {: RESULT = new ArrayList<Expresion>(); :};
+            {: RESULT = new ArrayList<Expresion>(); RESULT.add(exp); :};
 
+// Instrucciones
 BloqueInstrucciones ::= LAP Instrucciones:ins LCIERRE
-{: RESULT = ins; :};
+      {: RESULT = ins; :};
 
 Instrucciones ::= Instrucciones:ins Instruccion:elem
                   {: RESULT = ins; ins.add(elem); :} 
@@ -160,63 +169,129 @@ Instruccion ::= Declaracion:elem
                   {: RESULT = elem; :};
 
 
-InsLlamadaFuncion ::= LlamadaFuncion PUNTOYCOMA;
 
-Declaracion ::= Tipo IDEN PUNTOYCOMA | Tipo Asignacion | IDEN IDEN PUNTOYCOMA;
+Declaracion ::= Tipo:t IDEN:nombre PUNTOYCOMA 
+                {: RESULT = new DecClass(t,nombre.lexema()); :}
+                | Tipo:t IDEN:nombre IGUAL E0:exp PUNTOYCOMA
+                {: RESULT = new DecClass(t,nombre.lexema(),exp); :};
+//                | IDEN:nombre IDEN:nombre PUNTOYCOMA
+//                {: RESULT = new DecClass(,nombre.lexema()); :}
+// COMO HAGO DECLARACIONES DE STRUCTS/ENUMS
 
-Asignacion ::= IDEN IGUAL E0 PUNTOYCOMA;
+        
 
-If ::= IF PAP E0 PCIERRE BloqueInstrucciones
-      | IF PAP E0 PCIERRE BloqueInstrucciones ELSE BloqueInstrucciones;
+Asignacion ::= IDEN:nombre IGUAL E0:exp PUNTOYCOMA
+      {: RESULT = new AssigClass(nombre, exp); :};
+
+If ::= IF PAP E0:exp PCIERRE BloqueInstrucciones:ins
+       {: RESULT = new IfClass(exp,ins); :}
+       | IF PAP E0:exp PCIERRE BloqueInstrucciones:ins ELSE BloqueInstrucciones:inselse
+       {: RESULT = new IfClass(e,ins,inselse); :};
 //      | IF PAP E0 PCIERRE BloqueInstrucciones Elsif;
 //Elsif ::= ELSIF PAP E0 PCIERRE BloqueInstrucciones Elsif
 //         | ELSE BloqueInstrucciones
 //         | ;
 
-While ::= WHILE PAP E0 PCIERRE BloqueInstrucciones;
+While ::= WHILE PAP E0:exp PCIERRE BloqueInstrucciones:ins
+      {: RESULT = new WhileClass(exp,ins); :} ;                
+ 
+
+Switch ::= SWITCH PAP E0:exp PCIERRE LAP BloqueCase:casos LCIERRE
+      {: RESULT = new SwitchClass(exp,casos); :};
+
+BloqueCase ::= BloqueCase:casos Case:caso  
+               {: RESULT = casos; casos.add(caso) :}
+               | Default: caso
+               {: RESULT = new ArrayList<CaseSwitch>(); RESULT.add(caso) :};   
+
+Case ::= CASE E0:exp DOSPUNTOS Instrucciones:ins BREAK PUNTOYCOMA                            
+      {: RESULT = new CaseSwitch(exp,ins); :}; 
+
+Default ::= DEFAULT DOSPUNTOS Instrucciones:ins    
+      {: RESULT = new CaseSwitch(ins); :} ; 
+
+Print ::= PRINT PAP E0:exp PCIERRE PUNTOYCOMA
+      {: RESULT = new PrintClass(exp); :};
+
+Return ::= RETURN E0:exp PUNTOYCOMA 
+            {: RESULT = new ReturnClass(exp); :}
+            | RETURN PUNTOYCOMA
+            {: RESULT = new ReturnClass(); :};
 
 
+InsLlamadaFuncion ::= LlamadaFuncion:funcion PUNTOYCOMA
+      {: RESULT = new FuncallClass(funcion); :};
 
-Switch ::= SWITCH PAP IDEN PCIERRE LAP BloqueCase LCIERRE;
-BloqueCase ::= CASE E0 DOSPUNTOS Instrucciones BREAK PUNTOYCOMA BloqueCase 
-               | DEFAULT DOSPUNTOS Instrucciones;
-
-Print ::= PRINT PAP E0 PCIERRE PUNTOYCOMA;
-
-Return ::= RETURN E0 PUNTOYCOMA | RETURN PUNTOYCOMA;
+LlamadaFuncion ::= IDEN:nombre PAP Params:params PCIERRE
+      {: RESULT = new FuncallExp(nombre,params); :}; 
 
 
 // Expresiones y operadores
-E0 ::= E0 POTENCIA E1 
-      | E1;
-E1 ::= NEG E1
-      | MENOS E1
-      | E2;
-E2 ::= E2 POR E3 
-      | E2 DIV E3 
-      | E3;
-E3 ::= E3 MAYOR E4 
-      | E3 MENOR E4 
-      | E3 MAYORIGUAL E4 
-      | E3 MENORIGUAL E4 
-      | E3 IGUALDAD E4
-      | E3 DISTINTO E4
-      | E3 MAS E4
-      | E3 MENOS E4
-      | E3 MOD E4
-      | E4;
-E4 ::= E4 AND E5
-      | E4 OR E5
-      | E5;
-E5 ::= TRUE
-      | FALSE
-      | ENT
-      | REAL
-      | CARACTER
-      | STRING
-      | IDEN
-      | LlamadaFuncion
-      | PAP E0 PCIERRE;
+E0 ::= E0:expizq POTENCIA E1:expdcha
+      {: RESULT = new OpPotencia(expizq,expdcha); :}
+      | E1:exp
+      {: RESULT = exp; :};
+
+E1 ::= NEG E1:exp
+      {: RESULT = new OpNegar(exp); :}
+      | MENOS E1:exp
+      {: RESULT = new OpCambiosigno(exp); :}
+      | E2:exp
+      {: RESULT = exp; :};
+
+E2 ::= E2:expizq POR E3:expdcha
+      {: RESULT = new OpMult(expizq,expdcha); :}
+      | E2:expizq DIV E3:expdcha 
+      {: RESULT = new OpDiv(expizq,expdcha); :}
+      | E3:exp
+      {: RESULT = exp; :};
+
+E3 ::= E3:expizq MAYOR E4:expdcha 
+      {: RESULT = new OpMayor(expizq,expdcha); :}
+      | E3:expizq MENOR E4:expdcha
+      {: RESULT = new OpMenor(expizq,expdcha); :}
+      | E3:expizq MAYORIGUAL E4:expdcha 
+      {: RESULT = new OpMayorigual(expizq,expdcha); :}
+      | E3:expizq MENORIGUAL E4:expdcha 
+      {: RESULT = new OpMenorigual(expizq,expdcha); :}
+      | E3:expizq IGUALDAD E4:expdcha
+      {: RESULT = new OpIgualdad(expizq,expdcha); :}
+      | E3:expizq DISTINTO E4:expdcha
+      {: RESULT = new OpDesigualdad(expizq,expdcha); :}
+      | E3:expizq MAS E4:expdcha
+      {: RESULT = new OpSuma(expizq,expdcha); :}
+      | E3:expizq MENOS E4:expdcha
+      {: RESULT = new OpResta(expizq,expdcha); :}
+      | E3:expizq MOD E4:expdcha
+      {: RESULT = new OpModulo(expizq,expdcha); :}
+      | E4:exp
+      {: RESULT = exp; :};
+
+E4 ::= E4:expizq AND E5:expdcha
+      {: RESULT = new OpAnd(expizq,expdcha); :}
+      | E4:expizq OR E5:expdcha
+      {: RESULT = new OpOr(expizq,expdcha); :}
+      | E5:exp
+      {: RESULT = exp; :};
+
+E5 ::= TRUE:cte
+      {: RESULT = new Constante(cte.lexema()); :}
+      | FALSE:cte
+      {: RESULT = new Constante(cte.lexema()); :}
+      | ENT:cte
+      {: RESULT = new Constante(cte.lexema()); :}
+      | REAL:cte
+      {: RESULT = new Constante(cte.lexema()); :}
+      | CARACTER:cte
+      {: RESULT = new Constante(cte.lexema()); :}
+      | STRING:cte
+      {: RESULT = new Constante(cte.lexema()); :}
+      | IDEN:cte
+      {: RESULT = new Constante(cte.lexema()); :}
+      | LlamadaFuncion: llamada
+      {: RESULT = llamada; :}
+      | PAP E0:exp PCIERRE
+      {: RESULT = exp; :};
 
 
 
