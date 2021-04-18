@@ -39,6 +39,8 @@ non terminal DentroEnumerado;
 non terminal FuncionMain;
 non terminal Funcion;
 non terminal Args;
+non terminal LlamadaFuncion;
+non terminal Params;
 
 non terminal Instrucciones;
 non terminal BloqueInstrucciones;
@@ -50,9 +52,14 @@ non terminal While;
 non terminal Switch;
 non terminal BloqueCase;
 non terminal For;
+non terminal InsLlamadaFuncion;
 
-non terminal Expresion; 
-non terminal Operador;
+non terminal E0; 
+non terminal E1;
+non terminal E2;
+non terminal E3;
+non terminal E4;
+non terminal E5;
 
 non terminal Print;
 non terminal Tipo;
@@ -76,9 +83,16 @@ Tipo ::= INT
          | CHAR 
          | STRING;
 
-Funcion ::= Tipo IDEN PAP Args PCIERRE BloqueInstrucciones
-FuncionMain ::= VOID MAIN PAP PCIERRE BloqueInstrucciones
-Args ::= Tipo IDEN
+Funcion ::= Tipo IDEN PAP Args PCIERRE BloqueInstrucciones;
+FuncionMain ::= VOID MAIN PAP PCIERRE BloqueInstrucciones;
+Args ::= Tipo IDEN COMA Args 
+            | Tipo IDEN
+            | ;
+
+LlamadaFuncion ::= IDEN PAP Params PCIERRE
+Params ::= E0 COMA Params 
+            | E0 
+            | ;
 
 BloqueInstrucciones ::= LAP Instrucciones LCIERRE;
 Instrucciones ::= Declaracion Instrucciones 
@@ -89,30 +103,65 @@ Instrucciones ::= Declaracion Instrucciones
                   | For Instrucciones 
                   | Print Instrucciones 
                   | RETURN Expresion
+                  | InsLlamadaFuncion
                   | ;
+
+InsLlamadaFuncion ::= LlamadaFuncion PUNTOYCOMA;
 
 Declaracion ::= Tipo IDEN PUNTOYCOMA | Tipo Asignacion;
 
 Asignacion ::= IDEN IGUAL Expresion PUNTOYCOMA;
 
-If ::= IF PAP ExpresionBool PCIERRE BloqueInstrucciones
-      | IF PAP ExpresionBool PCIERRE BloqueInstrucciones ELSE BloqueInstrucciones
-      | IF PAP ExpresionBool PCIERRE BloqueInstrucciones Elsif;
-Elsif ::= ELSIF PAP ExpresionBool PCIERRE BloqueInstrucciones Elsif
+If ::= IF PAP E0 PCIERRE BloqueInstrucciones
+      | IF PAP E0 PCIERRE BloqueInstrucciones ELSE BloqueInstrucciones
+      | IF PAP E0 PCIERRE BloqueInstrucciones Elsif;
+Elsif ::= ELSIF PAP E0 PCIERRE BloqueInstrucciones Elsif
          | ELSE BloqueInstrucciones
          | ;
 
-While ::= WHILE PAP ExpresionBool PCIERRE BloqueInstrucciones;
+While ::= WHILE PAP E0 PCIERRE BloqueInstrucciones;
 
 
 
 Switch ::= SWITCH PAP IDEN PCIERRE LAP BloqueCase LCIERRE
-BloqueCase ::= CASE Expresion DOSPUNTOS Instrucciones BREAK PUNTOYCOMA BloqueCase 
+BloqueCase ::= CASE E0 DOSPUNTOS Instrucciones BREAK PUNTOYCOMA BloqueCase 
                | DEFAULT DOSPUNTOS Instrucciones;
 
-Print ::= PRINT PAP Expresion PCIERRE PUNTOYCOMA;
+Print ::= PRINT PAP E0 PCIERRE PUNTOYCOMA;
 
-Return ::= RETURN Expresion | RETURN;
+Return ::= RETURN E0 | RETURN;
+
+
+// Expresiones y operadores
+E0 ::= E0 POTENCIA E1 
+      | E1;
+E1 ::= NEG E1 
+      | E1 POR E2 
+      | E1 DIV E2 
+      | E2;
+E2 ::= E2 MAYOR E3 
+      | E2 MENOR E3 
+      | E2 MAYORIGUAL E3 
+      | E2 MENORIGUAL E3 
+      | E2 IGUALDAD E3
+      | E2 DISTINTO E3
+      | E2 MAS E3
+      | E2 MENOS E3
+      | E2 MOD E3
+      | E3;
+E4 ::= E4 AND E5
+      | E4 OR E5
+      | E5;
+E5 ::= TRUE
+      | FALSE
+      | ENT
+      | REAL
+      | CARACTER
+      | IDEN
+      | LlamadaFuncion
+      | PAP E0 PCIERRE;
+
+
 
 
 
