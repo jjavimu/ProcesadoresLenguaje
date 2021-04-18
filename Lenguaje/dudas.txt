@@ -1,18 +1,21 @@
-operadorPotencia lexico
-expresiones y operadores (prioridad)
-expresion, new, asignar como?
+
+
 
 
 mirar:
-comentarios programa: saca mal columna algo /*...*/ caractermalo
-read
-string corregir tam variable y demas
-return exigir en funcion? break?
+- comentarios programa: saca mal columna algo /*...*/ caractermalo
+- read
+- string corregir tam variable y demas
+- constantes
+- operadorPotencia lexico
+- Enumerados y structs declaracion -- IDEN IDEN
+- memoria dinamica
+- Arrays
+- For/elsif
+- añadir la columna
 
-
-cosas añadir:
-constantes
-llamadas dentro de una expresion
+- recursividad instrucciones/argumentos/parametros
+- identificador
 
 
 
@@ -33,8 +36,5 @@ Comentarios a la entrega:
 
   En el texto la descripción del read está inacabada.
 
-- Tabla operadores actualizar (* acceso a memoria, & acceso a memoria)
+- Tabla operadores actualizar (* acceso a memoria, & acceso a memoria, menos unario)
 
-
-- memoria dinamica
-- arrays (strings)

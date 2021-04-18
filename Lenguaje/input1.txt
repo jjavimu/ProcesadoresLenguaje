@@ -1,14 +1,14 @@
-enum TipoFigura { Cuadrado, Triangulo, Circulo };
+enum TipoFigura = { Cuadrado, Triangulo, Circulo };
 
-int main() {
+void main() {
     TipoFigura figura; // Definimos Figura de tipo enumerado TipoFigura
     figura = Circulo;
     switch (Figura) {
         case Cuadrado: print("Cuadrado"); break;
         case Triangulo: print("Triángulo"); break;
         case Circulo: print("Círculo"); break;
-        default: print("Función no implementada"); break;
+        default: print("Función no implementada");
     }
-    return 0;
+    return;
 
 }

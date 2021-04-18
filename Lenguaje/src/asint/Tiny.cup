@@ -19,7 +19,7 @@ init with {:
 :};
 
 
-terminal     IDEN, ENT, REAL, MAS,
+terminal UnidadLexica IDEN, ENT, REAL, MAS,
              MENOS, POR, DIV, IGUAL, POTENCIA,MOD,
              PAP, PCIERRE, CAP, CCIERRE,
              MAYOR, MENOR, MAYORIGUAL, 
@@ -31,84 +31,138 @@ terminal     IDEN, ENT, REAL, MAS,
              RETURN, MAIN, PRINT, PUNTO;
 
 
-non terminal S;
-non terminal Struct ;
-non terminal DentroStruct;
-non terminal Enumerado;
-non terminal DentroEnumerado;
-non terminal FuncionMain;
-non terminal Funcion;
-non terminal Args;
-non terminal LlamadaFuncion;
-non terminal Params;
+non terminal Entrada S;
+non terminal Struct Struct ;
+non terminal CuerpoStruct DentroStruct;
+non terminal EnumClass Enumerado;
+non terminal CuerpoEnum DentroEnumerado;
+non terminal Fmain FuncionMain;
+non terminal Funcion Funcion;
+non terminal List<Expresion> Args;
+non terminal Funcall LlamadaFuncion;
+non terminal List<Expresion> Params;
 
-non terminal Instrucciones;
-non terminal BloqueInstrucciones;
-non terminal Declaracion;
-non terminal Asignacion;
-non terminal If; 
-// non terminal Elsif;
-non terminal While;
-non terminal Switch;
-non terminal BloqueCase;
-non terminal For;
-non terminal InsLlamadaFuncion;
+non terminal Ins Instruccion;
+non terminal List<Ins> Instrucciones;
+non terminal List<Ins> BloqueInstrucciones;
+non terminal Dec Declaracion;
+non terminal Asig Asignacion;
+non terminal If If; 
+//non terminal Elsif;
+non terminal While While;
+non terminal Switch Switch;
+non terminal CuerpoCase BloqueCase;
+//non terminal For;
+non terminal InsFuncall InsLlamadaFuncion;
 
-non terminal E0; 
-non terminal E1;
-non terminal E2;
-non terminal E3;
-non terminal E4;
-non terminal E5;
+non terminal Expresion E0;
+non terminal Expresion E1;
+non terminal Expresion E2;
+non terminal Expresion E3;
+non terminal Expresion E4;
+non terminal Expresion E5;
 
-non terminal Print;
-non terminal Tipo;
+non terminal Print Print;
+non terminal Return Return;
+non terminal Tipo Tipo;
+
+non terminal Identificador Identificador
 
 
-S ::= Enumerado S 
-      | Struct S 
-      | Funcion S 
-      | FuncionMain;
+S ::= S:entrada Bloque: elem
+      {: RESULT = entrada; entrada.add(elem); :} 
+	|
+      {: RESULT = new ArrayList<Ins>(); :};
 
-Enumerado ::= ENUM IDEN IGUAL LAP DentroEnumerado LCIERRE PUNTOYCOMA;
-DentroEnumerado ::= IDEN COMA DentroEnumerado | IDEN;
 
-Struct ::= STRUCT IDEN LAP DentroStruct LCIERRE PUNTOYCOMA;
-DentroStruct ::= Declaracion DentroStruct | Declaracion;
+S:= Enumerado: enum S
+            | Struct: struct S  
+            | Funcion: fun S  
+            | FuncionMain: funmain S 
+            | {: RESULT = new Programa(enum,struct,fun,funmain);:};
 
-Tipo ::= INT 
-         | VOID 
-         | FLOAT 
-         | BOOL 
-         | CHAR 
-         | STRING;
+Enumerado ::= ENUM IDEN:nombre IGUAL LAP DentroEnumerado:valores LCIERRE PUNTOYCOMA
+{: RESULT = new EnumClass(nombre,valores); :};
 
-Funcion ::= Tipo IDEN PAP Args PCIERRE BloqueInstrucciones;
-FuncionMain ::= VOID MAIN PAP PCIERRE BloqueInstrucciones;
-Args ::= Tipo IDEN COMA Args 
-            | Tipo IDEN
-            | ;
+DentroEnumerado ::= DentroEnumerado:restoValores COMA IDEN:valor
+                  {: RESULT = restoValores; restoValores.add(valor); :}
+                  | IDEN:valor
+                  {: RESULT = new ArrayList<Identificador>(); RESULT.add(valor); :};
 
-LlamadaFuncion ::= IDEN PAP Params PCIERRE;
-Params ::= E0 COMA Params 
-            | E0 
-            | ;
+Struct ::= STRUCT IDEN LAP DentroStruct LCIERRE PUNTOYCOMA
+{: RESULT = new StructClass(nombre,valores); :};
 
-BloqueInstrucciones ::= LAP Instrucciones LCIERRE;
-Instrucciones ::= Declaracion Instrucciones 
-                  | Asignacion Instrucciones    
-                  | If Instrucciones
-                  | While Instrucciones 
-                  | Switch Instrucciones 
-                  | For Instrucciones 
-                  | Print Instrucciones 
-                  | RETURN E0
-                  | InsLlamadaFuncion
-                  | ;
+DentroStruct ::= DentroStruct:resto Declaracion:decl
+                  {: RESULT = resto; resto.add(decl); :}
+                  | Declaracion:decl
+                  {: RESULT = new ArrayList<Declaracion>(); RESULT.add(decl); :};
+
+
+Tipo ::= INT: idInt
+         {: RESULT = new IntClass(); :}
+         | VOID: idVoid 
+         {: RESULT = new VoidClass(); :}
+         | FLOAT: idFloat
+         {: RESULT = new FloatClass(); :}
+         | BOOL: idBool
+         {: RESULT = new BoolClass(); :}
+         | CHAR: idChar
+         {: RESULT = new CharClass(); :}
+         | STRING: idString
+         {: RESULT = new StringClass(); :};
+
+Funcion ::= Tipo:tipo IDEN:nombre PAP Args:args PCIERRE BloqueInstrucciones:ins
+{: RESULT = new Funcion(tipo, nombre, args, ins); :};
+
+FuncionMain ::= VOID MAIN PAP PCIERRE BloqueInstrucciones: ins
+{: RESULT = new MainFuncion("main", ins); :};
+
+Args ::= Tipo:t IDEN COMA Args:args 
+            {: RESULT = args; RESULT.add(new ParTipoIden(iden.lexema(), t)); :}
+            | Tipo:t IDEN:iden 
+            {: RESULT.add(new ParTipoIden(iden.lexema(), t)); :}
+            |   
+            {: RESULT = new ArrayList<ParTipoIden>(); :};                    
+
+LlamadaFuncion ::= IDEN:nombre PAP Params:params PCIERRE
+{: RESULT = new Funcall(nombre,params); :}; 
+
+Params ::= E0:exp COMA Params:params 
+            {: RESULT = params ; RESULT.add(new Expresion()); :}
+            | E0: exp
+            {: RESULT.add(new Expresion()); :}
+            | 
+            {: RESULT = new ArrayList<Expresion>(); :};
+
+BloqueInstrucciones ::= LAP Instrucciones:ins LCIERRE
+{: RESULT = ins; :};
+
+Instrucciones ::= Instrucciones:ins Instruccion:elem
+                  {: RESULT = ins; ins.add(elem); :} 
+			|
+                  {: RESULT = new ArrayList<Ins>(); :};
+
+Instruccion ::= Declaracion:elem 
+                  {: RESULT = elem; :}
+                  | Asignacion:elem
+                  {: RESULT = elem; :}   
+                  | If:elem
+                  {: RESULT = elem; :}
+                  | While:elem 
+                  {: RESULT = elem; :}
+                  | Switch:elem 
+                  {: RESULT = elem; :}
+                  | Print:elem
+                  {: RESULT = elem; :}
+                  | Return:elem
+                  {: RESULT = elem; :}
+                  | InsLlamadaFuncion:elem
+                  {: RESULT = elem; :};
+
 
 InsLlamadaFuncion ::= LlamadaFuncion PUNTOYCOMA;
 
-Declaracion ::= Tipo IDEN PUNTOYCOMA | Tipo Asignacion;
+Declaracion ::= Tipo IDEN PUNTOYCOMA | Tipo Asignacion | IDEN IDEN PUNTOYCOMA;
 
 Asignacion ::= IDEN IGUAL E0 PUNTOYCOMA;
 
@@ -129,26 +183,28 @@ BloqueCase ::= CASE E0 DOSPUNTOS Instrucciones BREAK PUNTOYCOMA BloqueCase
 
 Print ::= PRINT PAP E0 PCIERRE PUNTOYCOMA;
 
-Return ::= RETURN E0 | RETURN;
+Return ::= RETURN E0 PUNTOYCOMA | RETURN PUNTOYCOMA;
 
 
 // Expresiones y operadores
 E0 ::= E0 POTENCIA E1 
       | E1;
 E1 ::= NEG E1
-      | E1 POR E2 
-      | E1 DIV E2 
+      | MENOS E1
       | E2;
-E2 ::= E2 MAYOR E3 
-      | E2 MENOR E3 
-      | E2 MAYORIGUAL E3 
-      | E2 MENORIGUAL E3 
-      | E2 IGUALDAD E3
-      | E2 DISTINTO E3
-      | E2 MAS E3
-      | E2 MENOS E3
-      | E2 MOD E3
+E2 ::= E2 POR E3 
+      | E2 DIV E3 
       | E3;
+E3 ::= E3 MAYOR E4 
+      | E3 MENOR E4 
+      | E3 MAYORIGUAL E4 
+      | E3 MENORIGUAL E4 
+      | E3 IGUALDAD E4
+      | E3 DISTINTO E4
+      | E3 MAS E4
+      | E3 MENOS E4
+      | E3 MOD E4
+      | E4;
 E4 ::= E4 AND E5
       | E4 OR E5
       | E5;
@@ -157,6 +213,7 @@ E5 ::= TRUE
       | ENT
       | REAL
       | CARACTER
+      | STRING
       | IDEN
       | LlamadaFuncion
       | PAP E0 PCIERRE;
