@@ -6,7 +6,7 @@ expresion, new, asignar como?
 mirar:
 comentarios programa: saca mal columna algo /*...*/ caractermalo
 read
-string
+string corregir tam variable y demas
 return exigir en funcion? break?
 
 
@@ -33,4 +33,8 @@ Comentarios a la entrega:
 
   En el texto la descripción del read está inacabada.
 
-Podéis hacer una nueva entrega del documento en la siguiente entrega.G
+- Tabla operadores actualizar (* acceso a memoria, & acceso a memoria)
+
+
+- memoria dinamica
+- arrays (strings)
