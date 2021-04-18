@@ -47,7 +47,7 @@ non terminal BloqueInstrucciones;
 non terminal Declaracion;
 non terminal Asignacion;
 non terminal If; 
-non terminal Elsif;
+// non terminal Elsif;
 non terminal While;
 non terminal Switch;
 non terminal BloqueCase;
@@ -70,7 +70,7 @@ S ::= Enumerado S
       | Funcion S 
       | FuncionMain;
 
-Enumerado ::= ENUM IDEN IGUAL LAP Dentro LCIERRE PUNTOYCOMA;
+Enumerado ::= ENUM IDEN IGUAL LAP DentroEnumerado LCIERRE PUNTOYCOMA;
 DentroEnumerado ::= IDEN COMA DentroEnumerado | IDEN;
 
 Struct ::= STRUCT IDEN LAP DentroStruct LCIERRE PUNTOYCOMA;
@@ -89,7 +89,7 @@ Args ::= Tipo IDEN COMA Args
             | Tipo IDEN
             | ;
 
-LlamadaFuncion ::= IDEN PAP Params PCIERRE
+LlamadaFuncion ::= IDEN PAP Params PCIERRE;
 Params ::= E0 COMA Params 
             | E0 
             | ;
@@ -102,7 +102,7 @@ Instrucciones ::= Declaracion Instrucciones
                   | Switch Instrucciones 
                   | For Instrucciones 
                   | Print Instrucciones 
-                  | RETURN Expresion
+                  | RETURN E0
                   | InsLlamadaFuncion
                   | ;
 
@@ -110,20 +110,20 @@ InsLlamadaFuncion ::= LlamadaFuncion PUNTOYCOMA;
 
 Declaracion ::= Tipo IDEN PUNTOYCOMA | Tipo Asignacion;
 
-Asignacion ::= IDEN IGUAL Expresion PUNTOYCOMA;
+Asignacion ::= IDEN IGUAL E0 PUNTOYCOMA;
 
 If ::= IF PAP E0 PCIERRE BloqueInstrucciones
-      | IF PAP E0 PCIERRE BloqueInstrucciones ELSE BloqueInstrucciones
-      | IF PAP E0 PCIERRE BloqueInstrucciones Elsif;
-Elsif ::= ELSIF PAP E0 PCIERRE BloqueInstrucciones Elsif
-         | ELSE BloqueInstrucciones
-         | ;
+      | IF PAP E0 PCIERRE BloqueInstrucciones ELSE BloqueInstrucciones;
+//      | IF PAP E0 PCIERRE BloqueInstrucciones Elsif;
+//Elsif ::= ELSIF PAP E0 PCIERRE BloqueInstrucciones Elsif
+//         | ELSE BloqueInstrucciones
+//         | ;
 
 While ::= WHILE PAP E0 PCIERRE BloqueInstrucciones;
 
 
 
-Switch ::= SWITCH PAP IDEN PCIERRE LAP BloqueCase LCIERRE
+Switch ::= SWITCH PAP IDEN PCIERRE LAP BloqueCase LCIERRE;
 BloqueCase ::= CASE E0 DOSPUNTOS Instrucciones BREAK PUNTOYCOMA BloqueCase 
                | DEFAULT DOSPUNTOS Instrucciones;
 
@@ -135,7 +135,7 @@ Return ::= RETURN E0 | RETURN;
 // Expresiones y operadores
 E0 ::= E0 POTENCIA E1 
       | E1;
-E1 ::= NEG E1 
+E1 ::= NEG E1
       | E1 POR E2 
       | E1 DIV E2 
       | E2;
