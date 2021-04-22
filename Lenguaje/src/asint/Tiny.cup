@@ -136,7 +136,7 @@ FuncionMain ::= VOID MAIN PAP PCIERRE BloqueInstrucciones:ins
 Args ::= Args:args COMA Tipo:t IDEN:iden
             {: RESULT = args; args.add(new ParTipoIden(iden.lexema, t)); :}
             | Tipo:t IDEN:iden 
-            {: RESULT = new ArrayList<ParTipoIden>(); RESULT.add(new ParTipoIden(iden.lexema, t)); :}                    
+            {: RESULT = new ArrayList<ParTipoIden>(); RESULT.add(new ParTipoIden(iden.lexema, t)); :};                    
 
 
 Params ::= Params:params COMA E0:exp 
