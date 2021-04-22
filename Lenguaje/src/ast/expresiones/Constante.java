@@ -6,4 +6,8 @@ public class Constante extends Expresion {
     public Constante(String cte){
         this.valor  =cte;
     }
+
+    public String toString(){
+        return valor;
+    }
 }

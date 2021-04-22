@@ -12,7 +12,8 @@ public class ParTipoIden {
         this.iden = iden;
     }
 
-
- 
+    public String toString(){
+        return tipo.toString() + iden;
+    }
     
 }

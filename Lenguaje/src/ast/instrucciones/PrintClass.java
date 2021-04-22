@@ -8,4 +8,8 @@ public class PrintClass extends Ins {
     public PrintClass(Expresion exp){
         this.exp = exp;
     }
+
+    public String toString(){
+        return "print (" + exp.toString() + ");\n";
+    }
 }

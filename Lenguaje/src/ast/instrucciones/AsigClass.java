@@ -13,4 +13,7 @@ public class AsigClass extends Ins {
         this.nombre=nombre;
     }
     
+    public String toString(){
+        return nombre + " = " + exp + "\n";
+    }
 }

@@ -10,6 +10,7 @@ import ast.funciones.*;
 import ast.instrucciones.*;
 import ast.tipos.*;
 import errors.GestionErroresTiny;
+import java.util.*;
 
 
 scan with {: return getScanner().next_token(); :};
@@ -40,7 +41,7 @@ terminal TokenValue IDEN, ENT, REAL,
 
 
 non terminal Programa S;
-non terminal ListaDefinciones Entrada;
+non terminal ListaDefiniciones Entrada;
 non terminal StructClass Struct ;
 non terminal List<DecClass> DentroStruct;
 non terminal EnumClass Enumerado;
@@ -79,16 +80,16 @@ non terminal TipoClass Tipo;
 
 // Programa
 S ::= Entrada:definiciones FuncionMain:fmain 
-      {: RESULT = new Programa(definiciones, fmain):};
+      {: RESULT = new Programa(definiciones, fmain); :};
 
 Entrada ::=  Entrada:definiciones Struct:str
-            {: RESULT = definiciones; definiciones.addStruct(str);:}
+            {: RESULT = definiciones; definiciones.addStruct(str); :}
             | Entrada:definiciones Enumerado:en
-            {: RESULT = definiciones; definiciones.addEnum(en);:}
+            {: RESULT = definiciones; definiciones.addEnum(en); :}
             | Entrada:definiciones Funcion:f 
-            {: RESULT = definiciones; definiciones.addFuncion(f);:}
+            {: RESULT = definiciones; definiciones.addFuncion(f); :}
             | 
-            {: RESULT = new ListaDefinciones():};
+            {: RESULT = new ListaDefiniciones(); :};
 
 // Enumerado
 Enumerado ::= ENUM IDEN:nombre IGUAL LAP DentroEnumerado:valores LCIERRE PUNTOYCOMA
@@ -126,23 +127,24 @@ Tipo ::= INT: id
          | IDEN: id
          {: RESULT = new TipoEstructuraClass(id.lexema); :};
 
+
 //Funcion y funcion main
 Funcion ::= Tipo:tipo IDEN:nombre PAP Args:args PCIERRE BloqueInstrucciones:ins
       {: RESULT = new Funcion(tipo, nombre.lexema, args, ins); :};
 
 FuncionMain ::= VOID MAIN PAP PCIERRE BloqueInstrucciones:ins
-      {: RESULT = new MainFuncion("main", ins); :};
+      {: RESULT = new Fmain("main", ins); :};
 
 Args ::= Args:args COMA Tipo:t IDEN:iden
-            {: RESULT = args; args.add(new ParTipoIden(iden.lexema, t)); :}
+            {: RESULT = args; args.add(new ParTipoIden(t,iden.lexema)); :}
             | Tipo:t IDEN:iden 
-            {: RESULT = new ArrayList<ParTipoIden>(); RESULT.add(new ParTipoIden(iden.lexema, t)); :};                    
+            {: RESULT = new ArrayList<ParTipoIden>(); RESULT.add(new ParTipoIden(t,iden.lexema)); :};                   
 
 
 Params ::= Params:params COMA E0:exp 
-            {: RESULT = params ; params.add(new Expresion()); :}
-            | E0: exp
-            {: RESULT = new ArrayList<Expresion>(); RESULT.add(exp); :};
+            {: RESULT = params ; params.add(exp); :}
+            |
+            {: RESULT = new ArrayList<Expresion>();:};
 
 // Instrucciones
 BloqueInstrucciones ::= LAP Instrucciones:ins LCIERRE
@@ -181,12 +183,12 @@ Declaracion ::= Tipo:t IDEN:nombre PUNTOYCOMA
         
 
 Asignacion ::= IDEN:nombre IGUAL E0:exp PUNTOYCOMA
-      {: RESULT = new AssigClass(nombre.lexema, exp); :};
+      {: RESULT = new AsigClass(nombre.lexema, exp); :};
 
 If ::= IF PAP E0:exp PCIERRE BloqueInstrucciones:ins
        {: RESULT = new IfClass(exp,ins); :}
        | IF PAP E0:exp PCIERRE BloqueInstrucciones:ins ELSE BloqueInstrucciones:inselse
-       {: RESULT = new IfClass(e,ins,inselse); :};
+       {: RESULT = new IfClass(exp,ins,inselse); :};
 //      | IF PAP E0 PCIERRE BloqueInstrucciones Elsif;
 //Elsif ::= ELSIF PAP E0 PCIERRE BloqueInstrucciones Elsif
 //         | ELSE BloqueInstrucciones
@@ -196,13 +198,13 @@ While ::= WHILE PAP E0:exp PCIERRE BloqueInstrucciones:ins
       {: RESULT = new WhileClass(exp,ins); :} ;                
  
 
-Switch ::= SWITCH PAP E0:exp PCIERRE LAP BloqueCase:casos LCIERRE
-      {: RESULT = new SwitchClass(exp,casos); :};
+Switch ::= SWITCH PAP E0:exp PCIERRE LAP BloqueCase:casos Default:def LCIERRE
+      {: casos.add(def); RESULT = new SwitchClass(exp,casos); :};
 
 BloqueCase ::= BloqueCase:casos Case:caso  
-               {: RESULT = casos; casos.add(caso) :}
-               | Default: caso
-               {: RESULT = new ArrayList<CaseSwitch>(); RESULT.add(caso) :};   
+               {: RESULT = casos; casos.add(caso); :}
+               | Case: caso
+               {: RESULT = new ArrayList<CaseSwitch>(); RESULT.add(caso); :};   
 
 Case ::= CASE E0:exp DOSPUNTOS Instrucciones:ins BREAK PUNTOYCOMA                            
       {: RESULT = new CaseSwitch(exp,ins); :}; 
@@ -223,7 +225,7 @@ InsLlamadaFuncion ::= LlamadaFuncion:funcion PUNTOYCOMA
       {: RESULT = new FuncallClass(funcion); :};
 
 LlamadaFuncion ::= IDEN:nombre PAP Params:params PCIERRE
-      {: RESULT = new FuncallExp(nombre,params); :}; 
+      {: RESULT = new FuncallExp(nombre.lexema,params); :}; 
 
 
 // Expresiones y operadores
@@ -236,8 +238,8 @@ E1 ::= NEG E1:exp
       {: RESULT = new OpNegar(exp); :}
       | MENOS E1:exp
       {: RESULT = new OpCambioSigno(exp); :}
-      | POR: por IDEN:iden E1:exp
-      {: RESULT = new OpPuntero(iden,exp); :}
+//      | POR: por IDEN:iden
+//      {: RESULT = new OpPuntero(iden.lexema); :}
       | E2:exp
       {: RESULT = exp; :};
 

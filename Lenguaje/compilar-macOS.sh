@@ -11,6 +11,6 @@ java -cp lib/jlex.jar JLex.Main src/alex/AnalizadorLexicoTiny &&
  rm ../AnalizadorSintacticoTiny.java &&
  rm ../ClaseLexica.java &&
  # Compila todos los archivos .java del proyecto. Los .class se crearán dentro de bin/
- javac -cp "../lib/cup.jar" -d ../bin */*.java &&
+ javac -cp "../lib/cup.jar:." -d ../bin */*.java &&
  # Ejecuta el programa Main con la entrada input.txt
- java -cp ".:../lib/cup.jar:../bin/" asint.Main ../input1.txt
+ java -cp ".:../lib/cup.jar:../bin/" asint.Main ../inputExpresion.txt

@@ -20,5 +20,13 @@ public class DecClass extends Ins {
         this.nombre = nombre;
         this.exp = null;
     }
+
+    public String toString(){
+        if(exp != null)
+            return tipo.toString() + nombre + exp.toString() + ";\n";
+        else
+            return tipo.toString() + nombre + ";\n";
+
+    }
     
 }

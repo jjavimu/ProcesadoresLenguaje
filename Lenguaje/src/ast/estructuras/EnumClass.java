@@ -11,4 +11,8 @@ public class EnumClass {
         this.valores = valores;  
     }
     
+    
+    public String toString() {
+        return nombre + "->" + valores.toString() + "\n";
+    }
 }

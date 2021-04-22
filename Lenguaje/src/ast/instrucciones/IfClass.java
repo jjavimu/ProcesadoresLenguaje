@@ -19,5 +19,13 @@ public class IfClass extends Ins {
         this.instrucciones_then = instrucciones_then;
         this.instrucciones_else = instrucciones_else;
     }
+
+    public String toString(){
+        String els = " ";
+        if (instrucciones_else != null){
+            els = "else {\n" + instrucciones_else + "}\n";
+        }
+        return "if (" + condicion.toString() + ") {\n " + instrucciones_then.toString() + "}\n" + els;
+    }
     
 }

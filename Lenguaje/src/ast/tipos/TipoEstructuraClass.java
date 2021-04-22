@@ -8,5 +8,9 @@ public class TipoEstructuraClass extends TipoClass {
     public TipoEstructuraClass(String tipo) {
         this.tipo = tipo;
     }
+
+    public String toString(){
+        return tipo;
+    }
     
 }

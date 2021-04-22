@@ -1,0 +1,16 @@
+enum Figura = {Triangulo, Circulo};
+
+struct estructura {
+    int a = 1;
+    float b;
+    bool ok = true;
+};
+
+int nombrefun(int a, bool ok){
+    return a;
+}
+
+
+void main(){
+    return;
+}

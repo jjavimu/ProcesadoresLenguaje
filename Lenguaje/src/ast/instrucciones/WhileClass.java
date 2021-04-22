@@ -12,5 +12,9 @@ public class WhileClass extends Ins {
         this.condicion = exp;
         this.instrucciones = instrucciones;
     }
+
+    public String toString(){
+        return "while (" + condicion.toString() + ") {\n " + instrucciones.toString() + "}\n";
+    }
     
 }

@@ -8,4 +8,7 @@ public class TipoBasicoClass extends TipoClass {
         this.tipo = tipo;
     }
     
+    public String toString(){
+        return tipo;
+    }
 }
