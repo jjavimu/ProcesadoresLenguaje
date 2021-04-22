@@ -6,6 +6,7 @@ import ast.instrucciones.DecClass;
 public class StructClass {
     private String nombre;
     private List<DecClass> valores;
+    
     public StructClass(String nombre, List<DecClass> valores){
         this.nombre = nombre;
         this.valores = valores;

@@ -166,6 +166,10 @@ public class ALexOperations {
    }
 
    public UnidadLexica unidadCadenaCaracteres() {
+      return new UnidadLexica(alex.fila(), ClaseLexica.CADENA, alex.lexema());
+   }
+
+   public UnidadLexica unidadString() {
       return new UnidadLexica(alex.fila(), ClaseLexica.STRING, alex.lexema());
    }
 

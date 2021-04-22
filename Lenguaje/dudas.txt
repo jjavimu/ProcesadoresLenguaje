@@ -1,4 +1,9 @@
 
+nodo general/como probar la practica
+errores
+tipo puntero (clase) y array
+String (cadena inmutable)/cadena caracteres
+STRUCT.sus campos
 
 
 
@@ -39,9 +44,10 @@ Puede haber varios return?
   En el texto la descripción del read está inacabada.
 
 - Tabla operadores actualizar (* acceso a memoria, & acceso a memoria, menos unario)
+- Tipo puntero *
 
 
 
 
 Dudas angela
-- Analizador lexico ¿cuando le paso el lexema a alexoperations?
+- Analizador lexico ¿cuando le paso el lexema a alexoperations? 

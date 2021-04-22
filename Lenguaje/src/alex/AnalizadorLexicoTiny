@@ -84,6 +84,7 @@ char = char
 float = float
 bool = bool
 enum = enum
+string = string
 
 true = true
 false = false
@@ -149,6 +150,7 @@ identificador = {letra}({letra}|{digito})*
 {int}                     {return ops.unidadInt();}
 {void}                    {return ops.unidadVoid();}
 {char}                    {return ops.unidadChar();}
+{string}                  {return ops.unidadString();}
 {float}                   {return ops.unidadFloat();}
 {bool}                    {return ops.unidadBool();}
 {enum}                    {return ops.unidadEnum();}

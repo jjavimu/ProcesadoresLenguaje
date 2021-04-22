@@ -26,16 +26,17 @@ init with {:
 :};
 
 
-terminal TokenValue IDEN, ENT, REAL, MAS,
-             MENOS, POR, DIV, IGUAL, POTENCIA,MOD,
-             PAP, PCIERRE, CAP, CCIERRE,
-             MAYOR, MENOR, MAYORIGUAL, 
-             MENORIGUAL, DISTINTO, 
-             COMA, PUNTOYCOMA, DOSPUNTOS, IGUALDAD, AND, OR, NEG,
-             LAP, LCIERRE, INT, VOID, CHAR, FLOAT, BOOL, ENUM,
-             TRUE, FALSE, CARACTER, STRING, NEW, REF, WHILE, FOR,
-             IF, ELSIF, ELSE, SWITCH, STRUCT, CASE, BREAK, DEFAULT,
-             RETURN, MAIN, PRINT, PUNTO;
+terminal TokenValue IDEN, ENT, REAL, 
+             MAS, MENOS, POR, DIV, IGUAL, POTENCIA, MOD,
+             PAP, PCIERRE, CAP, CCIERRE, LAP, LCIERRE,
+             MAYOR, MENOR, MAYORIGUAL, MENORIGUAL, DISTINTO, IGUALDAD,
+             COMA, PUNTOYCOMA, DOSPUNTOS, PUNTO,
+             AND, OR, NEG,
+             INT, VOID, CHAR, FLOAT, BOOL, ENUM, STRING, 
+             TRUE, FALSE, CARACTER, CADENA, 
+             NEW, REF, 
+             WHILE, FOR, IF, ELSIF, ELSE, SWITCH, STRUCT, CASE, BREAK, DEFAULT,
+             RETURN, MAIN, PRINT;
 
 
 non terminal Programa S;
@@ -55,13 +56,11 @@ non terminal List<Ins> BloqueInstrucciones;
 non terminal DecClass Declaracion;
 non terminal AsigClass Asignacion;
 non terminal IfClass If; 
-//non terminal Elsif;
 non terminal WhileClass While;
 non terminal SwitchClass Switch;
 non terminal List<CaseSwitch> BloqueCase;
 non terminal CaseSwitch Case;
 non terminal CaseSwitch Default;
-//non terminal For;
 non terminal ReturnClass Return;
 non terminal FuncallClass InsLlamadaFuncion;
 non terminal PrintClass Print;
@@ -182,7 +181,7 @@ Declaracion ::= Tipo:t IDEN:nombre PUNTOYCOMA
         
 
 Asignacion ::= IDEN:nombre IGUAL E0:exp PUNTOYCOMA
-      {: RESULT = new AssigClass(nombre, exp); :};
+      {: RESULT = new AssigClass(nombre.lexema, exp); :};
 
 If ::= IF PAP E0:exp PCIERRE BloqueInstrucciones:ins
        {: RESULT = new IfClass(exp,ins); :}
@@ -287,7 +286,7 @@ E5 ::= TRUE:cte
       {: RESULT = new Constante(cte.lexema); :}
       | CARACTER:cte
       {: RESULT = new Constante(cte.lexema); :}
-      | STRING:cte
+      | CADENA:cte
       {: RESULT = new Constante(cte.lexema); :}
       | IDEN:cte
       {: RESULT = new Constante(cte.lexema); :}
