@@ -1,4 +1,4 @@
-package ast.Instrucciones;
+package ast.instrucciones;
 
 public class WhileClass extends Ins {
     

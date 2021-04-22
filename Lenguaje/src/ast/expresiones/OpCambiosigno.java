@@ -1,8 +1,8 @@
 package ast.expresiones;
 
-public class OpCambiosigno extends ExpresionUnaria {
+public class OpCambioSigno extends ExpresionUnaria {
 
-    public OpCambiosigno(Expresion exp){
+    public OpCambioSigno(Expresion exp){
         super(exp);
     }
     

@@ -1,7 +1,7 @@
-package ast.Instrucciones;
+package ast.instrucciones;
 
 public class Ins {
 
-    public Instruction() {
+    public Ins() {
         }
 }

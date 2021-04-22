@@ -1,9 +1,18 @@
 package ast.funciones;
 
-public class ParTipoIden {
+import ast.tipos.TipoBasicoClass;
+import ast.tipos.TipoClass;
 
-    public ParTipoIden(){
-        
+public class ParTipoIden {
+    private TipoClass tipo;
+    private String iden;
+
+    public ParTipoIden(TipoClass tipo, String iden) {
+        this.tipo = tipo;
+        this.iden = iden;
     }
+
+
+ 
     
 }
