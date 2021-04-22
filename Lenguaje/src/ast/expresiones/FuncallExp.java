@@ -1,9 +1,19 @@
 package ast.expresiones;
 
-public class FuncallExp extends Expresion {
+import java.util.List;
 
-    public FuncallExp(){
-        
+public class FuncallExp extends Expresion {
+    protected String nombre;
+    protected List<Expresion> parametros;
+
+    public FuncallExp(String nombre, List<Expresion> parametros) {
+        this.nombre = nombre;
+        this.parametros = parametros;
     }
+
+    public String toString(){
+        return nombre + "+" + parametros.toString();
+    }
+   
     
 }

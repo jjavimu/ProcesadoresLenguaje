@@ -4,6 +4,7 @@ import java.util.*;
 import ast.instrucciones.DecClass;
 
 public class StructClass {
+
     private String nombre;
     private List<DecClass> valores;
     
@@ -12,4 +13,8 @@ public class StructClass {
         this.valores = valores;
     }
     
+    @Override
+    public String toString() {
+        return nombre + "->" + valores + "\n";
+    }
 }

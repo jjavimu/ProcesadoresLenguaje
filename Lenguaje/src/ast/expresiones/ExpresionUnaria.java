@@ -1,7 +1,7 @@
 package ast.expresiones;
 
 public class ExpresionUnaria extends Expresion{
-    private Expresion exp;
+    protected Expresion exp;
 
     public ExpresionUnaria(Expresion exp) {
       this.exp = exp;

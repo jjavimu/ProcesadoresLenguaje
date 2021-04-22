@@ -6,4 +6,8 @@ public class OpDesigualdad extends ExpresionBinaria {
         super(opizq, opdcha);
     }
     
+    public String toString(){
+        return opizq.toString() + " != " + opdcha.toString();
+    }
+
 }

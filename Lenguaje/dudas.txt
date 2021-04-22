@@ -1,9 +1,13 @@
+VIERNES 23 ABRIL PREGUNTAR:
+- struct acceso a campos
+- puntero (declarar,inicializar,acceso y referencia) ¿se añade a tipos? ¿nos centramos en punteros int?
+- string: concatenaciones, mutable, longitud etc?
+- array como hacemos?
+- ASExp, que nosotros tenemos new de cada expresion, que ventajas tiene?
 
-nodo general/como probar la practica
+FALTA
+nodo general
 errores
-tipo puntero (clase) y array
-String (cadena inmutable)/cadena caracteres
-STRUCT.sus campos
 
 
 
@@ -12,15 +16,9 @@ mirar:
 - operadorPotencia lexico
 
 - read
-- string corregir tam variable y demas
-- constantes
-- Enumerados y structs declaracion -- IDEN IDEN
-- memoria dinamica
-- Arrays
+- constantes/typedef
 - For/elsif
 - añadir la columna
-
-- en el enumerado, son identificadores?
 
 
 
@@ -41,7 +39,7 @@ Puede haber varios return?
 
 - La operación read siempre tiene que estar asociada a una declaración?
 
-  En el texto la descripción del read está inacabada.
+- En el texto la descripción del read está inacabada.
 
 - Tabla operadores actualizar (* acceso a memoria, & acceso a memoria, menos unario)
 - Tipo puntero *

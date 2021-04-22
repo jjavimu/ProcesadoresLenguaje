@@ -14,7 +14,8 @@ public class Main {
 	 // sacaLexemas(alex);
 	 AnalizadorSintacticoTiny asint = new AnalizadorSintacticoTiny(alex);
 	 // asint.setScanner(alex);
-	 asint.parse();
+	 // asint.parse();
+	 System.out.println(asint.parse().value);
  }
  	public static void sacaLexemas(AnalizadorLexicoTiny alex) throws IOException{
 		UnidadLexica unidad;

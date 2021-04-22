@@ -18,4 +18,10 @@ public class CaseSwitch{
         this.caso = null;
         this.instrucciones = instrucciones;
     }
+
+    public String toString(){
+        if(caso == null)
+            return "default: " + instrucciones.toString() + ":break;\n";
+        else return "case:" + caso.toString() + ": " + instrucciones.toString() + ":break;\n";
+    }
 }

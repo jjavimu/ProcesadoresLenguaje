@@ -9,4 +9,7 @@ public class FuncallClass extends Ins {
         this.funcion = funcion;
     }
     
+    public String toString(){
+        return funcion.toString() + ";\n";
+    }
 }

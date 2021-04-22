@@ -18,6 +18,9 @@ public class Funcion {
         this.lista_ins = lista_ins;
     }
 
+    public String toString(){
+        return tipo + " " + nombre + "(" + lista_args + "){\n" + " " + lista_ins + "}\n";
+    }
 
     
 }
