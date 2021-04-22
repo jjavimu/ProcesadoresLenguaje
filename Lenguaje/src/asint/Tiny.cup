@@ -83,7 +83,7 @@ S ::= Entrada:definiciones FuncionMain:fmain
 
 Entrada ::=  Entrada:definiciones Struct:str
             {: RESULT = definiciones; definiciones.addStruct(str);:}
-            | Entrada:definiciones Enum:en
+            | Entrada:definiciones Enumerado:en
             {: RESULT = definiciones; definiciones.addEnum(en);:}
             | Entrada:definiciones Funcion:f 
             {: RESULT = definiciones; definiciones.addFuncion(f);:}

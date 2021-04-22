@@ -1,5 +1,7 @@
 package ast.instrucciones;
 
+import ast.expresiones.Expresion;
+
 public class ReturnClass extends Ins {
     protected Expresion valorRetorno;
 
@@ -8,6 +10,6 @@ public class ReturnClass extends Ins {
     }
 
     public ReturnClass(){
-        this.valorRetorno = NULL;
+        this.valorRetorno = null;
     }
 }

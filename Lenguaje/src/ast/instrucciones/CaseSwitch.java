@@ -1,5 +1,7 @@
 package ast.instrucciones;
 
+import java.util.*;
+
 import ast.expresiones.*;
 
 public class CaseSwitch{
@@ -13,7 +15,7 @@ public class CaseSwitch{
     }
     
     public CaseSwitch(List<Ins> instrucciones){
-        this.caso = NULL;
+        this.caso = null;
         this.instrucciones = instrucciones;
     }
 }

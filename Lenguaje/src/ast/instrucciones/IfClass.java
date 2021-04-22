@@ -1,5 +1,9 @@
 package ast.instrucciones;
 
+import java.util.*;
+
+import ast.expresiones.Expresion;
+
 public class IfClass extends Ins {
 
     protected Expresion condicion;

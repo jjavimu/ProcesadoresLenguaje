@@ -1,6 +1,6 @@
 package ast.tipos;
 
-public class TipoBasicoClass {
+public class TipoBasicoClass extends TipoClass {
     //Identificadores: int, void, float, bool, char, string
     String tipo;
 

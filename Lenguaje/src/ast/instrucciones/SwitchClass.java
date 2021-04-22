@@ -1,5 +1,7 @@
 package ast.instrucciones;
 
+import java.util.List;
+
 import ast.expresiones.*;
 
 public class SwitchClass extends Ins {
@@ -9,7 +11,7 @@ public class SwitchClass extends Ins {
     
     public SwitchClass(Expresion condicion, List<CaseSwitch> casos) {
         this.condicion = condicion;
-        this.instrucciones_then = casos;
+        this.casos = casos;
     }
 
 }

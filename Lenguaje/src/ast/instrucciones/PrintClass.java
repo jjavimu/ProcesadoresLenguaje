@@ -1,5 +1,7 @@
 package ast.instrucciones;
 
+import ast.expresiones.Expresion;
+
 public class PrintClass extends Ins {
     protected Expresion exp;
     

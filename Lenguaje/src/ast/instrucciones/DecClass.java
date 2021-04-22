@@ -18,7 +18,7 @@ public class DecClass extends Ins {
     public DecClass(TipoClass tipo, String nombre){
         this.tipo = tipo;
         this.nombre = nombre;
-        this.exp = NULL;
+        this.exp = null;
     }
     
 }
