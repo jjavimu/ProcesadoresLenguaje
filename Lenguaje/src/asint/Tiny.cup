@@ -90,8 +90,6 @@ Entrada ::=  Entrada:definiciones Struct:str
             {: RESULT = definiciones; definiciones.addFuncion(f);:}
             | 
             {: RESULT = new ListaDefinciones():};
-// ListaDefiniciones sera un tipo que tenga: lista funcinoes, lista struct, lista enum
-// no sabia como llamar a este tipo lol
 
 // Enumerado
 Enumerado ::= ENUM IDEN:nombre IGUAL LAP DentroEnumerado:valores LCIERRE PUNTOYCOMA
@@ -125,7 +123,9 @@ Tipo ::= INT: id
          | CHAR: id
          {: RESULT = new TipoBasicoClass(id.lexema); :}  
          | STRING: id
-         {: RESULT = new TipoBasicoClass(id.lexema); :};
+         {: RESULT = new TipoBasicoClass(id.lexema); :}
+         | IDEN: id
+         {: RESULT = new TipoEstructuraClass(id.lexema); :};
 
 //Funcion y funcion main
 Funcion ::= Tipo:tipo IDEN:nombre PAP Args:args PCIERRE BloqueInstrucciones:ins
@@ -135,13 +135,13 @@ FuncionMain ::= VOID MAIN PAP PCIERRE BloqueInstrucciones:ins
       {: RESULT = new MainFuncion("main", ins); :};
 
 Args ::= Args:args COMA Tipo:t IDEN:iden
-            {: RESULT = args; RESULT.add(new ParTipoIden(iden.lexema, t)); :}
+            {: RESULT = args; args.add(new ParTipoIden(iden.lexema, t)); :}
             | Tipo:t IDEN:iden 
             {: RESULT = new ArrayList<ParTipoIden>(); RESULT.add(new ParTipoIden(iden.lexema, t)); :}                    
 
 
 Params ::= Params:params COMA E0:exp 
-            {: RESULT = params ; RESULT.add(new Expresion()); :}
+            {: RESULT = params ; params.add(new Expresion()); :}
             | E0: exp
             {: RESULT = new ArrayList<Expresion>(); RESULT.add(exp); :};
 
@@ -174,12 +174,10 @@ Instruccion ::= Declaracion:elem
 
 
 Declaracion ::= Tipo:t IDEN:nombre PUNTOYCOMA 
-                {: RESULT = new DecClass(t,nombre.lexema()); :}
+                {: RESULT = new DecClass(t,nombre.lexema); :}
                 | Tipo:t IDEN:nombre IGUAL E0:exp PUNTOYCOMA
-                {: RESULT = new DecClass(t,nombre.lexema(),exp); :};
-//                | IDEN:nombre IDEN:nombre PUNTOYCOMA
-//                {: RESULT = new DecClass(,nombre.lexema()); :}
-// COMO HAGO DECLARACIONES DE STRUCTS/ENUMS
+                {: RESULT = new DecClass(t,nombre.lexema,exp); :};
+// Inicializar structs y enum?
 
         
 
@@ -239,8 +237,8 @@ E1 ::= NEG E1:exp
       {: RESULT = new OpNegar(exp); :}
       | MENOS E1:exp
       {: RESULT = new OpCambioSigno(exp); :}
-      | POR: por IDEN:iden
-      {: RESULT = new OpPuntero(iden); :}
+      | POR: por IDEN:iden E1:exp
+      {: RESULT = new OpPuntero(iden,exp); :}
       | E2:exp
       {: RESULT = exp; :};
 
@@ -280,19 +278,19 @@ E4 ::= E4:expizq AND E5:expdcha
       {: RESULT = exp; :};
 
 E5 ::= TRUE:cte
-      {: RESULT = new Constante(cte.lexema()); :}
+      {: RESULT = new Constante(cte.lexema); :}
       | FALSE:cte
-      {: RESULT = new Constante(cte.lexema()); :}
+      {: RESULT = new Constante(cte.lexema); :}
       | ENT:cte
-      {: RESULT = new Constante(cte.lexema()); :}
+      {: RESULT = new Constante(cte.lexema); :}
       | REAL:cte
-      {: RESULT = new Constante(cte.lexema()); :}
+      {: RESULT = new Constante(cte.lexema); :}
       | CARACTER:cte
-      {: RESULT = new Constante(cte.lexema()); :}
+      {: RESULT = new Constante(cte.lexema); :}
       | STRING:cte
-      {: RESULT = new Constante(cte.lexema()); :}
+      {: RESULT = new Constante(cte.lexema); :}
       | IDEN:cte
-      {: RESULT = new Constante(cte.lexema()); :}
+      {: RESULT = new Constante(cte.lexema); :}
       | LlamadaFuncion: llamada
       {: RESULT = llamada; :}
       | PAP E0:exp PCIERRE
