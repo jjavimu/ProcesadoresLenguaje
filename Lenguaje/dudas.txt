@@ -1,9 +1,11 @@
+
 VIERNES 23 ABRIL PREGUNTAR:
-- struct acceso a campos
+- struct acceso a campos. preguntar exp iden valor
+- linea y columna
 - puntero (declarar,inicializar,acceso y referencia) ¿se añade a tipos? ¿nos centramos en punteros int?
 - string: concatenaciones, mutable, longitud etc?
 - array como hacemos?
-- ASExp, que nosotros tenemos new de cada expresion, que ventajas tiene?
+- clases heredan de ASTNodo
 
 FALTA
 nodo general
@@ -17,6 +19,7 @@ mirar:
 
 - read
 - constantes/typedef
+- clases
 - For/elsif
 - añadir la columna
 

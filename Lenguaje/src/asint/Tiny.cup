@@ -76,6 +76,7 @@ non terminal Expresion E5;
 
 
 non terminal TipoClass Tipo;
+non terminal Acceso Acceso;
 
 
 // Programa
@@ -174,16 +175,24 @@ Instruccion ::= Declaracion:elem
 
 
 
-Declaracion ::= Tipo:t IDEN:nombre PUNTOYCOMA 
-                {: RESULT = new DecClass(t,nombre.lexema); :}
-                | Tipo:t IDEN:nombre IGUAL E0:exp PUNTOYCOMA
-                {: RESULT = new DecClass(t,nombre.lexema,exp); :};
+Declaracion ::= Tipo:t Acceso:ref PUNTOYCOMA 
+                {: RESULT = new DecClass(t,ref); :}
+                | Tipo:t Asignacion:asig
+                {: RESULT = new DecClass(t,asig); :};
 // Inicializar structs y enum?
 
         
 
-Asignacion ::= IDEN:nombre IGUAL E0:exp PUNTOYCOMA
-      {: RESULT = new AsigClass(nombre.lexema, exp); :};
+Asignacion ::= Acceso:ref IGUAL E0:exp PUNTOYCOMA
+      {: RESULT = new AsigClass(ref, exp); :}
+      | IDEN:nombreStruct PUNTO IDEN:campo IGUAL E0:exp
+      {: RESULT = new AsigClass(nombre.lexema, exp); :}
+
+Acceso ::= IDEN:nombre
+            {: RESULT = new Acceso(nombre); :}
+            | Acceso:ref PUNTO IDEN:campo
+            {: RESULT = new Acceso(ref, campo); :};
+
 
 If ::= IF PAP E0:exp PCIERRE BloqueInstrucciones:ins
        {: RESULT = new IfClass(exp,ins); :}
@@ -238,8 +247,6 @@ E1 ::= NEG E1:exp
       {: RESULT = new OpNegar(exp); :}
       | MENOS E1:exp
       {: RESULT = new OpCambioSigno(exp); :}
-//      | POR: por IDEN:iden
-//      {: RESULT = new OpPuntero(iden.lexema); :}
       | E2:exp
       {: RESULT = exp; :};
 
@@ -290,12 +297,15 @@ E5 ::= TRUE:cte
       {: RESULT = new Constante(cte.lexema); :}
       | CADENA:cte
       {: RESULT = new Constante(cte.lexema); :}
-      | IDEN:cte
-      {: RESULT = new Constante(cte.lexema); :}
+      | Acceso:ref
+      {: RESULT = new Acceso(ref); :}
       | LlamadaFuncion: llamada
       {: RESULT = llamada; :}
       | PAP E0:exp PCIERRE
       {: RESULT = exp; :};
+
+      //      | POR: por IDEN:iden
+//      {: RESULT = new OpPuntero(iden.lexema); :}
 
 
 
