@@ -192,6 +192,8 @@ Acceso ::= IDEN:nombre
             {: RESULT = new Acceso(nombre); :}
             | Acceso:ref PUNTO IDEN:campo
             {: RESULT = new Acceso(ref, campo); :};
+// Yo después de cada regla de Acceso pondría esta
+AccesoArray ::= AccesoArray CAP E0 CCIERRE | ;
 
 
 If ::= IF PAP E0:exp PCIERRE BloqueInstrucciones:ins
