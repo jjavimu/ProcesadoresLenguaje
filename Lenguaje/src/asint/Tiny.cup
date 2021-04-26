@@ -131,8 +131,7 @@ Tipo ::= INT: id
          {: RESULT = new TipoPunteroClass(tipo); :}
          | Tipo:tipo CAP ENT:num CCIERRE
          {: RESULT = new TipoArrayClass(tipo,num.lexema); :};
-
-
+         
 
 //Funcion y funcion main
 Funcion ::= Tipo:tipo IDEN:nombre PAP Args:args PCIERRE BloqueInstrucciones:ins

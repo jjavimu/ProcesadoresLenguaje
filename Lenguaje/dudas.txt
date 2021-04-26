@@ -2,6 +2,7 @@
 VIERNES 23 ABRIL PREGUNTAR:
 - linea y columna
 - string: concatenaciones, mutable, longitud etc?
+- vector para que funcion admita cualquier tamanio
 
 // Inicializar structs?
 int[4] array(0);
