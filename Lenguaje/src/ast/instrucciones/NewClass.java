@@ -1,5 +1,8 @@
 package ast.instrucciones;
 
+import ast.accesos.Acceso;
+import ast.tipos.TipoClass;
+
 public class NewClass {
     private TipoClass tipo;
     private Acceso acceso;

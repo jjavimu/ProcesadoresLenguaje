@@ -1,13 +1,14 @@
 package ast.instrucciones;
 
 import ast.tipos.*;
+import ast.accesos.Acceso;
 import ast.expresiones.*;
 
 public class DecClass extends Ins {
 
     protected TipoClass tipo;
     protected Acceso nombre;
-    protected Asignacion asig;
+    protected AsigClass asig;
     protected NewClass asigDinamica;
 
     public DecClass(TipoClass tipo, Acceso nombre){ // No inicializado
@@ -15,7 +16,7 @@ public class DecClass extends Ins {
         this.nombre = nombre; 
     }
     
-    public DecClass(TipoClass tipo, Asignacion asig){ // Inicializado
+    public DecClass(TipoClass tipo, AsigClass asig){ // Inicializado
         this.tipo = tipo;
         this.asig = asig;
     }
@@ -25,10 +26,10 @@ public class DecClass extends Ins {
     }
 
     public String toString(){
-        if (asignacion == null && asigDinamica == null) // no se ha init
+        if (asig == null && asigDinamica == null) // no se ha init
             return tipo.toString() + " " + nombre.toString() + ";\n";
         else {// se ha inicializado
-            if(asignacion != null) // no new
+            if(asig != null) // no new
                 return tipo.toString() + " " + asig.toString() + ";\n";
             else  // new
                 return tipo.toString() + " " + asigDinamica.toString() + ";\n";

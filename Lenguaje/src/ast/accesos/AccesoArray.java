@@ -1,5 +1,7 @@
 package ast.accesos;
 
+import ast.expresiones.Expresion;
+
 public class AccesoArray {
     protected Acceso accesoAnterior;
     protected Expresion exp;

@@ -77,6 +77,7 @@ non terminal Expresion E5;
 
 non terminal TipoClass Tipo;
 non terminal Acceso Acceso;
+non terminal NewClass CrearMem;
 
 
 // Programa
@@ -186,7 +187,7 @@ Acceso ::= IDEN:nombre
             {: RESULT = new AccesoStruct(ref,campo.lexema); :}
             | Acceso:ref CAP E0:exp CCIERRE 
             {: RESULT = new AccesoArray(ref,exp); :}
-            | POR Acceso:ref
+            | POR Acceso:ref 
             {: RESULT = new AccesoPuntero(ref); :};
             
 
@@ -202,7 +203,7 @@ Asignacion ::= Acceso:ref IGUAL E0:exp PUNTOYCOMA
 
 
 CrearMem ::= Acceso:ref IGUAL NEW Tipo:tipo PAP PCIERRE PUNTOYCOMA
-               {: RESULT = new NewClass(ref,tipo); :}
+               {: RESULT = new NewClass(ref,tipo); :};
 
 If ::= IF PAP E0:exp PCIERRE BloqueInstrucciones:ins
        {: RESULT = new IfClass(exp,ins); :}

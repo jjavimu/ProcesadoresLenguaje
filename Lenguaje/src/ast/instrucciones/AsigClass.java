@@ -1,5 +1,6 @@
 package ast.instrucciones;
 
+import ast.accesos.Acceso;
 import ast.expresiones.*;
 
 
