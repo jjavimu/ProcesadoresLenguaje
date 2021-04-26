@@ -1,16 +1,14 @@
 package ast.accesos;
 
-public class AccesoStruct {
-    protected Acceso accesoAnterior;
+public class AccesoStruct extends Acceso {
     protected String campo;
 
-    public AccesoStruct(Acceso accesoAnterior, String campo) {
-        this.accesoAnterior = accesoAnterior;
+    public AccesoStruct(String campo) {
         this.campo = campo;
     }
 
     public String toString(){
-        return accesoAnterior.toString() + "." + this.campo;
+        return  "." + this.campo;
     }
 
 }

@@ -76,9 +76,15 @@ non terminal Expresion E5;
 
 
 non terminal TipoClass Tipo;
+<<<<<<< HEAD
 non terminal Acceso Acceso;
 non terminal NewClass CrearMem;
 
+=======
+non terminal AccesoVar Acceso;
+non terminal NewClass CrearMem;
+non terminal List<Acceso> ListaAccesos;
+>>>>>>> 4558b9243ac07a9f1c5d003047e778f3c88a600a
 
 // Programa
 S ::= Entrada:definiciones FuncionMain:fmain 
@@ -150,7 +156,7 @@ Args ::= Args:args COMA Tipo:t IDEN:iden
 Params ::= Params:params COMA E0:exp 
             {: RESULT = params ; params.add(exp); :}
             |
-            {: RESULT = new ArrayList<Expresion>();:};
+            {: RESULT = new ArrayList<Expresion>(); :};
 
 // Instrucciones
 BloqueInstrucciones ::= LAP Instrucciones:ins LCIERRE
@@ -180,14 +186,26 @@ Instruccion ::= Declaracion:elem
                   | InsLlamadaFuncion:elem
                   {: RESULT = elem; :};
 
-Acceso ::= IDEN:nombre
-            {: RESULT = new AccesoVar(nombre.lexema); :}
-            | Acceso:ref PUNTO IDEN:campo 
-            {: RESULT = new AccesoStruct(ref,campo.lexema); :}
-            | Acceso:ref CAP E0:exp CCIERRE 
-            {: RESULT = new AccesoArray(ref,exp); :}
+//Acceso ::= IDEN:nombre
+//            {: RESULT = new AccesoVar(nombre.lexema); :}
+//            | Acceso:ref PUNTO IDEN:campo 
+//            {: RESULT = new AccesoStruct(ref,campo.lexema); :}
+//            | Acceso:ref CAP E0:exp CCIERRE 
+//            {: RESULT = new AccesoArray(ref,exp); :}
+//            | POR Acceso:ref
+//            {: RESULT = new AccesoPuntero(ref); :};
+
+Acceso ::= IDEN:nombre ListaAccesos:lista
+            {: RESULT = new AccesoVar(nombre.lexema,lista)); :}
             | POR Acceso:ref 
             {: RESULT = new AccesoPuntero(ref); :};
+
+ListaAccesos ::= ListaAccesos:lista CAP E0:indice CCIERRE 
+            {: RESULT = lista ; lista.add(new AccesoArray(indice)); :}
+            | ListaAccesos:lista PUNTO IDEN:campo
+            {: RESULT = lista ; lista.add(new AccesoStruct(campo.lexema)); :}
+            |                                   
+            {: RESULT = new ArrayList<Acceso>(); :};
             
 
 Declaracion ::= Tipo:t Acceso:ref PUNTOYCOMA 

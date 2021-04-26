@@ -1,14 +1,17 @@
 package ast.accesos;
+import java.util.*;
 
-public class AccesoVar {
-    private String direccion;
-
-    public AccesoVar(String nombreVar){
-        this.direccion = nombreVar;
+public class AccesoVar extends Acceso {
+    private String direccionInicial;
+    private List<Acceso> accesos;
+    
+    public AccesoVar(String nombreVar, List<Acceso> accesos){
+        this.direccionInicial = nombreVar;
+        this.accesos = accesos;
     }
 
     public String toString(){
-        return direccion;
+        return direccionInicial + accesos.toString();
     }
     
 }

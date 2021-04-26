@@ -2,17 +2,15 @@ package ast.accesos;
 
 import ast.expresiones.Expresion;
 
-public class AccesoArray {
-    protected Acceso accesoAnterior;
-    protected Expresion exp;
+public class AccesoArray extends Acceso{
+    protected Expresion indice;
 
-    public AccesoArray(Acceso accesoAnterior, Expresion exp) {
-        this.accesoAnterior = accesoAnterior;
-        this.exp = exp;
+    public AccesoArray(Expresion exp) {
+        this.indice = exp;
     }
 
     public String toString(){
-        return accesoAnterior.toString() + "[" + exp.toString() + "]";
+        return "[" + indice.toString() + "]";
     }
     
 }
