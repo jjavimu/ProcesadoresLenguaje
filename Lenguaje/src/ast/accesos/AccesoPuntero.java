@@ -1,13 +1,13 @@
 package ast.accesos;
 
-public class AccesoPuntero {
-    protected Acceso accesoAnterior;
+public class AccesoPuntero extends Acceso{
+    protected Acceso direccion;
 
-    public AccesoStruct(Acceso accesoAnterior) {
-        this.accesoAnterior = accesoAnterior;
+    public AccesoStruct(Acceso direccion) {
+        this.direccion = direccion;
     }
     
     public String toString(){
-        return "*" + accesoAnterior.toString();
+        return "*" + direccion.toString();
     }
 }

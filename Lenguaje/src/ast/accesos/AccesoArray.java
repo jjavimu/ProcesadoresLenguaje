@@ -1,12 +1,10 @@
 package ast.accesos;
 
-public class AccesoArray {
-    protected Acceso accesoAnterior;
-    protected Expresion exp;
+public class AccesoArray extends Acceso{
+    protected Expresion indice;
 
-    public AccesoArray(Acceso accesoAnterior, Expresion exp) {
-        this.accesoAnterior = accesoAnterior;
-        this.exp = exp;
+    public AccesoArray(Expresion exp) {
+        this.indice = exp;
     }
 
     public String toString(){
