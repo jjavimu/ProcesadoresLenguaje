@@ -1,15 +1,16 @@
 
 VIERNES 23 ABRIL PREGUNTAR:
-- struct acceso a campos. preguntar exp iden valor
 - linea y columna
-- puntero (declarar,inicializar,acceso y referencia) ¿se añade a tipos? ¿nos centramos en punteros int?
 - string: concatenaciones, mutable, longitud etc?
-- array como hacemos?
-- clases heredan de ASTNodo
+
+// Inicializar structs?
+int[4] array(0);
+int[4] array = {1,2,3,4}
 
 FALTA
-nodo general
+nodo general ASTNodo
 errores
+repasar punteros ¿?
 
 
 

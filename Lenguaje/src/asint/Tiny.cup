@@ -126,7 +126,12 @@ Tipo ::= INT: id
          | STRING: id
          {: RESULT = new TipoBasicoClass(id.lexema); :}
          | IDEN: id
-         {: RESULT = new TipoEstructuraClass(id.lexema); :};
+         {: RESULT = new TipoEstructuraClass(id.lexema); :}
+         | Tipo:tipo POR
+         {: RESULT = new TipoPunteroClass(tipo); :}
+         | Tipo:tipo CAP ENT:num CCIERRE
+         {: RESULT = new TipoArrayClass(tipo,num.lexema); :};
+
 
 
 //Funcion y funcion main
@@ -159,6 +164,8 @@ Instrucciones ::= Instrucciones:ins Instruccion:elem
 Instruccion ::= Declaracion:elem 
                   {: RESULT = elem; :}
                   | Asignacion:elem
+                  {: RESULT = elem; :} 
+                  | CrearMem: elem
                   {: RESULT = elem; :}   
                   | If:elem
                   {: RESULT = elem; :}
@@ -173,28 +180,29 @@ Instruccion ::= Declaracion:elem
                   | InsLlamadaFuncion:elem
                   {: RESULT = elem; :};
 
-
+Acceso ::= IDEN:nombre
+            {: RESULT = new AccesoVar(nombre.lexema); :}
+            | Acceso:ref PUNTO IDEN:campo 
+            {: RESULT = new AccesoStruct(ref,campo.lexema); :}
+            | Acceso:ref CAP E0:exp CCIERRE 
+            {: RESULT = new AccesoArray(ref,exp); :}
+            | POR Acceso:ref
+            {: RESULT = new AccesoPuntero(ref); :};
+            
 
 Declaracion ::= Tipo:t Acceso:ref PUNTOYCOMA 
                 {: RESULT = new DecClass(t,ref); :}
                 | Tipo:t Asignacion:asig
-                {: RESULT = new DecClass(t,asig); :};
-// Inicializar structs y enum?
-
-        
+                {: RESULT = new DecClass(t,asig); :}
+                | Tipo:t CrearMem:asigNew
+                {: RESULT = new DecClass(t,asigNew); :};
 
 Asignacion ::= Acceso:ref IGUAL E0:exp PUNTOYCOMA
-      {: RESULT = new AsigClass(ref, exp); :}
-      | IDEN:nombreStruct PUNTO IDEN:campo IGUAL E0:exp
-      {: RESULT = new AsigClass(nombre.lexema, exp); :}
+               {: RESULT = new AsigClass(ref, exp); :};
 
-Acceso ::= IDEN:nombre
-            {: RESULT = new Acceso(nombre); :}
-            | Acceso:ref PUNTO IDEN:campo
-            {: RESULT = new Acceso(ref, campo); :};
-// Yo después de cada regla de Acceso pondría esta
-AccesoArray ::= AccesoArray CAP E0 CCIERRE | ;
 
+CrearMem ::= Acceso:ref IGUAL NEW Tipo:tipo PAP PCIERRE PUNTOYCOMA
+               {: RESULT = new NewClass(ref,tipo); :}
 
 If ::= IF PAP E0:exp PCIERRE BloqueInstrucciones:ins
        {: RESULT = new IfClass(exp,ins); :}
@@ -305,13 +313,3 @@ E5 ::= TRUE:cte
       {: RESULT = llamada; :}
       | PAP E0:exp PCIERRE
       {: RESULT = exp; :};
-
-      //      | POR: por IDEN:iden
-//      {: RESULT = new OpPuntero(iden.lexema); :}
-
-
-
-
-
-
-
