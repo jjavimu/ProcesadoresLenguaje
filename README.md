@@ -30,3 +30,5 @@ En la carpeta **Lenguaje/** encontrarás:
   Archivo de entrada para que reconozca nuestro lenguaje.
 
 **Observación:** el archivo *.gitignore* se utiliza para que git ignore ciertos tipos de archivos, entre ellos los *.class*. También lo podremos utilizar para ignorar los archivos que se crean automáticamente, como *AnalizadorSintacticoTiny.java, AnalizadorLexicoTiny.java y ClaseLexica.java*.
+
+- Documentación: https://www.overleaf.com/project/60578b6aee81be8cda759a3d
