@@ -15,6 +15,6 @@ public class EnumClass extends ASTnodo {
     
     
     public String toString() {
-        return nombre + "->" + valores.toString() + "\n";
+        return "\nNombreEnum: " + nombre  + valores.toString() + "\n";
     }
 }

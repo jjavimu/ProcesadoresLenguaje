@@ -7,7 +7,7 @@ public class OpDiv extends ExpresionBinaria {
     }
 
     public String toString(){
-        return opizq.toString() + " / " + opdcha.toString();
+        return "ExpBin(" + opizq + "/" + opdcha + ")";
     }
     
 }

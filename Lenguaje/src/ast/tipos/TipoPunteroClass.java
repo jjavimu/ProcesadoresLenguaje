@@ -7,9 +7,9 @@ public class TipoPunteroClass extends TipoClass{
     public TipoPunteroClass(TipoClass tipo) {
         this.tipo = tipo;
     }
-
+    
     public String toString(){
-        return tipo.toString();
+        return tipo.toString() + "*";
     }
     
     

@@ -7,7 +7,7 @@ public class OpOr extends ExpresionBinaria {
     }
 
     public String toString(){
-        return opizq.toString() + " or " + opdcha.toString();
+        return "ExpBin(" + opizq + "or" + opdcha + ")";
     }
     
 }

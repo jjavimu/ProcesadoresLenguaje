@@ -7,7 +7,7 @@ public class OpModulo extends ExpresionBinaria {
     }
 
     public String toString(){
-        return opizq.toString() + " mod " + opdcha.toString();
+        return "ExpBin(" + opizq + "%" + opdcha + ")";
     }
     
 }

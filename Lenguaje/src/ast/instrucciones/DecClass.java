@@ -16,10 +16,8 @@ public class DecClass extends Ins {
         this.exp = exp;
     }
     
-
     public String toString(){
-        return  "tipo: " + tipo.toString() + ", nombre: " + this.nombre + ", expresion: " + exp;
-
+        return "Declaración(Tipo: " + tipo.toString() + ", nombre:" + nombre + ", exp: " + exp + ")"; 
     }
     
 }

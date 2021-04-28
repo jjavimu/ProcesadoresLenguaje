@@ -10,6 +10,6 @@ public class NewExp extends Expresion {
     }
 
     public String toString(){
-        return "new" + tipo.toString();
+        return "ExpNew(" + tipo.toString()+")";
     }
 }

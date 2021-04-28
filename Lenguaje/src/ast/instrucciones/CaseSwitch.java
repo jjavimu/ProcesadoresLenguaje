@@ -21,7 +21,7 @@ public class CaseSwitch{
 
     public String toString(){
         if(caso == null)
-            return "default: " + instrucciones.toString() + ":break;\n";
-        else return "case:" + caso.toString() + ": " + instrucciones.toString() + ":break;\n";
+            return "default: " + instrucciones.toString();
+        else return "case " + caso.toString() + ": " + instrucciones.toString();
     }
 }

@@ -3,7 +3,7 @@ struct solucion { // definición del struct
     int min;
 };
 
-solucion calcular(int[] vector, int tam) { //declaro función
+solucion calcular(int<> vector, int tam) { //declaro función
     solucion sol;
     sol.max = 0; // Accedo a sus campos y los inicializo
     sol.min = vector[0]; // accedo a la primera posicion del vector 
@@ -23,12 +23,12 @@ solucion calcular(int[] vector, int tam) { //declaro función
 }
 
 
-int main() {
+void main() {
     // declaración e inicialización de un array de enteros con 7 elementos
-    int vector[7]; // = { 1,2,7,6,3,4,5 };
+    int<7> vector; // = { 1,2,7,6,3,4,5 };
     solucion sol; // declaro un struct
     // llamada a función y asigno su valor de retorno a sol
     sol = calcular(vector,7);
     print(sol.min + ' ' + sol.max);
-    return 0; // valor retorno de la función
+    return; // valor retorno de la función
 }

@@ -11,7 +11,10 @@ public class TipoArrayClass extends TipoClass{
     }
 
     public String toString(){
-        return tipo.toString();
+        if(tam != null)
+            return tipo.toString() + "<" + tam + ">";
+        else 
+            return tipo.toString() + "<>";
     }
     
 }

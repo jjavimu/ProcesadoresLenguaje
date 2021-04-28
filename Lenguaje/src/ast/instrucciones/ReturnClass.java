@@ -14,9 +14,6 @@ public class ReturnClass extends Ins {
     }
 
     public String toString(){
-        if(valorRetorno != null)
-            return "return " + valorRetorno.toString() + ";\n";
-        else
-            return "return " + ";\n";
+        return "return(" + valorRetorno + ")";
     }
 }

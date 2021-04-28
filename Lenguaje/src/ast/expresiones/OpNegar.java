@@ -7,7 +7,7 @@ public class OpNegar extends ExpresionUnaria {
     }
 
     public String toString(){
-        return "!"  + exp.toString();
-    }
+        return "ExpUn(!"+ exp + ")";
+      }
     
 }

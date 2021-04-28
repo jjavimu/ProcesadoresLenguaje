@@ -20,7 +20,11 @@ public class Funcion extends ASTnodo {
     }
 
     public String toString(){
-        return tipo + " " + nombre + "(" + lista_args + "){\n" + " " + lista_ins + "}\n";
+        String listains = "\n    ";
+        for(Ins i : lista_ins){
+            listains = listains + i.toString() + "\n    ";
+        }
+        return "\n  " + tipo + " " + nombre + "(" + lista_args + ") "+ listains;
     }
 
     

@@ -17,6 +17,6 @@ public class StructClass extends ASTnodo {
     
     @Override
     public String toString() {
-        return nombre + "->" + valores + "\n";
+        return "\nNombreStruct: " + nombre + valores + "\n";
     }
 }

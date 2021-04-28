@@ -14,7 +14,7 @@ public class Programa extends ASTnodo {
     
     
     public String toString() {
-        return definiciones.toString() + "\n" + fmain.toString();
+        return definiciones.toString() + "\nFuncion Main: " + fmain.toString();
     }
     
 }

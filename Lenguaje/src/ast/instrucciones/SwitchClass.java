@@ -15,7 +15,7 @@ public class SwitchClass extends Ins {
     }
 
     public String toString(){
-        return "switch (" + condicion.toString() + ") {\n " + casos.toString() + "}\n";
+        return "Switch (Condición: " + condicion.toString() + ", Casos:" +casos.toString()+ ")";
     }
 
 }

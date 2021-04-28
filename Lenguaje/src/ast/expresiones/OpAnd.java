@@ -7,7 +7,7 @@ public class OpAnd extends ExpresionBinaria {
     }
 
     public String toString(){
-        return opizq.toString() + " and " + opdcha.toString();
+        return "ExpBin(" + opizq + "and" + opdcha + ")";
     }
     
 }

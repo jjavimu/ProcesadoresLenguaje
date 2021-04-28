@@ -10,6 +10,6 @@ public class PrintClass extends Ins {
     }
 
     public String toString(){
-        return "print (" + exp.toString() + ");\n";
+        return "Print (" + exp.toString() + ")";
     }
 }

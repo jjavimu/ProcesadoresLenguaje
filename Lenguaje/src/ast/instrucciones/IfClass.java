@@ -21,11 +21,19 @@ public class IfClass extends Ins {
     }
 
     public String toString(){
-        String els = " ";
-        if (instrucciones_else != null){
-            els = "else {\n" + instrucciones_else + "}\n";
+        String inst = "";
+        for(Ins i : instrucciones_then){
+            inst = inst + i + "\n";
         }
-        return "if (" + condicion.toString() + ") {\n " + instrucciones_then.toString() + "}\n" + els;
+        String el = "";
+        if(instrucciones_else != null){
+            for(Ins i : instrucciones_else){
+                el = el + i + "\n";
+            }
+        }
+
+        return "If (Condición:" + condicion.toString() + ", Instrucciones:\n" 
+            + inst +"Else:\n" + el + ")";
     }
     
 }

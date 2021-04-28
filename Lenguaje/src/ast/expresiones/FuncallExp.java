@@ -11,8 +11,9 @@ public class FuncallExp extends Expresion {
         this.parametros = parametros;
     }
 
+   
     public String toString(){
-        return nombre + "+" + parametros.toString();
+        return "Llamada" + nombre + "(" + parametros.toString() + ")";
     }
    
     

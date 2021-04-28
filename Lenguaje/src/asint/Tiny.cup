@@ -149,11 +149,15 @@ FuncionMain ::= VOID MAIN PAP PCIERRE BloqueInstrucciones:ins
 Args ::= Args:args COMA Tipo:t IDEN:iden
             {: RESULT = args; args.add(new ParTipoIden(t,iden.lexema)); :}
             | Tipo:t IDEN:iden 
-            {: RESULT = new ArrayList<ParTipoIden>(); RESULT.add(new ParTipoIden(t,iden.lexema)); :};                   
+            {: RESULT = new ArrayList<ParTipoIden>(); RESULT.add(new ParTipoIden(t,iden.lexema)); :}
+            |
+            {: RESULT = new ArrayList<ParTipoIden>(); :};                   
 
 
 Params ::= Params:params COMA E0:exp 
             {: RESULT = params ; params.add(exp); :}
+            | E0:exp 
+            {: RESULT =  new ArrayList<Expresion>(); RESULT.add(exp);  :}
             |
             {: RESULT = new ArrayList<Expresion>(); :};
 

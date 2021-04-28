@@ -10,6 +10,6 @@ public class FuncallClass extends Ins {
     }
     
     public String toString(){
-        return funcion.toString() + ";\n";
+        return "Call(" + funcion.toString() + ")";
     }
 }

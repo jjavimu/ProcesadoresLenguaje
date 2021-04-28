@@ -7,7 +7,7 @@ public class OpMayorigual extends ExpresionBinaria {
     }
 
     public String toString(){
-        return opizq.toString() + " >= " + opdcha.toString();
+        return "ExpBin(" + opizq + ">=" + opdcha + ")";
     }
     
 }

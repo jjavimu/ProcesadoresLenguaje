@@ -8,6 +8,6 @@ public class Constante extends Expresion {
     }
 
     public String toString(){
-        return valor;
+        return "Expresion(" + valor+ ")";
     }
 }

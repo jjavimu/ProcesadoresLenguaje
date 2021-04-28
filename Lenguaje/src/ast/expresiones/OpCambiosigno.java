@@ -7,7 +7,7 @@ public class OpCambioSigno extends ExpresionUnaria {
     }
 
     public String toString(){
-        return "-"+exp.toString();
-    }
+        return "ExpUn(-" + exp + ")";
+      }
     
 }
