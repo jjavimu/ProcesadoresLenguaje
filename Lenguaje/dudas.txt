@@ -8,7 +8,9 @@ VIERNES 23 ABRIL PREGUNTAR:
 // Inicializar structs?
 int[4] array(0);
 int[4] array = {1,2,3,4}
+funcion longitud del array
 
+duda: return no se cuando cogemos el valor de retorno?
 
 
 FALTA
@@ -20,6 +22,7 @@ tiposCheck
 
 mirar:
 - operadorPotencia lexico
+- enumerados asociarle numeros
 
 - read
 - constantes/typedef
