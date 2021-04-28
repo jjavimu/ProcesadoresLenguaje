@@ -1,6 +1,6 @@
 package ast.instrucciones;
 
-public class Ins {
+public class Ins extends ASTnodo {
 
     public Ins() {
         }

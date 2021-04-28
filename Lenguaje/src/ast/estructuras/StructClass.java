@@ -3,7 +3,7 @@ package ast.estructuras;
 import java.util.*;
 import ast.instrucciones.DecClass;
 
-public class StructClass {
+public class StructClass extends ASTnodo {
 
     private String nombre;
     private List<DecClass> valores;

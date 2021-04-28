@@ -2,7 +2,7 @@ package ast.estructuras;
 
 import java.util.*;
 
-public class EnumClass {
+public class EnumClass extends ASTnodo {
     private String nombre;
     private List<String> valores;
     

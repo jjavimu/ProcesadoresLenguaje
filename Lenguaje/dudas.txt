@@ -1,28 +1,31 @@
+VIERNES
+- llaves del acceso 
 
 VIERNES 23 ABRIL PREGUNTAR:
 - linea y columna
-- string: concatenaciones, mutable, longitud etc?
-- vector para que funcion admita cualquier tamanio
+- string: concatenaciones, mutable, longitud etc? 
 
 // Inicializar structs?
 int[4] array(0);
 int[4] array = {1,2,3,4}
 
+
+
 FALTA
-nodo general ASTNodo
 errores
-repasar punteros ¿?
+tiposCheck
+
 
 
 
 mirar:
-- comentarios programa: saca mal columna algo /*...*/ caractermalo
 - operadorPotencia lexico
 
 - read
 - constantes/typedef
 - clases
 - For/elsif
+
 - añadir la columna
 
 
@@ -48,9 +51,28 @@ Puede haber varios return?
 
 - Tabla operadores actualizar (* acceso a memoria, & acceso a memoria, menos unario)
 - Tipo puntero *
+- Arrays ahora se declaran con <>
 
 
 
 
-Dudas angela
-- Analizador lexico ¿cuando le paso el lexema a alexoperations? 
+CODIGO RARO
+Acceso ::= IDEN:nombre
+            {: RESULT = new AccesoVar(nombre.lexema); :}
+            | Acceso:ref PUNTO IDEN:campo 
+            {: RESULT = new AccesoStruct(ref,campo.lexema); :}
+            | Acceso:ref CAP E0:exp CCIERRE 
+            {: RESULT = new AccesoArray(ref,exp); :}
+            | POR Acceso:ref
+            {: RESULT = new AccesoPuntero(ref); :};
+//Acceso ::= IDEN:nombre ListaAccesos:lista 
+ //           {: RESULT = new AccesoVar(nombre.lexema,lista)); :}
+  //          | POR Acceso:ref 
+    //        {: RESULT = new AccesoPuntero(ref); :};
+
+//ListaAccesos ::= ListaAccesos:lista CAP E0:indice CCIERRE 
+//            {: RESULT = lista ; lista.add(new AccesoArray(indice)); :}
+//            | ListaAccesos:lista PUNTO IDEN:campo
+//            {: RESULT = lista ; lista.add(new AccesoStruct(campo.lexema)); :}
+//            |                                   
+//            {: RESULT = new ArrayList<Acceso>(); :};

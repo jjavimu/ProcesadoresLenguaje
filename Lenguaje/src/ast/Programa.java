@@ -2,7 +2,7 @@ package ast;
 
 import ast.funciones.Fmain;
 
-public class Programa {
+public class Programa extends ASTnodo {
     
     private ListaDefiniciones definiciones; // Structs, enums y funciones
     private Fmain fmain;

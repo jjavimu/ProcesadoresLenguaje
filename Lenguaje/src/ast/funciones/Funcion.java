@@ -4,7 +4,7 @@ import ast.tipos.*;
 import java.util.*;
 import ast.instrucciones.*;
 
-public class Funcion {
+public class Funcion extends ASTnodo {
 
     protected TipoClass tipo;
     protected String nombre;

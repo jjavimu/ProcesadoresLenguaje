@@ -5,6 +5,7 @@ import alex.*;
 import asint.*;
 import ast.*;
 import ast.estructuras.*;
+import ast.accesos.*;
 import ast.expresiones.*;
 import ast.funciones.*;
 import ast.instrucciones.*;
@@ -66,6 +67,8 @@ non terminal ReturnClass Return;
 non terminal FuncallClass InsLlamadaFuncion;
 non terminal PrintClass Print;
 
+non terminal Acceso Acceso0;
+non terminal Acceso Acceso1;
 non terminal FuncallExp LlamadaFuncion;
 non terminal Expresion E0;
 non terminal Expresion E1;
@@ -73,12 +76,12 @@ non terminal Expresion E2;
 non terminal Expresion E3;
 non terminal Expresion E4;
 non terminal Expresion E5;
+non terminal Expresion E6;
+non terminal Expresion E7;
+non terminal Expresion E8;
 
 
 non terminal TipoClass Tipo;
-non terminal AccesoVar Acceso;
-non terminal NewClass CrearMem;
-non terminal List<Acceso> ListaAccesos;
 
 // Programa
 S ::= Entrada:definiciones FuncionMain:fmain 
@@ -130,8 +133,10 @@ Tipo ::= INT: id
          {: RESULT = new TipoEstructuraClass(id.lexema); :}
          | Tipo:tipo POR 
          {: RESULT = new TipoPunteroClass(tipo); :}
-         | Tipo:tipo CAP ENT:num CCIERRE
-         {: RESULT = new TipoArrayClass(tipo,num.lexema); :};
+         | Tipo:tipo MENOR ENT:num MAYOR
+         {: RESULT = new TipoArrayClass(tipo,num.lexema); :}
+         | Tipo:tipo MENOR MAYOR
+         {: RESULT = new TipoArrayClass(tipo, null); :};
          
 
 //Funcion y funcion main
@@ -165,8 +170,6 @@ Instruccion ::= Declaracion:elem
                   {: RESULT = elem; :}
                   | Asignacion:elem
                   {: RESULT = elem; :} 
-                  | CrearMem: elem
-                  {: RESULT = elem; :}   
                   | If:elem
                   {: RESULT = elem; :}
                   | While:elem 
@@ -180,44 +183,31 @@ Instruccion ::= Declaracion:elem
                   | InsLlamadaFuncion:elem
                   {: RESULT = elem; :};
 
-//Acceso ::= IDEN:nombre
-//            {: RESULT = new AccesoVar(nombre.lexema); :}
-//            | Acceso:ref PUNTO IDEN:campo 
-//            {: RESULT = new AccesoStruct(ref,campo.lexema); :}
-//            | Acceso:ref CAP E0:exp CCIERRE 
-//            {: RESULT = new AccesoArray(ref,exp); :}
-//            | POR Acceso:ref
-//            {: RESULT = new AccesoPuntero(ref); :};
 
-Acceso ::= IDEN:nombre ListaAccesos:lista 
-            {: RESULT = new AccesoVar(nombre.lexema,lista)); :}
-            | POR Acceso:ref 
-            {: RESULT = new AccesoPuntero(ref); :};
 
-ListaAccesos ::= ListaAccesos:lista CAP E0:indice CCIERRE 
-            {: RESULT = lista ; lista.add(new AccesoArray(indice)); :}
-            | ListaAccesos:lista PUNTO IDEN:campo
-            {: RESULT = lista ; lista.add(new AccesoStruct(campo.lexema)); :}
-            |                                   
-            {: RESULT = new ArrayList<Acceso>(); :};
-            
+Acceso0 ::= Acceso0:ref CAP E0:exp CCIERRE 
+            {: RESULT = new AccesoArray(ref,exp); :}
+            | Acceso0:ref PUNTO IDEN:campo 
+            {: RESULT = new AccesoStruct(ref,campo.lexema); :}
+            | Acceso1:ref
+            {: RESULT = ref; :};
+Acceso1 ::= IDEN:nombre
+            {: RESULT = new AccesoVar(nombre.lexema); :}
+            | POR Acceso1:ref
+            {: RESULT = new AccesoPuntero(ref); :}
+            | LAP Acceso0:ref LCIERRE
+            {: RESULT = ref; :};
 
-Declaracion ::= Tipo:t Acceso:ref PUNTOYCOMA 
-                {: RESULT = new DecClass(t,ref); :}
-                | Tipo:t Asignacion:asig
-                {: RESULT = new DecClass(t,asig); :}
-                | Tipo:t CrearMem:asigNew
-                {: RESULT = new DecClass(t,asigNew); :};
+           
 
-                //int a = 1; identificador. caso especial declaracion
-                //int* a = new int();
+Declaracion ::= Tipo:t IDEN:nombre PUNTOYCOMA 
+                {: RESULT = new DecClass(t,nombre.lexema,null); :}
+                | Tipo:t IDEN:nombre IGUAL E0:exp PUNTOYCOMA
+                {: RESULT = new DecClass(t,nombre.lexema,exp); :};
 
-Asignacion ::= Acceso:ref IGUAL E0:exp PUNTOYCOMA
+Asignacion ::= Acceso0:ref IGUAL E0:exp PUNTOYCOMA
                {: RESULT = new AsigClass(ref, exp); :};
 
-
-CrearMem ::= Acceso:ref IGUAL NEW Tipo:tipo PAP PCIERRE PUNTOYCOMA
-               {: RESULT = new NewClass(ref,tipo); :};
 
 If ::= IF PAP E0:exp PCIERRE BloqueInstrucciones:ins
        {: RESULT = new IfClass(exp,ins); :}
@@ -262,55 +252,65 @@ LlamadaFuncion ::= IDEN:nombre PAP Params:params PCIERRE
       {: RESULT = new FuncallExp(nombre.lexema,params); :}; 
 
 
+
 // Expresiones y operadores
-E0 ::= E0:expizq POTENCIA E1:expdcha
-      {: RESULT = new OpPotencia(expizq,expdcha); :}
+E0 ::= E0:expizq OR E1:expdcha 
+      {: RESULT = new OpOr(expizq,expdcha); :}
       | E1:exp
       {: RESULT = exp; :};
 
-E1 ::= NEG E1:exp
-      {: RESULT = new OpNegar(exp); :}
-      | MENOS E1:exp
-      {: RESULT = new OpCambioSigno(exp); :}
+E1 ::= E1:expizq AND E2:expdcha 
+      {: RESULT = new OpAnd(expizq,expdcha); :}
       | E2:exp
       {: RESULT = exp; :};
 
-E2 ::= E2:expizq POR E3:expdcha
-      {: RESULT = new OpMult(expizq,expdcha); :}
-      | E2:expizq DIV E3:expdcha 
-      {: RESULT = new OpDiv(expizq,expdcha); :}
+E2 ::= E2:expizq IGUALDAD E3:expdcha 
+      {: RESULT = new OpIgualdad(expizq,expdcha); :}
+      | E2:expizq DISTINTO E3:expdcha
+      {: RESULT = new OpDesigualdad(expizq,expdcha); :}
       | E3:exp
       {: RESULT = exp; :};
 
-E3 ::= E3:expizq MAYOR E4:expdcha 
+E3 ::= E3:expizq MAYOR E4:expdcha
       {: RESULT = new OpMayor(expizq,expdcha); :}
       | E3:expizq MENOR E4:expdcha
       {: RESULT = new OpMenor(expizq,expdcha); :}
-      | E3:expizq MAYORIGUAL E4:expdcha 
+      | E3:expizq MAYORIGUAL E4:expdcha
       {: RESULT = new OpMayorigual(expizq,expdcha); :}
-      | E3:expizq MENORIGUAL E4:expdcha 
+      | E3:expizq MENORIGUAL E4:expdcha
       {: RESULT = new OpMenorigual(expizq,expdcha); :}
-      | E3:expizq IGUALDAD E4:expdcha
-      {: RESULT = new OpIgualdad(expizq,expdcha); :}
-      | E3:expizq DISTINTO E4:expdcha
-      {: RESULT = new OpDesigualdad(expizq,expdcha); :}
-      | E3:expizq MAS E4:expdcha
-      {: RESULT = new OpSuma(expizq,expdcha); :}
-      | E3:expizq MENOS E4:expdcha
-      {: RESULT = new OpResta(expizq,expdcha); :}
-      | E3:expizq MOD E4:expdcha
-      {: RESULT = new OpModulo(expizq,expdcha); :}
       | E4:exp
       {: RESULT = exp; :};
 
-E4 ::= E4:expizq AND E5:expdcha
-      {: RESULT = new OpAnd(expizq,expdcha); :}
-      | E4:expizq OR E5:expdcha
-      {: RESULT = new OpOr(expizq,expdcha); :}
+E4 ::= E4:expizq MAS E5:expdcha
+      {: RESULT = new OpSuma(expizq,expdcha); :}
+      | E4:expizq MENOS E5:expdcha
+      {: RESULT = new OpResta(expizq,expdcha); :}
       | E5:exp
       {: RESULT = exp; :};
 
-E5 ::= TRUE:cte
+E5 ::= E5:expizq POR E6:expdcha
+      {: RESULT = new OpMult(expizq,expdcha); :}
+      | E5:expizq DIV E6:expdcha
+      {: RESULT = new OpDiv(expizq,expdcha); :}      
+      | E5:expizq MOD E6:expdcha
+      {: RESULT = new OpModulo(expizq,expdcha); :}
+      | E6:exp
+      {: RESULT = exp; :};
+
+E6 ::= MENOS E6:exp
+      {: RESULT = new OpCambioSigno(exp); :}    
+      | NEG E6:exp
+      {: RESULT = new OpNegar(exp); :}
+      | E7:exp
+      {: RESULT = exp; :};
+
+E7 ::= E7:expizq POTENCIA E8:expdcha
+      {: RESULT = new OpPotencia(expizq,expdcha); :}
+      | E8: exp
+      {: RESULT = exp; :};
+
+E8 ::=  TRUE:cte
       {: RESULT = new Constante(cte.lexema); :}
       | FALSE:cte
       {: RESULT = new Constante(cte.lexema); :}
@@ -322,9 +322,11 @@ E5 ::= TRUE:cte
       {: RESULT = new Constante(cte.lexema); :}
       | CADENA:cte
       {: RESULT = new Constante(cte.lexema); :}
-      | Acceso:ref
-      {: RESULT = new Acceso(ref); :} 
+      | Acceso0:ref
+      {: RESULT = ref; :}
       | LlamadaFuncion: llamada
       {: RESULT = llamada; :}
+      | NEW Tipo:t PAP PCIERRE
+      {: RESULT = new NewExp(t); :}
       | PAP E0:exp PCIERRE
       {: RESULT = exp; :};

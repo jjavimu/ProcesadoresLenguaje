@@ -1,6 +1,6 @@
 package ast.accesos;
 
-public class Acceso {
+public class Acceso extends Expresion {
     
     public Acceso(){}
 }

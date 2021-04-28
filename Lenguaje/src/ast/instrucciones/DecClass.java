@@ -7,33 +7,18 @@ import ast.expresiones.*;
 public class DecClass extends Ins {
 
     protected TipoClass tipo;
-    protected Acceso nombre;
-    protected AsigClass asig;
-    protected NewClass asigDinamica;
+    protected String nombre;
+    protected Expresion exp;
 
-    public DecClass(TipoClass tipo, Acceso nombre){ // No inicializado
+    public DecClass(TipoClass tipo, String nombre, Expresion exp){ // No inicializado
         this.tipo = tipo;
         this.nombre = nombre; 
+        this.exp = exp;
     }
     
-    public DecClass(TipoClass tipo, AsigClass asig){ // Inicializado
-        this.tipo = tipo;
-        this.asig = asig;
-    }
-    public DecClass(TipoClass tipo, NewClass asigNew){ // Inicializado dinamico
-        this.tipo = tipo;
-        this.asigDinamica = asigNew;
-    }
 
     public String toString(){
-        if (asig == null && asigDinamica == null) // no se ha init
-            return tipo.toString() + " " + nombre.toString() + ";\n";
-        else {// se ha inicializado
-            if(asig != null) // no new
-                return tipo.toString() + " " + asig.toString() + ";\n";
-            else  // new
-                return tipo.toString() + " " + asigDinamica.toString() + ";\n";
-        }
+        return  "tipo: " + tipo.toString() + ", nombre: " + this.nombre + ", expresion: " + exp;
 
     }
     
