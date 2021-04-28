@@ -4,15 +4,15 @@ import ast.expresiones.Expresion;
 
 public class AccesoArray extends Acceso{
     protected Acceso acceso;
-    protected Expresion indice;
+    protected Expresion exp;
 
     public AccesoArray(Acceso acceso, Expresion exp) {
-        this.indice = exp;
+        this.exp = exp;
         this.acceso = acceso;
     }
 
     public String toString(){
-        return acceso.toString() + "[" + exp.toString + "]";
+        return acceso.toString() + "[" + exp.toString() + "]";
     }
     
 }

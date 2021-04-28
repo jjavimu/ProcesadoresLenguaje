@@ -1,5 +1,6 @@
 package ast.expresiones;
 
+import ast.tipos.TipoClass;
 
 public class NewExp extends Expresion {
     private TipoClass tipo;

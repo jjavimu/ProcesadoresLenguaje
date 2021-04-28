@@ -2,6 +2,8 @@ package ast.estructuras;
 
 import java.util.*;
 
+import ast.ASTnodo;
+
 public class EnumClass extends ASTnodo {
     private String nombre;
     private List<String> valores;

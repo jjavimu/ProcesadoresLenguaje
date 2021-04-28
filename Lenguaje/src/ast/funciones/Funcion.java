@@ -3,6 +3,7 @@ package ast.funciones;
 import ast.tipos.*;
 import java.util.*;
 import ast.instrucciones.*;
+import ast.ASTnodo;
 
 public class Funcion extends ASTnodo {
 

@@ -2,6 +2,8 @@ package ast.estructuras;
 
 import java.util.*;
 import ast.instrucciones.DecClass;
+import ast.ASTnodo;
+
 
 public class StructClass extends ASTnodo {
 
