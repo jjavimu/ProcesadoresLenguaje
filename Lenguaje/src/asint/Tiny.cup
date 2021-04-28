@@ -76,15 +76,9 @@ non terminal Expresion E5;
 
 
 non terminal TipoClass Tipo;
-<<<<<<< HEAD
-non terminal Acceso Acceso;
-non terminal NewClass CrearMem;
-
-=======
 non terminal AccesoVar Acceso;
 non terminal NewClass CrearMem;
 non terminal List<Acceso> ListaAccesos;
->>>>>>> 4558b9243ac07a9f1c5d003047e778f3c88a600a
 
 // Programa
 S ::= Entrada:definiciones FuncionMain:fmain 
@@ -134,7 +128,7 @@ Tipo ::= INT: id
          {: RESULT = new TipoBasicoClass(id.lexema); :}
          | IDEN: id
          {: RESULT = new TipoEstructuraClass(id.lexema); :}
-         | Tipo:tipo POR
+         | Tipo:tipo POR 
          {: RESULT = new TipoPunteroClass(tipo); :}
          | Tipo:tipo CAP ENT:num CCIERRE
          {: RESULT = new TipoArrayClass(tipo,num.lexema); :};
@@ -195,7 +189,7 @@ Instruccion ::= Declaracion:elem
 //            | POR Acceso:ref
 //            {: RESULT = new AccesoPuntero(ref); :};
 
-Acceso ::= IDEN:nombre ListaAccesos:lista
+Acceso ::= IDEN:nombre ListaAccesos:lista 
             {: RESULT = new AccesoVar(nombre.lexema,lista)); :}
             | POR Acceso:ref 
             {: RESULT = new AccesoPuntero(ref); :};
@@ -214,6 +208,9 @@ Declaracion ::= Tipo:t Acceso:ref PUNTOYCOMA
                 {: RESULT = new DecClass(t,asig); :}
                 | Tipo:t CrearMem:asigNew
                 {: RESULT = new DecClass(t,asigNew); :};
+
+                //int a = 1; identificador. caso especial declaracion
+                //int* a = new int();
 
 Asignacion ::= Acceso:ref IGUAL E0:exp PUNTOYCOMA
                {: RESULT = new AsigClass(ref, exp); :};
@@ -326,7 +323,7 @@ E5 ::= TRUE:cte
       | CADENA:cte
       {: RESULT = new Constante(cte.lexema); :}
       | Acceso:ref
-      {: RESULT = new Acceso(ref); :}
+      {: RESULT = new Acceso(ref); :} 
       | LlamadaFuncion: llamada
       {: RESULT = llamada; :}
       | PAP E0:exp PCIERRE
