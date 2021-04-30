@@ -1,0 +1,19 @@
+void main() {
+    *figura.circulo = 3;
+    *(figura.circulo) = 3;
+    a = *p[i];
+    b = *(p[i]);
+
+
+    sol.max = figura[i].circulo[j].area;
+    int * a = new int();
+    D.s[i] = 3;
+    //e = 3^2;
+    int*<3> v = new int*<3>();
+    *v[i] = 3;
+
+    int<3>* p = new int<3>*();
+    *p[i] = 3;
+
+    return;
+}
