@@ -107,7 +107,7 @@ return = return
 print = print
 main = main
 
-identificador = {letra}({letra}|{digito})*
+identificador = {letra}({letra}|{digito}|_)*
 
 
 

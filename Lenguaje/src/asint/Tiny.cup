@@ -59,6 +59,7 @@ non terminal DecClass Declaracion;
 non terminal AsigClass Asignacion;
 non terminal IfClass If; 
 non terminal WhileClass While;
+non terminal ForClass For;
 non terminal SwitchClass Switch;
 non terminal List<CaseSwitch> BloqueCase;
 non terminal CaseSwitch Case;
@@ -178,6 +179,8 @@ Instruccion ::= Declaracion:elem
                   {: RESULT = elem; :}
                   | While:elem 
                   {: RESULT = elem; :}
+                  | For:elem
+                  {: RESULT = elem; :}
                   | Switch:elem 
                   {: RESULT = elem; :}
                   | Print:elem
@@ -223,7 +226,10 @@ If ::= IF PAP E0:exp PCIERRE BloqueInstrucciones:ins
 //         | ;
 
 While ::= WHILE PAP E0:exp PCIERRE BloqueInstrucciones:ins
-      {: RESULT = new WhileClass(exp,ins); :} ;                
+      {: RESULT = new WhileClass(exp,ins); :} ;   
+
+For ::= FOR PAP INT:t IDEN:nombre IGUAL E0:expIni PUNTOYCOMA E0:expCond PUNTOYCOMA Acceso0:ref IGUAL E0:exp PCIERRE BloqueInstrucciones:ins
+      {: RESULT = new ForClass(new DecClass(new TipoBasicoClass(t.lexema),nombre.lexema,expIni),expCond,new AsigClass(ref,exp),ins); :} ; 
  
 
 Switch ::= SWITCH PAP E0:exp PCIERRE LAP BloqueCase:casos Default:def LCIERRE
