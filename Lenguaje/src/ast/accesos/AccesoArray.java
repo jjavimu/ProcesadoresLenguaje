@@ -12,7 +12,7 @@ public class AccesoArray extends Acceso{
     }
 
     public String toString(){
-        return acceso.toString() + "[" + exp.toString() + "]";
+        return "ExpAccArr(" + acceso.toString() + "[" + exp.toString() + "])";
     }
     
 }

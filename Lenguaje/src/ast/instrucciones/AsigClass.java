@@ -15,6 +15,6 @@ public class AsigClass extends Ins {
     }
     
     public String toString(){
-        return "Asignación( Nombre:" + nombre + ", exp:  " + exp.toString() + ")";
+        return "Asignacion( Nombre:" + nombre + ", exp:  " + exp + ")";
     } 
 }
