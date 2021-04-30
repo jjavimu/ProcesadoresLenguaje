@@ -199,8 +199,8 @@ Acceso1 ::= IDEN:nombre
             {: RESULT = new AccesoVar(nombre.lexema); :}
             | POR Acceso1:ref
             {: RESULT = new AccesoPuntero(ref); :}
-            | LAP Acceso0:ref LCIERRE
-            {: RESULT = ref; :};
+            | POR PAP Acceso0:ref PCIERRE
+            {: RESULT = new AccesoPuntero(ref); :};
 
            
 

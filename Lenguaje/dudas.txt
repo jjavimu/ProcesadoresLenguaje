@@ -11,6 +11,7 @@ int[4] array = {1,2,3,4}
 funcion longitud del array
 
 duda: return no se cuando cogemos el valor de retorno?
+Poner el error de (*..)
 
 
 FALTA
