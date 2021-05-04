@@ -8,7 +8,7 @@ public class GestionErroresTiny {
      //System.exit(1);
    }  
    public void errorSintactico(UnidadLexica unidadLexica) {
-     System.out.println("SINTACTICO ERROR fila "+unidadLexica.fila()+": Elemento inesperado "+ ((TokenValue)unidadLexica.value).lexema+"\n");
+     System.out.println("SINTACTICO ERROR fila "+unidadLexica.fila()+ ", columna "+unidadLexica.columna()+": Elemento inesperado "+ ((TokenValue)unidadLexica.value).lexema+"\n");
      //System.exit(1);
    }
 }
