@@ -33,4 +33,10 @@ public class ListaDefiniciones {
     public String toString() {
         return "Enumerados: " + lista_enum.toString() + "\nStruct: " + lista_struct.toString() +"\nFunciones: "  + lista_funcion.toString();
     }
+
+    public vincular(){
+        for(Funcion f:lista_funcion){
+            f.vincular();
+        }
+    }
 }

@@ -1,10 +1,10 @@
 package ast;
 
-public class ASTnodo {
+public abstract class ASTnodo {
 
     public ASTnodo(){
         
     }
 
-
+    public abstract void vincular();
 }

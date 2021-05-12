@@ -28,5 +28,9 @@ public class Funcion extends ASTnodo {
         return "\n  " + tipo + " " + nombre + "(" + lista_args + ") "+ listains;
     }
 
+    public void vincular(){
+        Programa.pila.abreBloque();
+    }
+
     
 }

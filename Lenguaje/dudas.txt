@@ -1,11 +1,9 @@
-VIERNES 23 ABRIL PREGUNTAR:
-- linea y columna
-- string: concatenaciones, mutable, longitud etc? 
-
-// Inicializar structs?
-int[4] array(0);
-int[4] array = {1,2,3,4}
-funcion longitud del array
+VIERNES PREGUNTAR:
+ 
+// Inicializar structs? -no da tiempo
+int[4] array(0);-no da tiempo
+int[4] array = {1,2,3,4}-no da tiempo
+funcion longitud del array-no da tiempo
 
 duda: return no se cuando cogemos el valor de retorno?
 Poner el error de (*..)
@@ -14,6 +12,15 @@ Poner el error de (*..)
 FALTA
 errores
 tiposCheck
+        fun sumaruno(){
+            int b = 0 + 1;
+            a = 3;
+        }
+        
+        fun main(){
+            int a = 1;
+            sumaruno();
+        }
 
 
 
