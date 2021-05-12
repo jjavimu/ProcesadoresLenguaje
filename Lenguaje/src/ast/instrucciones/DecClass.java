@@ -17,7 +17,7 @@ public class DecClass extends Ins {
     }
     
     public String toString(){
-        return "Declaracin(Tipo: " + tipo + ", nombre:" + nombre + ", exp: " + exp + ")"; 
+        return "Declaracion(Tipo: " + tipo + ", nombre:" + nombre + ", exp: " + exp + ")"; 
     }
     
 }

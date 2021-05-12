@@ -1,14 +1,15 @@
-void main(){
-    int hola
-    int hola;
-    
-    hola = 45
+void errores(){
+    int hola = 45 
     hola = 45;
+    
+    hola = 45 //conseguir que vaya hasta el ;
+    hola = 45;
+    int a = 5;
     hola 45;
     hola = 43;
     
      if (3=2){
-      int hola;
+      hola = 3
     }
 
     if (a==b { 
@@ -40,7 +41,7 @@ void main(){
     }
 
     while(true){
-        print ("hola)
+        print ("hola")
     }
 
     switch(valor){
@@ -66,12 +67,21 @@ void main(){
         case 4: a = ; break;
         default: a = 5; 
     }
+}
 
-    switch(valor){
+void main(){
+        switch(valor){
         case 5: a = 3; break;
         case 4: a = 4; break;
-        default: a = 5 
+        default: a = 5    //cuando es la ultima instruccion, no entra en el caso del switch
+                 int a = 4;
     }
-    return;
-    
+
+    int a = 2; //por que no da aqui error de instruccion?
+    int b = 3;
+    int c = 9;
+    return; 
 }
+
+
+// switch (en el if si va)

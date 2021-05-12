@@ -221,11 +221,11 @@ Declaracion ::= Tipo:t IDEN:nombre PUNTOYCOMA
                 | Tipo:t IDEN:nombre IGUAL E0:exp PUNTOYCOMA
                 {: RESULT = new DecClass(t,nombre.lexema,exp); :}
                 | Tipo:t IDEN:nombre error
-                {: System.out.println("Error: Error en declaracion"); RESULT = null; :};
+                {: System.out.println("Error: Declaracion"); RESULT = null; :};
 
 Asignacion ::= Acceso0:ref IGUAL E0:exp PUNTOYCOMA
                {: RESULT = new AsigClass(ref, exp); :}
-               | Acceso0:ref IGUAL E0:exp error
+               |Acceso0:ref IGUAL E0:exp error
                {: System.out.println("Error: Falta ;"); RESULT = null; :};
 
 If ::= IF PAP E0:exp PCIERRE BloqueInstrucciones:ins
@@ -259,7 +259,9 @@ BloqueCase ::= BloqueCase:casos Case:caso
                {: RESULT = new ArrayList<CaseSwitch>(); RESULT.add(caso); :};   
 
 Case ::= CASE E0:exp DOSPUNTOS Instrucciones:ins BREAK PUNTOYCOMA                           
-      {: RESULT = new CaseSwitch(exp,ins); :};
+      {: RESULT = new CaseSwitch(exp,ins); :}
+      | CASE E0:exp DOSPUNTOS Instrucciones:ins BREAK error
+      {: System.out.println("Error: Falta ;"); RESULT = null; :};
 
 Default ::= DEFAULT DOSPUNTOS Instrucciones:ins    
       {: RESULT = new CaseSwitch(ins); :};
@@ -273,13 +275,13 @@ Return ::= RETURN E0:exp PUNTOYCOMA
             {: RESULT = new ReturnClass(exp); :}
             | RETURN PUNTOYCOMA
             {: RESULT = new ReturnClass(); :}
-            | RETURN error
-            {: System.out.println("Error: Falta ;"); RESULT = null; :};
+            |  RETURN error
+            {: System.out.println("Error: Return"); RESULT = null; :};
 
 
 InsLlamadaFuncion ::= LlamadaFuncion:funcion PUNTOYCOMA
                   {: RESULT = new FuncallClass(funcion); :}
-                  | LlamadaFuncion:funcion error
+                  |  LlamadaFuncion:funcion error
                   {: System.out.println("Error: Falta ;"); RESULT = null; :};
 
 // Expresiones y operadores
@@ -362,3 +364,4 @@ E8 ::=  TRUE:cte
       {: RESULT = new NewExp(t); :}
       | PAP E0:exp PCIERRE
       {: RESULT = exp; :};
+
