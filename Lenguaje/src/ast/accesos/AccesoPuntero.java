@@ -8,6 +8,6 @@ public class AccesoPuntero extends Acceso{
     }
     
     public String toString(){
-        return "ExpAccPtr(*" + direccion.toString() +")";
+        return "ExpAccPtr(*" + direccion +")";
     }
 }

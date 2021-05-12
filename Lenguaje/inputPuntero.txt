@@ -1,6 +1,5 @@
-
-
 void main(){
+    int<3> vector;
 for(int i=0;i<0;i=i+1){
     int * a_1 = new int();
     *a = 3;
@@ -9,3 +8,47 @@ for(int i=0;i<0;i=i+1){
 }
 return;
 }
+
+    int hola
+    int hola;
+    
+    hola = 45
+    hola = 45;
+    hola 45;
+    hola = 43;
+    
+     if (3=2){
+      int hola;
+    }
+
+    if (a==b { 
+        int hola;
+    }
+
+    if (a==b) { 
+        int;
+    }
+    
+    for (int i=0 ;i<3;i = i+1){
+        int a = 0;
+    }
+
+    for (int i=0 ;i<3;i = i+1){
+        int a = 0
+    }
+    
+    for (int i=0 i<3;i = i+1){
+        int a = 0;
+    }
+
+    while(true {
+        a = b;
+    }
+
+    while(true){
+        a = b;
+    }
+
+    while(true){
+        print ("hola)
+    }

@@ -1,0 +1,77 @@
+void main(){
+    int hola
+    int hola;
+    
+    hola = 45
+    hola = 45;
+    hola 45;
+    hola = 43;
+    
+     if (3=2){
+      int hola;
+    }
+
+    if (a==b { 
+        int hola;
+    }
+
+    if (a==b) { 
+        int;
+    }
+    
+    for (int i=0 ;i<3;i = i+1){
+        int a = 0;
+    }
+
+    for (int i=0 ;i<3;i = i+1){
+        int a = 0
+    }
+    
+    for (int i=0 i<3;i = i+1){
+        int a = 0;
+    }
+
+    while(true {
+        a = b;
+    }
+
+    while(true){
+        a = b;
+    }
+
+    while(true){
+        print ("hola)
+    }
+
+    switch(valor){
+        case 3: a = 3; break;
+        case 4: a = 4; break;
+        default: a = 5;
+    }
+
+    switch(valor{
+        case 3: a = 3; break;
+        case 4: a = 4; break;
+        default: a = 5; 
+    }
+
+    switch(valor){
+        case : a = 3; break;
+        case 4: a = 4; break; //error instruccion
+        default: a = 5; 
+    }
+
+    switch(valor{
+        case 3: a = 3;;
+        case 4: a = ; break;
+        default: a = 5; 
+    }
+
+    switch(valor){
+        case 5: a = 3; break;
+        case 4: a = 4; break;
+        default: a = 5 
+    }
+    return;
+    
+}

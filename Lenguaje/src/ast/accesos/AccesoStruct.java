@@ -10,7 +10,7 @@ public class AccesoStruct extends Acceso {
     }
 
     public String toString(){
-        return "ExpAccStr(" + acceso.toString() + "." + this.campo + ")";
+        return "ExpAccStr(" + acceso+ "." + this.campo + ")";
     }
 
 }

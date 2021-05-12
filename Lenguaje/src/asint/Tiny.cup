@@ -86,7 +86,9 @@ non terminal TipoClass Tipo;
 
 // Programa
 S ::= Entrada:definiciones FuncionMain:fmain 
-      {: RESULT = new Programa(definiciones, fmain); :};
+      {: RESULT = new Programa(definiciones, fmain); :}
+      | Entrada:definiciones error
+      {: System.out.println("Error: No se encuentra funcion main"); RESULT = null;:};
 
 Entrada ::=  Entrada:definiciones Struct:str
             {: RESULT = definiciones; definiciones.addStruct(str); :}
@@ -99,7 +101,11 @@ Entrada ::=  Entrada:definiciones Struct:str
 
 // Enumerado
 Enumerado ::= ENUM IDEN:nombre IGUAL LAP DentroEnumerado:valores LCIERRE PUNTOYCOMA
-      {: RESULT = new EnumClass(nombre.lexema,valores); :};
+            {: RESULT = new EnumClass(nombre.lexema,valores); :}
+            | ENUM IDEN:nombre IGUAL LAP DentroEnumerado:valores LCIERRE error
+            {: System.out.println("Error: Enumerado falta ;"); RESULT = null; :}
+            | ENUM error PUNTOYCOMA
+            {: System.out.println("Error: Enumerado en cuerpo"); RESULT = null; :};
 
 DentroEnumerado ::= DentroEnumerado:restoValores COMA IDEN:valor
                   {: RESULT = restoValores; restoValores.add(valor.lexema); :}
@@ -108,7 +114,9 @@ DentroEnumerado ::= DentroEnumerado:restoValores COMA IDEN:valor
 
 // Struct
 Struct ::= STRUCT IDEN:nombre LAP DentroStruct:valores LCIERRE PUNTOYCOMA
-      {: RESULT = new StructClass(nombre.lexema,valores); :};
+            {: RESULT = new StructClass(nombre.lexema,valores); :}
+            | STRUCT IDEN:nombre LAP DentroStruct:valores LCIERRE error
+            {: System.out.println("Error: Struct falta ;"); RESULT = null; :};
 
 DentroStruct ::= DentroStruct:resto Declaracion:decl
                   {: RESULT = resto; resto.add(decl); :}
@@ -134,12 +142,11 @@ Tipo ::= INT: id
          {: RESULT = new TipoEstructuraClass(id.lexema); :}
          | Tipo:tipo POR 
          {: RESULT = new TipoPunteroClass(tipo); :}
-         | Tipo:tipo MENOR ENT:num MAYOR
+         | Tipo:tipo MENOR ENT:num MAYOR 
          {: RESULT = new TipoArrayClass(tipo,num.lexema); :}
          | Tipo:tipo MENOR MAYOR
          {: RESULT = new TipoArrayClass(tipo, null); :};
          
-
 //Funcion y funcion main
 Funcion ::= Tipo:tipo IDEN:nombre PAP Args:args PCIERRE BloqueInstrucciones:ins
       {: RESULT = new Funcion(tipo, nombre.lexema, args, ins); :};
@@ -188,7 +195,9 @@ Instruccion ::= Declaracion:elem
                   | Return:elem
                   {: RESULT = elem; :}
                   | InsLlamadaFuncion:elem
-                  {: RESULT = elem; :};
+                  {: RESULT = elem; :}
+                  | error PUNTOYCOMA
+                  {: System.out.println("Error: Instruccion"); RESULT = null; :};
 
 
 
@@ -210,60 +219,73 @@ Acceso1 ::= IDEN:nombre
 Declaracion ::= Tipo:t IDEN:nombre PUNTOYCOMA 
                 {: RESULT = new DecClass(t,nombre.lexema,null); :}
                 | Tipo:t IDEN:nombre IGUAL E0:exp PUNTOYCOMA
-                {: RESULT = new DecClass(t,nombre.lexema,exp); :};
+                {: RESULT = new DecClass(t,nombre.lexema,exp); :}
+                | Tipo:t IDEN:nombre error
+                {: System.out.println("Error: Error en declaracion"); RESULT = null; :};
 
 Asignacion ::= Acceso0:ref IGUAL E0:exp PUNTOYCOMA
-               {: RESULT = new AsigClass(ref, exp); :};
-
+               {: RESULT = new AsigClass(ref, exp); :}
+               | Acceso0:ref IGUAL E0:exp error
+               {: System.out.println("Error: Falta ;"); RESULT = null; :};
 
 If ::= IF PAP E0:exp PCIERRE BloqueInstrucciones:ins
        {: RESULT = new IfClass(exp,ins); :}
        | IF PAP E0:exp PCIERRE BloqueInstrucciones:ins ELSE BloqueInstrucciones:inselse
-       {: RESULT = new IfClass(exp,ins,inselse); :};
-//      | IF PAP E0 PCIERRE BloqueInstrucciones Elsif;
-//Elsif ::= ELSIF PAP E0 PCIERRE BloqueInstrucciones Elsif
-//         | ELSE BloqueInstrucciones
-//         | ;
+       {: RESULT = new IfClass(exp,ins,inselse); :}
+       | IF error BloqueInstrucciones:ins
+       {: System.out.println("Error: Condicion del if"); RESULT = null; :};
+
 
 While ::= WHILE PAP E0:exp PCIERRE BloqueInstrucciones:ins
-      {: RESULT = new WhileClass(exp,ins); :} ;   
+      {: RESULT = new WhileClass(exp,ins); :} 
+      | WHILE error BloqueInstrucciones:ins
+       {: System.out.println("Error: Condicion del while"); RESULT = null; :};   
 
 For ::= FOR PAP INT:t IDEN:nombre IGUAL E0:expIni PUNTOYCOMA E0:expCond PUNTOYCOMA Acceso0:ref IGUAL E0:exp PCIERRE BloqueInstrucciones:ins
-      {: RESULT = new ForClass(new DecClass(new TipoBasicoClass(t.lexema),nombre.lexema,expIni),expCond,new AsigClass(ref,exp),ins); :} ; 
- 
+      {: RESULT = new ForClass(new DecClass(new TipoBasicoClass(t.lexema),nombre.lexema,expIni),expCond,new AsigClass(ref,exp),ins); :}
+      | FOR error BloqueInstrucciones:ins
+       {: System.out.println("Error: Condicion del for"); RESULT = null; :};   
 
 Switch ::= SWITCH PAP E0:exp PCIERRE LAP BloqueCase:casos Default:def LCIERRE
-      {: casos.add(def); RESULT = new SwitchClass(exp,casos); :};
+      {: casos.add(def); RESULT = new SwitchClass(exp,casos); :}
+      | SWITCH PAP E0:exp PCIERRE LAP error LCIERRE
+      {: System.out.println("Error: Cuerpo switch"); RESULT = null; :}
+      | SWITCH error LAP BloqueCase:casos Default:def LCIERRE
+      {: System.out.println("Error: Condicion switch"); RESULT = null; :};    
 
 BloqueCase ::= BloqueCase:casos Case:caso  
                {: RESULT = casos; casos.add(caso); :}
                | Case: caso
                {: RESULT = new ArrayList<CaseSwitch>(); RESULT.add(caso); :};   
 
-Case ::= CASE E0:exp DOSPUNTOS Instrucciones:ins BREAK PUNTOYCOMA                            
-      {: RESULT = new CaseSwitch(exp,ins); :}; 
+Case ::= CASE E0:exp DOSPUNTOS Instrucciones:ins BREAK PUNTOYCOMA                           
+      {: RESULT = new CaseSwitch(exp,ins); :};
 
 Default ::= DEFAULT DOSPUNTOS Instrucciones:ins    
-      {: RESULT = new CaseSwitch(ins); :} ; 
+      {: RESULT = new CaseSwitch(ins); :};
 
 Print ::= PRINT PAP E0:exp PCIERRE PUNTOYCOMA
-      {: RESULT = new PrintClass(exp); :};
+         {: RESULT = new PrintClass(exp); :}
+         | PRINT PAP E0:exp PCIERRE error
+         {: System.out.println("Error: Falta ;"); RESULT = null; :};
 
 Return ::= RETURN E0:exp PUNTOYCOMA 
             {: RESULT = new ReturnClass(exp); :}
             | RETURN PUNTOYCOMA
-            {: RESULT = new ReturnClass(); :};
+            {: RESULT = new ReturnClass(); :}
+            | RETURN error
+            {: System.out.println("Error: Falta ;"); RESULT = null; :};
 
 
 InsLlamadaFuncion ::= LlamadaFuncion:funcion PUNTOYCOMA
-      {: RESULT = new FuncallClass(funcion); :};
+                  {: RESULT = new FuncallClass(funcion); :}
+                  | LlamadaFuncion:funcion error
+                  {: System.out.println("Error: Falta ;"); RESULT = null; :};
 
+// Expresiones y operadores
 LlamadaFuncion ::= IDEN:nombre PAP Params:params PCIERRE
       {: RESULT = new FuncallExp(nombre.lexema,params); :}; 
 
-
-
-// Expresiones y operadores
 E0 ::= E0:expizq OR E1:expdcha 
       {: RESULT = new OpOr(expizq,expdcha); :}
       | E1:exp
