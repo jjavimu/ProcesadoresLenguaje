@@ -1,7 +1,7 @@
 package ast.instrucciones;
 
 import java.util.*;
-
+import ast.Programa;
 import ast.expresiones.Expresion;
 
 public class WhileClass extends Ins {   

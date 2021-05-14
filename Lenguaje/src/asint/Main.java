@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import alex.AnalizadorLexicoTiny;
 import alex.UnidadLexica;
+import ast.*;
 
 public class Main {
    public static void main(String[] args) throws Exception {
@@ -15,9 +16,15 @@ public class Main {
 	 AnalizadorSintacticoTiny asint = new AnalizadorSintacticoTiny(alex);
 	 // asint.setScanner(alex);
 	 // asint.parse();
-	 Programa p = asint.parse().value;
+	 Programa p = (Programa) asint.parse().value;
 	 System.out.println(p);
-	 p.vinculacion();
+	 p.vincular();
+	 if (!Programa.okVinculacion){
+	 	System.out.println("NO SE HA VINCULADO BIEN :(");
+	 }
+	 else{
+		System.out.println("SE HA VINCULADO BIEN :)");
+	 }
  }
  	public static void sacaLexemas(AnalizadorLexicoTiny alex) throws IOException{
 		UnidadLexica unidad;

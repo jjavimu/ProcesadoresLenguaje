@@ -11,6 +11,10 @@ public class PilaTablaSimbolos {
         inicializa();
     }
     
+    public boolean empty(){
+        return pila_tablas.empty() || pila_tablas.peek().isEmpty();
+    }
+
     public void inicializa(){
         //crea una pila de tablas vacía.
         pila_tablas = new Stack<HashMap<String, ASTnodo>>();
@@ -32,30 +36,31 @@ public class PilaTablaSimbolos {
     }
 
     // Insertamos en la tabla de la cima de la pila un nuevo identificador
-    public void insertaId (String id, ASTNodo puntero){
+    public void insertaId (String id, ASTnodo puntero){
         // que inserta id con su referencia al AST en la tabla de la cima.
-        if( !pila_tablas.empty()){
-            HashMap<String,ASTnodo> cima = peek();
+        if(!pila_tablas.empty()){
+            HashMap<String,ASTnodo> cima = pila_tablas.peek();
             cima.put(id, puntero);
         }
     }
 
     // Buscamos el identificador en la tabla de la cima de la pila
-    public ASTNodo buscaId (String id){
+    public ASTnodo buscaId (String id){
         // busca la primera aparición de id en la pila de tablas empezando por la cima y devuelve su referencia.
         Stack<HashMap<String, ASTnodo>> pila_tablas_aux = new Stack<HashMap<String, ASTnodo>>();
-        ASTNodo puntero;
+        ASTnodo puntero = null;
         if(!pila_tablas.empty()){
             HashMap<String,ASTnodo> cima = pila_tablas.pop();
             puntero = cima.get(id);
+            pila_tablas_aux.push(cima);
             while (puntero == null && !pila_tablas.empty()){
-                pila_tablas_aux.push(cima);
                 cima = pila_tablas.pop();
                 puntero = cima.get(id);
+                pila_tablas_aux.push(cima);
             }
 
             //volver a guardar todo en la pila
-            while(!pila_tablas_aux()){
+            while(!pila_tablas_aux.empty()){
                 pila_tablas.push(pila_tablas_aux.pop());
             }
         }

@@ -13,6 +13,9 @@ public class Constante extends Expresion {
 
     public void vincular(){}
 
+    public String getValor(){
+        return valor;
+    }
 
     public String toString(){
         return "Expresion(" + valor+ ")";

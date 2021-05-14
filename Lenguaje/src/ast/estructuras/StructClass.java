@@ -3,6 +3,7 @@ package ast.estructuras;
 import java.util.*;
 import ast.instrucciones.DecClass;
 import ast.ASTnodo;
+import ast.Programa;
 
 public class StructClass extends ASTnodo {
 
@@ -15,11 +16,11 @@ public class StructClass extends ASTnodo {
     }
 
     public void vincular() {
-        ASTNodo nodo = Programa.pila.buscaId(nombre);
-        if (nodo != null) {
+        ASTnodo nodo = Programa.pila.buscaId(nombre);
+        if (nodo == null) { //devuelve null cuando no esta
             Programa.pila.insertaId(nombre, this);
         } else {
-            System.out.println("Error vinculacion: Este identificador ya esta usado");
+            System.out.println("Error vinculacion: Este identificador ya esta usado: " + nombre );
             Programa.okVinculacion = false;
         }
     }

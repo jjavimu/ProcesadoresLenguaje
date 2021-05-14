@@ -19,15 +19,15 @@ public class ParTipoIden extends DecClass{
     }
 
     public String getIden() {
-        return this.iden;
+        return this.nombre;
     }
 
     public void setIden(String iden) {
-        this.iden = iden;
+        this.nombre = iden;
     }
 
     public String toString(){
-        return tipo.toString() + iden;
+        return tipo + nombre;
     }
     
 }

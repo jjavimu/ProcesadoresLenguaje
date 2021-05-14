@@ -3,7 +3,7 @@ enum TipoFigura = { Cuadrado, Triangulo, Circulo };
 void main() {
     TipoFigura figura; // Definimos Figura de tipo enumerado TipoFigura
     figura = Circulo;
-    switch (Figura) {
+    switch (figura) {
         case Cuadrado: print("Cuadrado"); break;
         case Triangulo: print("Triángulo"); break;
         case Circulo: print("Círculo"); break;

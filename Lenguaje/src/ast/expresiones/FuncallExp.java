@@ -1,6 +1,8 @@
 package ast.expresiones;
 
 import java.util.List;
+import ast.Programa;
+import ast.ASTnodo;
 
 public class FuncallExp extends Expresion {
     protected String nombre;
@@ -12,7 +14,7 @@ public class FuncallExp extends Expresion {
     }
 
     public void vincular(){
-        ASTNodo nodo = Programa.pila.buscaId(nombre);
+        ASTnodo nodo = Programa.pila.buscaId(nombre);
         if(nodo == null){
             System.out.println("Error vinculacion: Intento hacer llamada sin declarar");
             Programa.okVinculacion = false;

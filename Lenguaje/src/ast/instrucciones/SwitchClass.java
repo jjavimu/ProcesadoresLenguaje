@@ -1,7 +1,7 @@
 package ast.instrucciones;
 
 import java.util.List;
-
+import ast.Programa;
 import ast.expresiones.*;
 
 public class SwitchClass extends Ins {

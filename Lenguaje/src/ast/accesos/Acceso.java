@@ -2,7 +2,8 @@ package ast.accesos;
 
 import ast.expresiones.*;
 
-public class Acceso extends Expresion {
+public abstract class Acceso extends Expresion {
     
     public Acceso(){}
+    public abstract void vincular();
 }

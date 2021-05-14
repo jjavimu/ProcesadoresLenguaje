@@ -3,6 +3,7 @@ package ast.instrucciones;
 import java.util.*;
 
 import ast.expresiones.*;
+import ast.Programa;
 
 public class CaseSwitch{
 
@@ -20,9 +21,10 @@ public class CaseSwitch{
     }
 
     public void vincular() {
-        caso.vincular();
+        if (caso!=null) caso.vincular();
+
         Programa.pila.abreBloque();
-        for (Ins instruccion : instrucciones_else) {
+        for (Ins instruccion : instrucciones) {
             instruccion.vincular();
         }
         Programa.pila.cierraBloque();

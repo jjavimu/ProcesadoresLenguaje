@@ -4,6 +4,7 @@ import ast.tipos.*;
 import java.util.*;
 import ast.instrucciones.*;
 import ast.ASTnodo;
+import ast.Programa;
 
 public class Funcion extends ASTnodo {
 
@@ -29,8 +30,8 @@ public class Funcion extends ASTnodo {
     }
 
     public void vincular() {
-        ASTNodo nodo = Programa.pila.buscaId(nombre);
-        if (nodo != null) {
+        ASTnodo nodo = Programa.pila.buscaId(nombre);
+        if (nodo == null) {
             Programa.pila.insertaId(nombre, this);
             Programa.pila.abreBloque();
 
@@ -44,7 +45,7 @@ public class Funcion extends ASTnodo {
 
             Programa.pila.cierraBloque();
         } else {
-            System.out.println("Error vinculacion: Este identificador ya esta usado");
+            System.out.println("Error vinculacion: Este identificador ya esta usado: " + nombre);
             Programa.okVinculacion = false;
         }
 

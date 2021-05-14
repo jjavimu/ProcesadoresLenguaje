@@ -2,6 +2,7 @@ package ast.instrucciones;
 
 import ast.expresiones.*;
 import java.util.*;
+import ast.Programa;
 
 public class ForClass extends Ins {
     private DecClass dec;

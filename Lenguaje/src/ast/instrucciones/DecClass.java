@@ -3,6 +3,8 @@ package ast.instrucciones;
 import ast.tipos.*;
 import ast.accesos.Acceso;
 import ast.expresiones.*;
+import ast.ASTnodo;
+import ast.Programa;
 
 public class DecClass extends Ins {
 
@@ -17,11 +19,11 @@ public class DecClass extends Ins {
     }
 
     public void vincular() {
-        ASTNodo nodo = Programa.pila.buscaId(nombre);
-        if (nodo != null) {
+        ASTnodo nodo = Programa.pila.buscaId(nombre);
+        if (nodo == null) { //devuelve null cuando no esta
             Programa.pila.insertaId(nombre, this);
         } else {
-            System.out.println("Error vinculacion: Este identificador ya esta usado");
+            System.out.println("Error vinculacion: Este identificador ya esta usado: " + nombre);
             Programa.okVinculacion = false;
         }
     }

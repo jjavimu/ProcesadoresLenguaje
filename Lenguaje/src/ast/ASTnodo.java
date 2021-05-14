@@ -1,7 +1,9 @@
 package ast;
 
-public class ASTnodo {
-    ASTNodo nodoVinculo;
+public abstract class ASTnodo {
+    public ASTnodo nodoVinculo;
     
     public ASTnodo(){}
+
+    public abstract void vincular();
 }

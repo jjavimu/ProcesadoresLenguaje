@@ -8,8 +8,8 @@ public class Programa extends ASTnodo {
     private Fmain fmain; //Funcion main del programa
 
     // Pila de tabla se simbolos
-    protected static PilaTablaSimbolos pila;
-    protected static Boolean okVinculacion;
+    public static PilaTablaSimbolos pila;
+    public static Boolean okVinculacion; 
     
     public Programa(ListaDefiniciones l, Fmain fmain){
         this.definiciones = l;

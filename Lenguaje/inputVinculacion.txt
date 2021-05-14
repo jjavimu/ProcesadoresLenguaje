@@ -1,0 +1,52 @@
+enum Figura = {Circulo, Triangulo, Cuadrado};
+
+struct Numeros{
+    int a = 3;
+    bool b;
+};
+
+int funcion(int a, char b){
+    int x;
+    // int x;
+
+    for(int i=0;i<7;i=i+1){
+        int<3> nombre;
+    }
+
+    TipoFigura figura; // Definimos Figura de tipo enumerado TipoFigura
+    figura = Circulo;
+
+    switch (figura) {
+        case Cuadrado: print("Cuadrado"); break;
+        case Triangulo: print("Triángulo"); break;
+        case Circulo: print("Círculo"); break;
+        default: print("Función no implementada");
+    }
+
+    Numeros num;
+    int v = num.a;
+
+    return 0;
+}
+
+void main(){
+    int a;
+    int c;
+    funcion(3,a+4);
+
+    while(c<0){
+        int b;
+    }
+
+    if(true){
+        print("hola");
+    }
+    else {
+        while(false){
+            int d;
+        }
+        // d = funcion(3,4);
+    }
+
+    return;
+}

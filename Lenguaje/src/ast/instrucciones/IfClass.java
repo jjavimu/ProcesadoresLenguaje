@@ -3,6 +3,8 @@ package ast.instrucciones;
 import java.util.*;
 
 import ast.expresiones.Expresion;
+import ast.Programa;
+
 
 public class IfClass extends Ins {
 

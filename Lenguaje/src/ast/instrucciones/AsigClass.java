@@ -2,6 +2,8 @@ package ast.instrucciones;
 
 import ast.accesos.Acceso;
 import ast.expresiones.*;
+import ast.Programa;
+import ast.ASTnodo;
 
 
 public class AsigClass extends Ins {
@@ -15,13 +17,9 @@ public class AsigClass extends Ins {
     }
 
     public void vincular(){
-        ASTNodo nodo = Programa.pila.buscaId(nombre);
-        if(nodo == null){
-            System.out.println("Error vinculacion: Intento asignar sin declaracion");
-            Programa.okVinculacion = false;
-        }
+        nombre.vincular();
         exp.vincular();
-        this.nodoVinculo = nodo;
+
     }
     
     public String toString(){
