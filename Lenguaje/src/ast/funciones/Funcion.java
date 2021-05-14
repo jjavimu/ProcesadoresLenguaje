@@ -20,13 +20,14 @@ public class Funcion extends ASTnodo {
         this.lista_ins = lista_ins;
     }
 
-    public String toString() {
-        String listains = "\n    ";
-        for (Ins i : lista_ins) {
-            if (i != null)
-                listains = listains + i.toString() + "\n    ";
+    public void chequea() {
+        for (ParTipoIden arg : lista_args) {
+            arg.chequea();
         }
-        return "\n  " + tipo + " " + nombre + "(" + lista_args + ") " + listains;
+
+        for (Ins instruccion : lista_ins) {
+            instruccion.chequea();
+        }
     }
 
     public void vincular() {
@@ -49,6 +50,15 @@ public class Funcion extends ASTnodo {
             Programa.okVinculacion = false;
         }
 
+    }
+
+    public String toString() {
+        String listains = "\n    ";
+        for (Ins i : lista_ins) {
+            if (i != null)
+                listains = listains + i.toString() + "\n    ";
+        }
+        return "\n  " + tipo + " " + nombre + "(" + lista_args + ") " + listains;
     }
 
 }

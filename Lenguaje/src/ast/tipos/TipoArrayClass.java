@@ -10,6 +10,11 @@ public class TipoArrayClass extends TipoClass{
         this.tam = tamanio;
     }
 
+    public boolean comparar(TipoClass otro){
+       // otro.equeals(TipoArrayClass)
+
+    }
+
     public String toString(){
         if(tam != null)
             return tipo.toString() + "<" + tam + ">";

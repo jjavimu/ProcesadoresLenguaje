@@ -6,6 +6,13 @@ public class OpAnd extends ExpresionBinaria {
         super(opizq, opdcha);
     }
 
+    public void chequea(){
+        opizq.chequea();
+        opdcha.chequea();
+
+        //if(opizq.tipo 'es igual a' opdcha.tipo && opizq.tipo 'es booleano')
+    }
+
     public String toString(){
         return "ExpBin(" + opizq + "and" + opdcha + ")";
     }

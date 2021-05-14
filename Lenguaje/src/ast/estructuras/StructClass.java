@@ -2,6 +2,7 @@ package ast.estructuras;
 
 import java.util.*;
 import ast.instrucciones.DecClass;
+import ast.tipos.TipoEstructuraClass;
 import ast.ASTnodo;
 import ast.Programa;
 
@@ -10,9 +11,18 @@ public class StructClass extends ASTnodo {
     private String nombre;
     private List<DecClass> valores;
 
+    // Comprobacion tipos:
+    public Tipo tipo;
+
     public StructClass(String nombre, List<DecClass> valores) {
         this.nombre = nombre;
         this.valores = valores;
+    }
+
+    public void chequea(){
+        for(DecClass dec:valores){
+            dec.chequea();
+        }
     }
 
     public void vincular() {

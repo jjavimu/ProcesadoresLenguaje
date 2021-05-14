@@ -17,9 +17,9 @@ public class Programa extends ASTnodo {
         this.okVinculacion = true;
     }
     
-    
-    public String toString() {
-        return definiciones.toString() + "\nFuncion Main: " + fmain.toString();
+    public void chequea(){
+        definiciones.chequea();
+        fmain.chequea();
     }
 
     public void vincular(){
@@ -29,4 +29,9 @@ public class Programa extends ASTnodo {
         fmain.vincular();
         pila.cierraBloque();
     }
+    
+    public String toString() {
+        return definiciones.toString() + "\nFuncion Main: " + fmain.toString();
+    }
+
 }

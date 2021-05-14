@@ -13,6 +13,16 @@ public class WhileClass extends Ins {
         this.instrucciones = instrucciones;
     }
 
+    public void chequea(){
+        condicion.chequea();
+        if(!condicion.tipo.comparar(new TipoBasicoClass("bool"))){ // La condicion tiene que ser bool
+            System.out.println("Error tipo: condicion while " + condicion + "("+ condicion.tipo +")"); 
+        } 
+        for(Ins instruccion : instrucciones){
+            instruccion.chequea();
+        }
+    }
+
     public void vincular(){
         Programa.pila.abreBloque();
         condicion.vincular();

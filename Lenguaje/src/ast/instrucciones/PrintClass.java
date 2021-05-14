@@ -9,6 +9,10 @@ public class PrintClass extends Ins {
         this.exp = exp;
     }
 
+    public void chequea(){
+        exp.chequea();
+    }
+
     public void vincular(){
         exp.vincular();
     }

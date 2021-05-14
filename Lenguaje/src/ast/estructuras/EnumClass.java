@@ -19,6 +19,10 @@ public class EnumClass extends ASTnodo {
         }
     }
 
+    public void chequea(){
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+    }
+
     public void vincular() {
         ASTnodo nodo = Programa.pila.buscaId(nombre);
         if (nodo == null) { // devuelve null cuando no esta

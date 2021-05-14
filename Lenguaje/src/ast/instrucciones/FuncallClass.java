@@ -9,6 +9,10 @@ public class FuncallClass extends Ins {
         this.funcion = funcion;
     }
 
+    public void chequea(){
+        funcion.chequea(); //Cuando no interesa el resultado o es void
+    }
+
     public void vincular(){
         funcion.vincular();
     }

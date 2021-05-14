@@ -14,6 +14,18 @@ public class SwitchClass extends Ins {
         this.casos = casos;
     }
 
+    public void chequea(){
+        condicion.chequea();
+        // los casos tienen que ser del mismo tipo que la condicion
+
+        for(CaseSwitch caso:casos){
+            if(!caso.getTipo().comparar(condicion.tipo)){
+                System.out.println("Error tipo: caso switch " + condicion + "(condicion: "+ condicion.tipo + ", caso: " + caso.getTipo()+")"); 
+            }
+            caso.chequea();            
+        }
+    }
+
     public void vincular(){
         condicion.vincular();
         Programa.pila.abreBloque();

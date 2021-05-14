@@ -13,6 +13,14 @@ public class ReturnClass extends Ins {
         this.valorRetorno = null;
     }
 
+    public void chequea(){
+        if (valorRetorno != null) {
+            valorRetorno.chequea();
+            //if(!this.tipo.comparar(valorRetorno))
+            // vinculo entre Return y valor de la funcion
+        }
+    }
+
     public void vincular() {
         if (valorRetorno != null) {
             valorRetorno.vincular();

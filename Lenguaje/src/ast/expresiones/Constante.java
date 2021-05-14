@@ -4,9 +4,9 @@ import ast.tipos.*;
 
 public class Constante extends Expresion {
     private String valor;
-    private TipoBasicoClass tipo;
+    //private TipoBasicoClass tipo;
 
-    public Constante(String cte, TipoBasicoClass tipo){
+    public Constante(String cte, TipoClass tipo){
         this.valor = cte;
         this.tipo = tipo;
     }

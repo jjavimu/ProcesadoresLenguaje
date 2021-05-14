@@ -8,7 +8,7 @@ import ast.Programa;
 
 public class DecClass extends Ins {
 
-    protected TipoClass tipo;
+    // protected TipoClass tipo;
     protected String nombre;
     protected Expresion exp;
 
@@ -16,6 +16,15 @@ public class DecClass extends Ins {
         this.tipo = tipo;
         this.nombre = nombre; 
         this.exp = exp;
+    }
+
+    public void chequea(){
+        // El tipo de la parte izquierda es this.tipo
+        exp.chequea();
+
+        if(!this.tipo.comparar(exp.tipo)){
+            System.out.println("Error tipo: Declaracion " + tipo + " " + nombre + "=" + exp + "(" + nombre.tipo + "," + exp.tipo + ")");
+        }
     }
 
     public void vincular() {

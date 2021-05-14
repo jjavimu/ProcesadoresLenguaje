@@ -21,6 +21,7 @@ public class Main {
 	 p.vincular();
 	 if (!Programa.okVinculacion){
 	 	System.out.println("NO SE HA VINCULADO BIEN :(");
+		p.chequea();
 	 }
 	 else{
 		System.out.println("SE HA VINCULADO BIEN :)");

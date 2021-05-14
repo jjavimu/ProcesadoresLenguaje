@@ -20,6 +20,16 @@ public class CaseSwitch{
         this.instrucciones = instrucciones;
     }
 
+    public TipoClass getTipo(){
+        return caso.tipo;
+    }
+
+    public void chequea(){
+        for(Ins instruccion : instrucciones){
+            instruccion.chequea();
+        }
+    }
+
     public void vincular() {
         if (caso!=null) caso.vincular();
 

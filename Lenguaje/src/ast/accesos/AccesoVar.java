@@ -11,7 +11,10 @@ public class AccesoVar extends Acceso {
         this.direccionInicial = nombreVar;
     }
 
-
+    public void chequea(){
+        this.tipo = nodoVinculo.tipo;
+    }
+    
     public void vincular(){
         ASTnodo nodo = Programa.pila.buscaId(direccionInicial);
         if(nodo == null){

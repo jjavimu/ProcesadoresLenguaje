@@ -9,6 +9,15 @@ public class AccesoStruct extends Acceso {
         this.acceso = acceso;
     }
 
+    public void chequea(){
+        acceso.chequea();
+        if(acceso.tipo != null){
+            //si acceso.tipo no es de tipo error, mal
+            //else:
+
+        }
+    }
+
     public void vincular(){
         acceso.vincular();
     }

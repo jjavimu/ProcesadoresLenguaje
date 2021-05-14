@@ -23,6 +23,21 @@ public class IfClass extends Ins {
         this.instrucciones_else = instrucciones_else;
     }
 
+    public void chequea(){
+        condicion.chequea();
+        if(!condicion.tipo.comparar(new TipoBasicoClass("bool"))){ // La condicion tiene que ser bool
+            System.out.println("Error tipo: condicion if " + condicion + "("+ condicion.tipo +")"); 
+        }        
+        for (Ins instruccion : instrucciones_then) {
+            instruccion.chequea();
+        }
+        if (instrucciones_else != null){
+            for (Ins instruccion : instrucciones_else) {
+                instruccion.chequea();
+            }
+        }
+    }
+
     public void vincular() {
         condicion.vincular();
         Programa.pila.abreBloque();

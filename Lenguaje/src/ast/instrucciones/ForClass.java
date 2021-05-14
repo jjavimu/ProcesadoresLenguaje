@@ -17,6 +17,22 @@ public class ForClass extends Ins {
         this.instrucciones = ins;
     }
 
+    public void chequea(){
+        dec.chequea();
+        if(!dec.tipo.comparar(new TipoBasicoClass("int"))){ // La declaracion tiene que ser int
+            System.out.println("Error tipo: declaracion for " + dec + "("+ dec.tipo +")");            
+        }
+        expCond.chequea();
+        if(!expCond.tipo.comparar(new TipoBasicoClass("bool"))){ // La condicion tiene que ser bool
+            System.out.println("Error tipo: condicion for " + expCond + "("+ expCond.tipo +")"); 
+        }
+        asig.chequea();
+
+        for(Ins instruccion : instrucciones){
+            instruccion.chequea();
+        }
+    }
+
     public void vincular(){
         Programa.pila.abreBloque();
         dec.vincular();

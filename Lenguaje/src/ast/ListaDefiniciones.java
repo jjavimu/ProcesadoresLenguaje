@@ -29,9 +29,18 @@ public class ListaDefiniciones {
     public void addFuncion(Funcion f){
         lista_funcion.add(f);
     }
-    
-    public String toString() {
-        return "Enumerados: " + lista_enum.toString() + "\nStruct: " + lista_struct.toString() +"\nFunciones: "  + lista_funcion.toString();
+
+
+    public void chequea(){
+        for(StructClass s:lista_struct){
+            s.chequea();
+        }
+        for(EnumClass e:lista_enum){
+            e.chequea();
+        }
+        for(Funcion f:lista_funcion){
+            f.chequea();
+        }
     }
 
     public void vincular(){
@@ -44,5 +53,9 @@ public class ListaDefiniciones {
         for(Funcion f:lista_funcion){
             f.vincular();
         }
+    }
+
+    public String toString() {
+        return "Enumerados: " + lista_enum.toString() + "\nStruct: " + lista_struct.toString() +"\nFunciones: "  + lista_funcion.toString();
     }
 }

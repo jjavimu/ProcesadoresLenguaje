@@ -16,6 +16,15 @@ public class AsigClass extends Ins {
         this.nombre=nombre;
     }
 
+    public void chequea(){
+        nombre.chequea();
+        exp.chequea();
+
+        if(!nombre.tipo.comparar(exp.tipo)){
+            System.out.println("Error tipo: Asignacion " + nombre + "=" + exp + "(" + nombre.tipo + "," + exp.tipo + ")");
+        }
+    }
+
     public void vincular(){
         nombre.vincular();
         exp.vincular();
