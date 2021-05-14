@@ -16,6 +16,19 @@ public class ForClass extends Ins {
         this.instrucciones = ins;
     }
 
+    public void vincular(){
+        Programa.pila.abreBloque();
+        dec.vincular();
+        expCond.vincular();
+        
+        for(Ins instruccion : instrucciones){
+            instruccion.vincular();
+        }
+        
+        asig.vincular();
+        Programa.pila.cierraBloque();
+    }
+
 
     public String toString(){
         String inst = "";

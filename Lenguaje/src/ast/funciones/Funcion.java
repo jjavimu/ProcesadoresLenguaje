@@ -11,7 +11,7 @@ public class Funcion extends ASTnodo {
     protected String nombre;
     protected List<ParTipoIden> lista_args;
     protected List<Ins> lista_ins;
-    
+
     public Funcion(TipoClass tipo, String nombre, List<ParTipoIden> lista_args, List<Ins> lista_ins) {
         this.tipo = tipo;
         this.nombre = nombre;
@@ -19,18 +19,35 @@ public class Funcion extends ASTnodo {
         this.lista_ins = lista_ins;
     }
 
-    public String toString(){
+    public String toString() {
         String listains = "\n    ";
-        for(Ins i : lista_ins){
+        for (Ins i : lista_ins) {
             if (i != null)
                 listains = listains + i.toString() + "\n    ";
         }
-        return "\n  " + tipo + " " + nombre + "(" + lista_args + ") "+ listains;
+        return "\n  " + tipo + " " + nombre + "(" + lista_args + ") " + listains;
     }
 
-    public void vincular(){
-        Programa.pila.abreBloque();
+    public void vincular() {
+        ASTNodo nodo = Programa.pila.buscaId(nombre);
+        if (nodo != null) {
+            Programa.pila.insertaId(nombre, this);
+            Programa.pila.abreBloque();
+
+            for (ParTipoIden arg : lista_args) {
+                arg.vincular();
+            }
+
+            for (Ins instruccion : lista_ins) {
+                instruccion.vincular();
+            }
+
+            Programa.pila.cierraBloque();
+        } else {
+            System.out.println("Error vinculacion: Este identificador ya esta usado");
+            Programa.okVinculacion = false;
+        }
+
     }
 
-    
 }

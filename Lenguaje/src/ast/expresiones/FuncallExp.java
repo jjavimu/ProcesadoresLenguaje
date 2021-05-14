@@ -11,6 +11,18 @@ public class FuncallExp extends Expresion {
         this.parametros = parametros;
     }
 
+    public void vincular(){
+        ASTNodo nodo = Programa.pila.buscaId(nombre);
+        if(nodo == null){
+            System.out.println("Error vinculacion: Intento hacer llamada sin declarar");
+            Programa.okVinculacion = false;
+        }
+        for(Expresion param: parametros){
+            param.vincular();
+        }
+        this.nodoVinculo = nodo;
+    }
+
    
     public String toString(){
         return "Llamada" + nombre + "(" + parametros.toString() + ")";

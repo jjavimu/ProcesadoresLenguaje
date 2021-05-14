@@ -345,17 +345,17 @@ E7 ::= E7:expizq POTENCIA E8:expdcha
       {: RESULT = exp; :};
 
 E8 ::=  TRUE:cte
-      {: RESULT = new Constante(cte.lexema); :}
+      {: RESULT = new Constante(cte.lexema, new TipoBasicoClass("bool")); :}
       | FALSE:cte
-      {: RESULT = new Constante(cte.lexema); :}
+      {: RESULT = new Constante(cte.lexema, new TipoBasicoClass("bool")); :}
       | ENT:cte
-      {: RESULT = new Constante(cte.lexema); :}
+      {: RESULT = new Constante(cte.lexema, new TipoBasicoClass("int")); :}
       | REAL:cte
-      {: RESULT = new Constante(cte.lexema); :}
+      {: RESULT = new Constante(cte.lexema, new TipoBasicoClass("float")); :}
       | CARACTER:cte
-      {: RESULT = new Constante(cte.lexema); :}
+      {: RESULT = new Constante(cte.lexema, new TipoBasicoClass("char")); :}
       | CADENA:cte
-      {: RESULT = new Constante(cte.lexema); :}
+      {: RESULT = new Constante(cte.lexema, new TipoBasicoClass("string")); :}
       | Acceso0:ref
       {: RESULT = ref; :}
       | LlamadaFuncion: llamada

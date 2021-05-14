@@ -9,6 +9,11 @@ public class PrintClass extends Ins {
         this.exp = exp;
     }
 
+    public void vincular(){
+        exp.vincular();
+    }
+
+
     public String toString(){
         return "Print (" + exp.toString() + ")";
     }

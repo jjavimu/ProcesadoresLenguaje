@@ -8,6 +8,16 @@ public class AccesoVar extends Acceso {
         this.direccionInicial = nombreVar;
     }
 
+
+    public void vincular(){
+        ASTNodo nodo = Programa.pila.buscaId(direccionInicial);
+        if(nodo==null){
+            System.out.println("Error vinculacion: Intento de acceso sin declaracion");
+            Programa.okVinculacion = false;
+        }
+        this.nodoVinculo = nodo;
+    }
+
     public String toString(){
         return direccionInicial;
     }

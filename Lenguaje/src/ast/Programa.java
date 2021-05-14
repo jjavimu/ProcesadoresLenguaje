@@ -9,10 +9,12 @@ public class Programa extends ASTnodo {
 
     // Pila de tabla se simbolos
     protected static PilaTablaSimbolos pila;
+    protected static Boolean okVinculacion;
     
     public Programa(ListaDefiniciones l, Fmain fmain){
         this.definiciones = l;
         this.fmain = fmain;
+        this.okVinculacion = true;
     }
     
     
@@ -23,10 +25,8 @@ public class Programa extends ASTnodo {
     public void vincular(){
         pila = new PilaTablaSimbolos();
         pila.abreBloque();
-
-        for(ListaDefiniciones def: definiciones){
-            def.vincular();
-        }
+        definiciones.vincular();
         fmain.vincular();
+        pila.cierraBloque();
     }
 }

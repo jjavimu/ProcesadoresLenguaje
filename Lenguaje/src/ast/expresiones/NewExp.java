@@ -9,6 +9,10 @@ public class NewExp extends Expresion {
         this.tipo = tipo; 
     }
 
+    public void vincular(){
+        
+    }
+
     public String toString(){
         return "ExpNew(" + tipo.toString()+")";
     }

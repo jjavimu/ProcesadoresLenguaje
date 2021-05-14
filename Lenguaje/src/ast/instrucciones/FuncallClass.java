@@ -8,6 +8,10 @@ public class FuncallClass extends Ins {
     public FuncallClass(FuncallExp funcion){
         this.funcion = funcion;
     }
+
+    public void vincular(){
+        funcion.vincular();
+    }
     
     public String toString(){
         return "Call(" + funcion.toString() + ")";

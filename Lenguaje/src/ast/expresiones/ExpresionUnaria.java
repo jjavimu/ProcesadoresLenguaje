@@ -7,4 +7,7 @@ public class ExpresionUnaria extends Expresion{
       this.exp = exp;
     }
     
+    public void vincular(){
+      exp.vincular();
+    }
 }

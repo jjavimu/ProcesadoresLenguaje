@@ -13,6 +13,15 @@ public class WhileClass extends Ins {
         this.instrucciones = instrucciones;
     }
 
+    public void vincular(){
+        Programa.pila.abreBloque();
+        condicion.vincular();
+        for(Ins instruccion : instrucciones){
+            instruccion.vincular();
+        }
+        Programa.pila.cierraBloque();
+    }
+
     public String toString(){
         String inst = "";
         for(Ins i : instrucciones){

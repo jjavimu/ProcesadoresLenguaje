@@ -8,4 +8,9 @@ public class ExpresionBinaria extends Expresion {
         this.opizq = opizq;
         this.opdcha = opdcha;
     }
+
+    public void vincular(){
+        opizq.vincular();
+        opdcha.vincular();
+    }
 }

@@ -35,6 +35,12 @@ public class ListaDefiniciones {
     }
 
     public vincular(){
+        for(StructClass s:lista_struct){
+            s.vincular();
+        }
+        for(EnumClass e:lista_enum){
+            e.vincular();
+        }
         for(Funcion f:lista_funcion){
             f.vincular();
         }

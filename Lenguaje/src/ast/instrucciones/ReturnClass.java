@@ -5,15 +5,21 @@ import ast.expresiones.Expresion;
 public class ReturnClass extends Ins {
     protected Expresion valorRetorno;
 
-    public ReturnClass(Expresion exp){
+    public ReturnClass(Expresion exp) {
         this.valorRetorno = exp;
     }
 
-    public ReturnClass(){
+    public ReturnClass() {
         this.valorRetorno = null;
     }
 
-    public String toString(){
+    public void vincular() {
+        if (valorRetorno != null) {
+            valorRetorno.vincular();
+        }
+    }
+
+    public String toString() {
         return "return(" + valorRetorno + ")";
     }
 }

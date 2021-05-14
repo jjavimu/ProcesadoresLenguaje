@@ -9,6 +9,10 @@ public class AccesoStruct extends Acceso {
         this.acceso = acceso;
     }
 
+    public void vincular(){
+        acceso.vincular();
+    }
+
     public String toString(){
         return "ExpAccStr(" + acceso+ "." + this.campo + ")";
     }

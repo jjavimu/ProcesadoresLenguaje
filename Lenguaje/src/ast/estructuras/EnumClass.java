@@ -13,6 +13,15 @@ public class EnumClass extends ASTnodo {
         this.valores = valores;  
     }
     
+    public void vincular() {
+        ASTNodo nodo = Programa.pila.buscaId(nombre);
+        if (nodo != null) {
+            Programa.pila.insertaId(nombre, this);
+        } else {
+            System.out.println("Error vinculacion: Este identificador ya esta usado");
+            Programa.okVinculacion = false;
+        }
+    }
     
     public String toString() {
         return "\nNombreEnum: " + nombre  + valores + "\n";

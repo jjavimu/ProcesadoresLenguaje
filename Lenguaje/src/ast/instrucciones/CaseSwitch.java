@@ -19,6 +19,16 @@ public class CaseSwitch{
         this.instrucciones = instrucciones;
     }
 
+    public void vincular() {
+        caso.vincular();
+        Programa.pila.abreBloque();
+        for (Ins instruccion : instrucciones_else) {
+            instruccion.vincular();
+        }
+        Programa.pila.cierraBloque();
+    }
+    
+
     public String toString(){
         if(caso == null)
             return "default: " + instrucciones.toString();

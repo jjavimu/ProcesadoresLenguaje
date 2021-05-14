@@ -14,6 +14,16 @@ public class SwitchClass extends Ins {
         this.casos = casos;
     }
 
+    public void vincular(){
+        condicion.vincular();
+        Programa.pila.abreBloque();
+        
+        for(CaseSwitch caso : casos){
+            caso.vincular();
+        }
+        Programa.pila.cierraBloque();
+    }
+
     public String toString(){
         return "Switch (Condición: " + condicion.toString() + ", Casos:" +casos.toString()+ ")";
     }
