@@ -24,7 +24,7 @@ public class CaseSwitch{
     }
 
     public TipoClass getTipo(){
-        return caso == null ? null : caso.tipo;;
+        return caso == null ? null : caso.tipo;
     }
 
     public void chequea(){

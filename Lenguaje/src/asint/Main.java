@@ -22,6 +22,10 @@ public class Main {
 	 if (!Programa.okVinculacion){
 	 	System.out.println("NO SE HA VINCULADO BIEN :(");
 		p.chequea();
+		if(!Programa.okTipos){
+			System.out.println("TIPOS BIEN :)");
+		}
+		else System.out.println("TIPOS MAL :(");
 	 }
 	 else{
 		System.out.println("SE HA VINCULADO BIEN :)");
