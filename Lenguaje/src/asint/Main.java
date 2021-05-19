@@ -19,16 +19,16 @@ public class Main {
 	 Programa p = (Programa) asint.parse().value;
 	 System.out.println(p);
 	 p.vincular();
-	 if (!Programa.okVinculacion){
-	 	System.out.println("NO SE HA VINCULADO BIEN :(");
+	 if (Programa.okVinculacion){
+	 	System.out.println("SE HA VINCULADO BIEN :)");
 		p.chequea();
-		if(!Programa.okTipos){
+		if(Programa.okTipos){
 			System.out.println("TIPOS BIEN :)");
 		}
 		else System.out.println("TIPOS MAL :(");
 	 }
 	 else{
-		System.out.println("SE HA VINCULADO BIEN :)");
+		System.out.println("NO SE HA VINCULADO BIEN :/");
 	 }
  }
  	public static void sacaLexemas(AnalizadorLexicoTiny alex) throws IOException{

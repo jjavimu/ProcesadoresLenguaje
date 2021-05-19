@@ -25,12 +25,14 @@ public class DecClass extends Ins {
     public void chequea(){
         // El tipo de la parte izquierda es this.tipo
         tipo.chequea();
-        if(exp!=null) exp.chequea();
+        if(exp!=null) {
+            exp.chequea();
 
-        if(!this.tipo.comparar(exp.tipo)){
-            System.out.println("Error tipo: Declaracion " + tipo + " " + nombre + "=" + exp + "(" + nombre + "," + exp.tipo + ")");
-            Programa.okTipos = false;
-        }
+            if(!this.tipo.comparar(exp.tipo)){
+                System.out.println("Error tipo: Declaracion " + tipo + " " + nombre + "=" + exp + "(" + nombre + "," + exp.tipo + ")");
+                Programa.okTipos = false;
+            }
+    }
     }
 
     public void vincular() {
