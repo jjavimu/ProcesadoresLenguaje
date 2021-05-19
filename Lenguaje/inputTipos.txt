@@ -1,0 +1,80 @@
+enum Figura = {Circulo, Triangulo};
+
+enum Cosa = {cosa1, cosa2};
+
+struct par {
+    int primero = 1;
+    bool segundo;
+    int* tercero;
+};
+
+struct par2{
+    int primero2 = 2;
+};
+
+struct par3{
+    int primero2 = 2;
+    bool sec;
+    int* s;
+};
+
+int funcion (int uno, bool dos){
+    return 1;
+}
+
+void main(){
+    int a = 3;
+    int b = a;
+    a = b + 4;
+
+    int* c;
+    int* d = c;
+    *c=*d;
+    // *c=d;
+
+    bool ok = true;
+    if(ok && false){
+        int a = 1;
+    }
+
+    for(int a=1; a<3 ;a=a+1){ //probar c<3
+
+    }
+
+    Figura fig;
+    fig = Circulo;
+
+    par par1;
+    par1.primero = 2;
+    // par1.primero = true;
+    //par1 = Circulo;
+
+    if(Circulo == Triangulo){}
+
+    par* puntero_struct;
+    a = *puntero_struct.primero;
+
+    c = (par1.tercero);
+    a = *(par1.tercero);
+
+    // c = *(par1.tercero);
+
+    int e = funcion(1,true);
+    // bool f = funcion(1,true);
+    // int f = funcion(1);
+    // int f = funcion;
+
+    Cosa co = cosa1;
+    while(co == fig){
+
+    }
+
+    par2 p;
+    // bool okis = (p==par1);
+
+    par3 pa;
+    bool okis1 = (pa == par1);
+
+    return;
+    // return 3;
+}

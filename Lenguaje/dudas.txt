@@ -18,9 +18,11 @@ tiposCheck
         }
 
 COSAS ANGELA
-- comparar tipos hacer
 - sumar floats/int
-
+- castings y returns
+a = *(par.tercero); 
+Comparar enumerados
+estructural de structs
 
 
 

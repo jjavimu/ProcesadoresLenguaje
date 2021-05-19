@@ -36,7 +36,7 @@ public class AccesoStruct extends Acceso {
             }
         }
         else{
-            System.out.println("Error tipos: Struct ");
+            System.out.println("Error tipos: Acceso Struct ");
             Programa.okTipos = false;
         }
     }

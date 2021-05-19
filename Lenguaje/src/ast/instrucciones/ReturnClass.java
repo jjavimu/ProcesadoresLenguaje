@@ -19,11 +19,18 @@ public class ReturnClass extends Ins {
     public void chequea(){
         if (valorRetorno != null) {
             valorRetorno.chequea();
-            if(!this.tipo.comparar(valorRetorno.tipo)){
+            if(!this.nodoVinculo.tipo.comparar(valorRetorno.tipo)){
                 System.out.println("Error tipo: return no es el de la funcion");
                 Programa.okTipos = false;
             }
         }
+        else{
+            if(!this.nodoVinculo.tipo.comparar(new TipoBasicoClass("void"))){
+                System.out.println("Error tipo: return no es el de la funcion");
+                Programa.okTipos = false;
+            }
+        }
+
     }
 
     public void vincular() {

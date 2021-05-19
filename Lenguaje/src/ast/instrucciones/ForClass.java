@@ -21,11 +21,15 @@ public class ForClass extends Ins {
 
     public void chequea(){
         dec.chequea();
+        if(dec.tipo == null)
+            return;
         if(!dec.tipo.comparar(new TipoBasicoClass("int"))){ // La declaracion tiene que ser int
             System.out.println("Error tipo: declaracion for " + dec + "("+ dec.tipo +")");    
             Programa.okTipos = false;        
         }
         expCond.chequea();
+        if(expCond.tipo == null)
+            return;
         if(!expCond.tipo.comparar(new TipoBasicoClass("bool"))){ // La condicion tiene que ser bool
             System.out.println("Error tipo: condicion for " + expCond + "("+ expCond.tipo +")"); 
             Programa.okTipos = false;

@@ -24,16 +24,16 @@ public class IfClass extends Ins {
         this.instrucciones_else = instrucciones_else;
     }
 
-    public void chequea(){
+    public void chequea() {
         condicion.chequea();
-        if(!condicion.tipo.comparar(new TipoBasicoClass("bool"))){ // La condicion tiene que ser bool
-            System.out.println("Error tipo: condicion if " + condicion + "("+ condicion.tipo +")"); 
+        if (!condicion.tipo.comparar(new TipoBasicoClass("bool"))) { // La condicion tiene que ser bool
+            System.out.println("Error tipo: condicion if " + condicion + "(" + condicion.tipo + ")");
             Programa.okTipos = false;
-        }        
+        }
         for (Ins instruccion : instrucciones_then) {
             instruccion.chequea();
         }
-        if (instrucciones_else != null){
+        if (instrucciones_else != null) {
             for (Ins instruccion : instrucciones_else) {
                 instruccion.chequea();
             }
@@ -64,11 +64,14 @@ public class IfClass extends Ins {
                 instruccion.setReturn(nodoFuncion);
             }
         }
-        for (Ins instruccion : instrucciones_else) {
-            // Vincular el return
-            if (!(instruccion instanceof AsigClass || instruccion instanceof DecClass
-                    || instruccion instanceof FuncallClass)) {
-                instruccion.setReturn(nodoFuncion);
+
+        if (instrucciones_else != null) {
+            for (Ins instruccion : instrucciones_else) {
+                // Vincular el return
+                if (!(instruccion instanceof AsigClass || instruccion instanceof DecClass
+                        || instruccion instanceof FuncallClass)) {
+                    instruccion.setReturn(nodoFuncion);
+                }
             }
         }
     }

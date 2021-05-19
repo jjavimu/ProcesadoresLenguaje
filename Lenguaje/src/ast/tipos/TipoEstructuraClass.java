@@ -6,21 +6,29 @@ import ast.instrucciones.*;
 import ast.Programa;
 import ast.estructuras.*;
 
-
 public class TipoEstructuraClass extends TipoClass {
     // nombre struct/enumerado
     private String nombre_tipo;
     private ASTnodo susCampos;
-    private boolean se; //1 si es struct y 0 si es enum
+    private boolean se; // 1 si es struct y 0 si es enum
 
     public TipoEstructuraClass(String tipo) {
         this.nombre_tipo = tipo;
     }
 
-    public boolean comparar(TipoClass otro){
+    public boolean comparar(TipoClass otro){        
         if(!(otro instanceof TipoEstructuraClass)){
-            return false;
+            if(!((otro instanceof TipoBasicoClass) && otro.toString().compareTo(nombre_tipo)==0)){
+               return false;
+            }
+            else if (!(otro instanceof TipoBasicoClass)) {
+                return false;
+            }
+            else{
+                return true;
+            }
         }
+        //ya es estructura
         else if(this.se != ((TipoEstructuraClass) otro).getEnumStruct()){
             return false;
         }
@@ -30,44 +38,44 @@ public class TipoEstructuraClass extends TipoClass {
         else return true;
     }
 
-    public List<DecClass> getSusCampos(){
+    public List<DecClass> getSusCampos() {
         return ((StructClass) susCampos).getDeclaraciones();
     }
 
-    public void chequea(){
+    public void chequea() {
         boolean ok = false;
-        for(EnumClass nodo : Programa.tipos_enum){
-            if(nombre_tipo.compareTo(nodo.getNombre()) == 0){
+        for (EnumClass nodo : Programa.tipos_enum) {
+            if (nombre_tipo.compareTo(nodo.getNombre()) == 0) {
                 susCampos = nodo;
-                ok=true;
+                ok = true;
                 se = false;
             }
         }
 
-        for(StructClass nodo: Programa.tipos_struct){
-            if(nombre_tipo.compareTo(nodo.getNombre()) == 0){ // ==0 es true
+        for (StructClass nodo : Programa.tipos_struct) {
+            if (nombre_tipo.compareTo(nodo.getNombre()) == 0) { // ==0 es true
                 susCampos = nodo;
-                ok=true;
+                ok = true;
                 se = true;
             }
         }
-        if(!ok){
+        if (!ok) {
             System.out.println("Error tipos: el tipo " + nombre_tipo + " definido por usuario no existe");
             Programa.okTipos = false;
-           
+
         }
     }
 
-    public boolean getEnumStruct(){
+    public boolean getEnumStruct() {
         return se;
     }
 
-    public String getNombre(){
+    public String getNombre() {
         return nombre_tipo;
     }
 
-    public String toString(){
+    public String toString() {
         return nombre_tipo;
     }
-    
+
 }

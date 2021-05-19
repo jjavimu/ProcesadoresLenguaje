@@ -17,7 +17,7 @@ public class AccesoPuntero extends Acceso{
             this.tipo = ((TipoPunteroClass)direccion.tipo).getTipoDelPuntero();
         } 
         else{
-            System.out.println("Error tipos: Puntero: ");
+            System.out.println("Error tipos: Acceso Puntero ");
             Programa.okTipos = false;
         }
     }
