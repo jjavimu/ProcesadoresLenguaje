@@ -1,10 +1,10 @@
 package ast.tipos;
 
-public class TipoClass {
-    //private String subtipo;
+public abstract class TipoClass{
 
-    public TipoClass(){
-        
-    }
+    public TipoClass(){}
 
+    public abstract boolean comparar(TipoClass otro);
+
+    public abstract void chequea();
 }

@@ -7,8 +7,6 @@ import ast.ASTnodo;
 import ast.Programa;
 
 public class Funcion extends ASTnodo {
-
-    protected TipoClass tipo;
     protected String nombre;
     protected List<ParTipoIden> lista_args;
     protected List<Ins> lista_ins;
@@ -20,7 +18,17 @@ public class Funcion extends ASTnodo {
         this.lista_ins = lista_ins;
     }
 
+    public String getNombre(){
+        return nombre;
+    }
+    
+    public List<ParTipoIden> getListaArgs(){
+        return lista_args;
+    }
+
     public void chequea() {
+        this.tipo.chequea();
+
         for (ParTipoIden arg : lista_args) {
             arg.chequea();
         }
@@ -40,8 +48,14 @@ public class Funcion extends ASTnodo {
                 arg.vincular();
             }
 
+            // si es void no hace falta
             for (Ins instruccion : lista_ins) {
                 instruccion.vincular();
+                // Vincular el return
+                if (! (instruccion instanceof AsigClass || instruccion instanceof DecClass || 
+                    instruccion instanceof FuncallClass)){
+                        instruccion.setReturn(this);
+                    }
             }
 
             Programa.pila.cierraBloque();

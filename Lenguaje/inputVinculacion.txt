@@ -13,7 +13,7 @@ int funcion(int a, char b){
         int<3> nombre;
     }
 
-    TipoFigura figura; // Definimos Figura de tipo enumerado TipoFigura
+    Figura figura; // Definimos Figura de tipo enumerado TipoFigura
     figura = Circulo;
 
     switch (figura) {

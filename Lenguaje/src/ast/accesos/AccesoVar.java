@@ -1,7 +1,10 @@
 package ast.accesos;
+
 import java.util.*;
 import ast.Programa;
 import ast.ASTnodo;
+import ast.instrucciones.*;
+import ast.expresiones.*;
 
 public class AccesoVar extends Acceso {
     private String direccionInicial;
@@ -12,7 +15,15 @@ public class AccesoVar extends Acceso {
     }
 
     public void chequea(){
-        this.tipo = nodoVinculo.tipo;
+        // Constante para los enumerados o una declaracion
+        // para que no permita hacer int a = main; (encontraria a main en la tabla)
+        if((this.nodoVinculo instanceof Constante)||(this.nodoVinculo instanceof DecClass)){
+            this.tipo = nodoVinculo.tipo;
+        }
+        else{
+            System.out.println("Error tipos: acceso a variable  " + direccionInicial);
+            Programa.okTipos = false;
+        } 
     }
     
     public void vincular(){

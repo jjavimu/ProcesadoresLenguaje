@@ -4,6 +4,9 @@ import java.util.*;
 
 import ast.expresiones.*;
 import ast.Programa;
+import ast.ASTnodo;
+import ast.tipos.*;
+
 
 public class CaseSwitch{
 
@@ -21,10 +24,11 @@ public class CaseSwitch{
     }
 
     public TipoClass getTipo(){
-        return caso.tipo;
+        return caso == null ? null : caso.tipo;;
     }
 
     public void chequea(){
+        if (caso!=null) caso.chequea();
         for(Ins instruccion : instrucciones){
             instruccion.chequea();
         }
@@ -38,6 +42,16 @@ public class CaseSwitch{
             instruccion.vincular();
         }
         Programa.pila.cierraBloque();
+    }
+
+    public void setReturn(ASTnodo nodoFuncion) {
+        for (Ins instruccion : instrucciones) {
+            // Vincular el return
+            if (!(instruccion instanceof AsigClass || instruccion instanceof DecClass
+                    || instruccion instanceof FuncallClass)) {
+                instruccion.setReturn(nodoFuncion);
+            }
+        }
     }
     
 

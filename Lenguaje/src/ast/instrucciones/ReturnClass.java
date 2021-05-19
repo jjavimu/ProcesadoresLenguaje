@@ -1,6 +1,9 @@
 package ast.instrucciones;
 
 import ast.expresiones.Expresion;
+import ast.ASTnodo;
+import ast.Programa;
+import ast.tipos.*;
 
 public class ReturnClass extends Ins {
     protected Expresion valorRetorno;
@@ -16,8 +19,10 @@ public class ReturnClass extends Ins {
     public void chequea(){
         if (valorRetorno != null) {
             valorRetorno.chequea();
-            //if(!this.tipo.comparar(valorRetorno))
-            // vinculo entre Return y valor de la funcion
+            if(!this.tipo.comparar(valorRetorno.tipo)){
+                System.out.println("Error tipo: return no es el de la funcion");
+                Programa.okTipos = false;
+            }
         }
     }
 
@@ -25,6 +30,10 @@ public class ReturnClass extends Ins {
         if (valorRetorno != null) {
             valorRetorno.vincular();
         }
+    }
+
+    public void setReturn(ASTnodo funcion) {
+        this.nodoVinculo = funcion;    
     }
 
     public String toString() {

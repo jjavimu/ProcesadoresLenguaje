@@ -3,6 +3,8 @@ package ast.instrucciones;
 import java.util.*;
 import ast.Programa;
 import ast.expresiones.Expresion;
+import ast.ASTnodo;
+import ast.tipos.*;
 
 public class WhileClass extends Ins {   
     protected Expresion condicion;
@@ -17,6 +19,7 @@ public class WhileClass extends Ins {
         condicion.chequea();
         if(!condicion.tipo.comparar(new TipoBasicoClass("bool"))){ // La condicion tiene que ser bool
             System.out.println("Error tipo: condicion while " + condicion + "("+ condicion.tipo +")"); 
+            Programa.okTipos = false;
         } 
         for(Ins instruccion : instrucciones){
             instruccion.chequea();
@@ -30,6 +33,16 @@ public class WhileClass extends Ins {
             instruccion.vincular();
         }
         Programa.pila.cierraBloque();
+    }
+    
+    public void setReturn(ASTnodo nodoFuncion) {
+        for (Ins instruccion : instrucciones) {
+            // Vincular el return
+            if (!(instruccion instanceof AsigClass || instruccion instanceof DecClass
+                    || instruccion instanceof FuncallClass)) {
+                instruccion.setReturn(nodoFuncion);
+            }
+        }
     }
 
     public String toString(){

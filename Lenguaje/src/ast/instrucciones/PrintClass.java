@@ -1,6 +1,7 @@
 package ast.instrucciones;
 
 import ast.expresiones.Expresion;
+import ast.ASTnodo;
 
 public class PrintClass extends Ins {
     protected Expresion exp;
@@ -15,6 +16,10 @@ public class PrintClass extends Ins {
 
     public void vincular(){
         exp.vincular();
+    }
+
+
+    public void setReturn(ASTnodo nodo) {
     }
 
 

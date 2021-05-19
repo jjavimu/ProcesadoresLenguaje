@@ -10,8 +10,14 @@ public class Constante extends Expresion {
         this.valor = cte;
         this.tipo = tipo;
     }
+    
+    public void chequea(){
+        tipo.chequea(); //Aunque en realidad solo se crean constantes con tipo basico
+    }
 
     public void vincular(){}
+
+    
 
     public String getValor(){
         return valor;

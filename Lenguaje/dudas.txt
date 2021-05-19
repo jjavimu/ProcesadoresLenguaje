@@ -1,9 +1,4 @@
-VIERNES PREGUNTAR:
- 
-// Inicializar structs? -no da tiempo
-int[4] array(0);-no da tiempo
-int[4] array = {1,2,3,4}-no da tiempo
-funcion longitud del array-no da tiempo
+
 
 duda: return no se cuando cogemos el valor de retorno?
 Poner el error de (*..)
@@ -22,7 +17,21 @@ tiposCheck
             sumaruno();
         }
 
+COSAS ANGELA
+- comparar tipos hacer
+- sumar floats/int
 
+
+
+
+
+
+COSAS JAVI:
+- Fila y columna en tipso y vinculacion
+- 
+                                        
+
+  struct, puntero, array (que el tipo sea correcto)
 
 
 mirar:

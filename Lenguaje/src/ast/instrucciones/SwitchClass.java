@@ -3,6 +3,8 @@ package ast.instrucciones;
 import java.util.List;
 import ast.Programa;
 import ast.expresiones.*;
+import ast.tipos.*;
+import ast.ASTnodo;
 
 public class SwitchClass extends Ins {
 
@@ -19,10 +21,11 @@ public class SwitchClass extends Ins {
         // los casos tienen que ser del mismo tipo que la condicion
 
         for(CaseSwitch caso:casos){
-            if(!caso.getTipo().comparar(condicion.tipo)){
+            caso.chequea();  
+            if(caso.getTipo()!=null && !caso.getTipo().comparar(condicion.tipo)){
                 System.out.println("Error tipo: caso switch " + condicion + "(condicion: "+ condicion.tipo + ", caso: " + caso.getTipo()+")"); 
-            }
-            caso.chequea();            
+                Programa.okTipos = false;
+            }         
         }
     }
 
@@ -34,6 +37,13 @@ public class SwitchClass extends Ins {
             caso.vincular();
         }
         Programa.pila.cierraBloque();
+    }
+
+    public void setReturn(ASTnodo nodoFuncion) {
+        for (CaseSwitch caso : casos) {
+            // Vincular el return
+            caso.setReturn(nodoFuncion);
+         }
     }
 
     public String toString(){

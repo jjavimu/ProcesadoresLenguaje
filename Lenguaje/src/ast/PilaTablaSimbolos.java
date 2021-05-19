@@ -66,5 +66,15 @@ public class PilaTablaSimbolos {
         }
         return puntero;
     }
+
+    public ASTnodo buscaIdCima (String id){
+        ASTnodo puntero = null;
+        if(!pila_tablas.empty()){
+            HashMap<String,ASTnodo> cima = pila_tablas.pop();
+            puntero = cima.get(id);
+            pila_tablas.push(cima);
+        }
+        return puntero;
+    }
 }
 

@@ -11,8 +11,15 @@ public class TipoArrayClass extends TipoClass{
     }
 
     public boolean comparar(TipoClass otro){
-       // otro.equeals(TipoArrayClass)
+        if(!(otro instanceof TipoArrayClass)){
+            return false;
+        }
+        else return tipo.comparar(((TipoArrayClass) otro).getTipoDelArray());
 
+    }
+
+    public void chequea(){
+        tipo.chequea();
     }
 
     public String toString(){
@@ -20,6 +27,10 @@ public class TipoArrayClass extends TipoClass{
             return tipo.toString() + "<" + tam + ">";
         else 
             return tipo.toString() + "<>";
+    }
+
+     public TipoClass getTipoDelArray(){
+        return tipo;
     }
     
 }

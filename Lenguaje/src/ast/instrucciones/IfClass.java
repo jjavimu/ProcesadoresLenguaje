@@ -4,7 +4,8 @@ import java.util.*;
 
 import ast.expresiones.Expresion;
 import ast.Programa;
-
+import ast.ASTnodo;
+import ast.tipos.*;
 
 public class IfClass extends Ins {
 
@@ -27,6 +28,7 @@ public class IfClass extends Ins {
         condicion.chequea();
         if(!condicion.tipo.comparar(new TipoBasicoClass("bool"))){ // La condicion tiene que ser bool
             System.out.println("Error tipo: condicion if " + condicion + "("+ condicion.tipo +")"); 
+            Programa.okTipos = false;
         }        
         for (Ins instruccion : instrucciones_then) {
             instruccion.chequea();
@@ -51,6 +53,23 @@ public class IfClass extends Ins {
                 instruccion.vincular();
             }
             Programa.pila.cierraBloque();
+        }
+    }
+
+    public void setReturn(ASTnodo nodoFuncion) {
+        for (Ins instruccion : instrucciones_then) {
+            // Vincular el return
+            if (!(instruccion instanceof AsigClass || instruccion instanceof DecClass
+                    || instruccion instanceof FuncallClass)) {
+                instruccion.setReturn(nodoFuncion);
+            }
+        }
+        for (Ins instruccion : instrucciones_else) {
+            // Vincular el return
+            if (!(instruccion instanceof AsigClass || instruccion instanceof DecClass
+                    || instruccion instanceof FuncallClass)) {
+                instruccion.setReturn(nodoFuncion);
+            }
         }
     }
 

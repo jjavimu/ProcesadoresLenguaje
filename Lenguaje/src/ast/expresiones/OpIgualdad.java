@@ -1,5 +1,8 @@
 package ast.expresiones;
 
+import ast.Programa;
+import ast.tipos.*;
+
 public class OpIgualdad extends ExpresionBinaria {
 
     public OpIgualdad(Expresion opizq, Expresion opdcha){
@@ -10,9 +13,18 @@ public class OpIgualdad extends ExpresionBinaria {
         opizq.chequea();
         opdcha.chequea();
 
-        if(!opizq.tipo.comparar(opdcha.tipo)){ // Los dos lados de la expresion tiene que ser la misma
-            System.out.println("Error tipo: Op " + opizq  "=="+ opdcha + "(" + opizq.tipo + "," + opdcha.tipo + ")"); 
-        }    
+        if(opizq.tipo == null || opdcha.tipo == null){
+            System.out.println("Error tipo: igualdad alguno null");
+            Programa.okTipos = false;
+        }
+        else if(opizq.tipo.comparar(opdcha.tipo)){
+            this.tipo = new TipoBasicoClass("bool");
+        }
+        else{
+            Programa.okTipos = false;
+            System.out.println("Error tipo: igualdad no comparables");
+        }
+
     }
 
     public String toString(){

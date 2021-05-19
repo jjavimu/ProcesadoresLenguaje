@@ -1,6 +1,8 @@
 package ast.instrucciones;
 
 import ast.expresiones.FuncallExp;
+import ast.ASTnodo;
+
 
 public class FuncallClass extends Ins {
     private FuncallExp funcion;
@@ -15,6 +17,10 @@ public class FuncallClass extends Ins {
 
     public void vincular(){
         funcion.vincular();
+    }
+
+
+    public void setReturn(ASTnodo nodo) {
     }
     
     public String toString(){

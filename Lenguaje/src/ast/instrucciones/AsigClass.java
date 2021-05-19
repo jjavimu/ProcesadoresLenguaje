@@ -22,13 +22,17 @@ public class AsigClass extends Ins {
 
         if(!nombre.tipo.comparar(exp.tipo)){
             System.out.println("Error tipo: Asignacion " + nombre + "=" + exp + "(" + nombre.tipo + "," + exp.tipo + ")");
+            Programa.okTipos = false;
         }
     }
 
     public void vincular(){
         nombre.vincular();
         exp.vincular();
+    }
 
+
+    public void setReturn(ASTnodo nodo) {
     }
     
     public String toString(){

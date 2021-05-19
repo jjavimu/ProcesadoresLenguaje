@@ -3,6 +3,8 @@ package ast.instrucciones;
 import ast.expresiones.*;
 import java.util.*;
 import ast.Programa;
+import ast.ASTnodo;
+import ast.tipos.*;
 
 public class ForClass extends Ins {
     private DecClass dec;
@@ -20,11 +22,13 @@ public class ForClass extends Ins {
     public void chequea(){
         dec.chequea();
         if(!dec.tipo.comparar(new TipoBasicoClass("int"))){ // La declaracion tiene que ser int
-            System.out.println("Error tipo: declaracion for " + dec + "("+ dec.tipo +")");            
+            System.out.println("Error tipo: declaracion for " + dec + "("+ dec.tipo +")");    
+            Programa.okTipos = false;        
         }
         expCond.chequea();
         if(!expCond.tipo.comparar(new TipoBasicoClass("bool"))){ // La condicion tiene que ser bool
             System.out.println("Error tipo: condicion for " + expCond + "("+ expCond.tipo +")"); 
+            Programa.okTipos = false;
         }
         asig.chequea();
 
@@ -46,6 +50,16 @@ public class ForClass extends Ins {
         Programa.pila.cierraBloque();
     }
 
+
+    public void setReturn(ASTnodo nodoFuncion) {
+        for (Ins instruccion : instrucciones) {
+            // Vincular el return
+            if (!(instruccion instanceof AsigClass || instruccion instanceof DecClass
+                    || instruccion instanceof FuncallClass)) {
+                instruccion.setReturn(nodoFuncion);
+            }
+        }
+    }
 
     public String toString(){
         String inst = "";

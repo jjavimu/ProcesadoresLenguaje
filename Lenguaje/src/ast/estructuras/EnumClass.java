@@ -17,10 +17,15 @@ public class EnumClass extends ASTnodo {
         for (String s : valores) {
             this.valores.add(new Constante(s, new TipoBasicoClass(nombre)));
         }
+        Programa.tipos_enum.add(this);
+    }
+
+    public String getNombre(){
+        return nombre;
     }
 
     public void chequea(){
-///////////////////////////////////////////////////////////////////////////////////////////////////////
+        // No hay que chequear nada porque es un tipo en si mismo
     }
 
     public void vincular() {

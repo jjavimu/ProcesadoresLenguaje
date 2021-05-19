@@ -1,5 +1,8 @@
 package ast.accesos;
 
+import ast.tipos.*;
+import ast.Programa;
+
 public class AccesoPuntero extends Acceso{
     protected Acceso direccion;
 
@@ -7,8 +10,21 @@ public class AccesoPuntero extends Acceso{
         this.direccion = direccion;
     }
 
+    public void chequea(){
+        direccion.chequea();
+        //direccion.tipo; algo * ese algo es getTipoDelPuntero
+        if(direccion.tipo instanceof TipoPunteroClass  && direccion.tipo.comparar(new TipoPunteroClass(((TipoPunteroClass)direccion.tipo).getTipoDelPuntero()))){
+            this.tipo = ((TipoPunteroClass)direccion.tipo).getTipoDelPuntero();
+        } 
+        else{
+            System.out.println("Error tipos: Puntero: ");
+            Programa.okTipos = false;
+        }
+    }
+
     public void vincular(){
         direccion.vincular();
+        this.nodoVinculo = direccion.nodoVinculo;
     }
     
     public String toString(){
