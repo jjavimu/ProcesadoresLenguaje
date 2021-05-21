@@ -18,7 +18,9 @@ public class TipoBasicoClass extends TipoClass {
     public int getTam(){
         return 1; //habria que multiplicar por 4. Solo hay int
     }
-    public int getTamElem(int i){return 1;}
+    public int getTamElem(){
+        return 1;
+    }
     
     public String toString(){
         return tipo;

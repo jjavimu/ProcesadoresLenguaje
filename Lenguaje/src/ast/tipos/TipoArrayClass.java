@@ -27,15 +27,8 @@ public class TipoArrayClass extends TipoClass{
         return tam_tipo;
     }
 
-    public int getTamElem(int i){
-        int tamanio;
-        if(i==1){
-            tamanio = tipo.getTam();
-        }
-        else {
-            tamanio = tipo.getTamElem(i-1);
-        }
-        return tamanio;
+    public int getTamElem(){
+        return tipo.getTam();
     }
 
     public TipoClass getTipoDelArray(){
