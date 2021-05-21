@@ -24,6 +24,88 @@ public class IfClass extends Ins {
         this.instrucciones_else = instrucciones_else;
     }
 
+    public void calculos() {
+        int cima = Programa.etiquetas.peek();
+        Programa.etiquetas.push(cima);
+        for (Ins ins : instrucciones_then) {
+            ins.calculos();
+        }
+        Programa.etiquetas.pop();
+            if (instrucciones_else != null){
+            Programa.etiquetas.push(cima);
+            for (Ins ins : instrucciones_else) {
+                ins.calculos();
+            }
+            Programa.etiquetas.pop();
+        }
+    }
+
+    public int maxMemoria() {
+        int tam_max_if = 0;
+        int tam_max_else = 0;
+
+        for (Ins ins : instrucciones_then) {
+            if (ins instanceof DecClass) {
+                tam_max_if += ins.maxMemoria(); // tamaño de la declaracion
+            }
+        }
+
+        int c_if = tam_max_if;
+        for (Ins ins : instrucciones_then) {
+            if (ins instanceof ForClass || ins instanceof WhileClass || ins instanceof IfClass
+                    || ins instanceof SwitchClass) {
+                int tam_bloque = ins.maxMemoria(); // tamaño_max del bloque
+                if (c_if + tam_bloque > tam_max_if) {
+                    tam_max_if = c_if + tam_bloque;
+                }
+            }
+        }
+
+        if (instrucciones_else != null) {
+            for (Ins ins : instrucciones_else) {
+                if (ins instanceof DecClass) {
+                    tam_max_else += ins.maxMemoria(); // tamaño de la declaracion
+                }
+            }
+
+            int c_else = tam_max_else;
+            for (Ins ins : instrucciones_else) {
+                if (ins instanceof ForClass || ins instanceof WhileClass || ins instanceof IfClass
+                        || ins instanceof SwitchClass) {
+                    int tam_bloque = ins.maxMemoria(); // tamaño_max del bloque
+                    if (c_else + tam_bloque > tam_max_else) {
+                        tam_max_else = c_else + tam_bloque;
+                    }
+                }
+            }
+        }
+
+        int max = tam_max_if;
+        if (tam_max_else > max)
+            max = tam_max_else;
+        return max;
+    }
+
+    public void generaCodigo(){
+        condicion.generaCodigo();
+
+        Programa.escribir.println("if");
+
+        for (Ins ins : instrucciones_then) {
+            ins.generaCodigo();
+        }
+        
+        Programa.escribir.println("else");
+
+        if (instrucciones_else != null) {
+            for (Ins ins : instrucciones_else) {
+                ins.generaCodigo();
+            }
+        }
+
+        Programa.escribir.println("end");
+    }
+
     public void chequea() {
         condicion.chequea();
         if (!condicion.tipo.comparar(new TipoBasicoClass("bool"))) { // La condicion tiene que ser bool

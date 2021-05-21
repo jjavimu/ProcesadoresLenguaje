@@ -10,6 +10,11 @@ public class AccesoPuntero extends Acceso{
         this.direccion = direccion;
     }
 
+    public void generaCodigo(){
+        direccion.generaCodigo();
+        Programa.escribir.println("i32.load");           
+    }
+
     public void chequea(){
         direccion.chequea();
         //direccion.tipo; algo * ese algo es getTipoDelPuntero

@@ -2,11 +2,24 @@ package ast.expresiones;
 
 import ast.Programa;
 import ast.tipos.*;
+import ast.accesos.*;
 
 public class OpOr extends ExpresionBinaria {
 
     public OpOr(Expresion opizq, Expresion opdcha){
         super(opizq, opdcha);
+    }
+
+    public void generaCodigo() {
+        opizq.generaCodigo();
+        if (opizq instanceof Acceso)
+            Programa.escribir.println("i32.load"); // devuelve direccion
+
+        opdcha.generaCodigo();
+        if (opdcha instanceof Acceso)
+            Programa.escribir.println("i32.load"); // devuelve direccion
+
+        Programa.escribir.println("i32.or");
     }
 
     public void chequea(){

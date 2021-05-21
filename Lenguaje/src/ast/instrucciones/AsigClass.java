@@ -16,6 +16,17 @@ public class AsigClass extends Ins {
         this.nombre=nombre;
     }
 
+    public void calculos(){}
+
+    public void generaCodigo(){
+        nombre.generaCodigo(); //devuelve una direccion
+        exp.generaCodigo();
+        if(exp instanceof Acceso){
+            Programa.escribir.println("i32.load"); 
+        }
+        Programa.escribir.println("i32.store");
+    }
+
     public void chequea(){
         nombre.chequea();
         exp.chequea();

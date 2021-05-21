@@ -15,6 +15,8 @@ public class FuncallExp extends Expresion {
         this.parametros = parametros;
     }
 
+    public void generaCodigo(){}
+
     public void chequea(){
         this.tipo = nodoVinculo.tipo;
 

@@ -23,6 +23,37 @@ public class CaseSwitch{
         this.instrucciones = instrucciones;
     }
 
+    public void calculos(){
+        int cima = Programa.etiquetas.peek();
+        Programa.etiquetas.push(cima);
+        for(Ins instruccion : instrucciones){
+            instruccion.calculos();
+        }
+        Programa.etiquetas.pop();
+    }
+
+    public int maxMemoria(){
+        int tam_max = 0; 
+
+        for (Ins ins : instrucciones){
+            if(ins instanceof DecClass){
+                tam_max += ins.maxMemoria(); //tamaño de la declaracion
+            }
+        }
+
+        int c = tam_max;
+        for (Ins ins : this.instrucciones){
+            if(ins instanceof ForClass || ins instanceof WhileClass
+            || ins instanceof IfClass || ins instanceof SwitchClass){
+                int tam_bloque = ins.maxMemoria(); //tamaño_max del bloque
+                if(c+tam_bloque > tam_max){
+                    tam_max = c+tam_bloque;
+                }
+            }
+        }
+        return tam_max;
+    }
+
     public TipoClass getTipo(){
         return caso == null ? null : caso.tipo;
     }

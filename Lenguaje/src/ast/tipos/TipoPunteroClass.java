@@ -18,15 +18,18 @@ public class TipoPunteroClass extends TipoClass{
     public void chequea(){
         tipo.chequea();
     }
-    
-    public String toString(){
-        return tipo.toString() + "*";
+
+    public int getTam(){
+        return tipo.getTam();
     }
-    
+
     public TipoClass getTipoDelPuntero(){
         return tipo;
     }
     
+    public String toString(){
+        return tipo.toString() + "*";
+    }    
 }
 
 

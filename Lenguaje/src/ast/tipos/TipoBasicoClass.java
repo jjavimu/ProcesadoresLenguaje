@@ -6,6 +6,7 @@ public class TipoBasicoClass extends TipoClass {
 
     public TipoBasicoClass(String tipo){
         this.tipo = tipo;
+
     }
 
     public boolean comparar(TipoClass otro){
@@ -13,6 +14,10 @@ public class TipoBasicoClass extends TipoClass {
     }
 
     public void chequea(){}
+
+    public int getTam(){
+        return 1; //habria que multiplicar por 4. Solo hay int
+    }
     
     public String toString(){
         return tipo;

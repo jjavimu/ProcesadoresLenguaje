@@ -1,6 +1,7 @@
 package ast.expresiones;
 
 import ast.tipos.*;
+import ast.Programa;
 
 public class Constante extends Expresion {
     private String valor;
@@ -16,6 +17,10 @@ public class Constante extends Expresion {
     }
 
     public void vincular(){}
+
+    public void generaCodigo(){
+        Programa.escribir.println("i32.const " + valor);
+    }
 
     
 

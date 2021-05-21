@@ -18,6 +18,9 @@ public class StructClass extends ASTnodo {
         Programa.tipos_struct.add(this);
     }
 
+    public void generaCodigo(){}
+    public void calculos(){}
+
     public List<DecClass> getDeclaraciones(){
         return this.valores;
     }

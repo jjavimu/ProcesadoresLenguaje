@@ -14,6 +14,12 @@ public class AccesoStruct extends Acceso {
         this.acceso = acceso;
     }
 
+    public void generaCodigo(){
+        // acceso.generaCodigo();
+        // i32.const etiqueta del campo
+        // i32.add
+    }
+
     public void chequea(){
         acceso.chequea();
         if(acceso.tipo != null){

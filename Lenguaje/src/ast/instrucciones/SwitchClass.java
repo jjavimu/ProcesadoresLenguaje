@@ -16,6 +16,25 @@ public class SwitchClass extends Ins {
         this.casos = casos;
     }
 
+    public void calculos(){
+        for(CaseSwitch caso:casos){
+            caso.calculos();
+        }
+    }
+
+    public int maxMemoria(){
+        int max = 0;
+        for(CaseSwitch caso: casos){
+            int tam_caso =caso.maxMemoria();
+            if (tam_caso > max){
+                max = tam_caso;
+            }
+        }
+        return max;
+    }
+
+    public void generaCodigo(){}
+
     public void chequea(){
         condicion.chequea();
         // los casos tienen que ser del mismo tipo que la condicion

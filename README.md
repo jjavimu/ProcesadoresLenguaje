@@ -32,3 +32,8 @@ En la carpeta **Lenguaje/** encontrarás:
 **Observación:** el archivo *.gitignore* se utiliza para que git ignore ciertos tipos de archivos, entre ellos los *.class*. También lo podremos utilizar para ignorar los archivos que se crean automáticamente, como *AnalizadorSintacticoTiny.java, AnalizadorLexicoTiny.java y ClaseLexica.java*.
 
 - Documentación: https://www.overleaf.com/project/60578b6aee81be8cda759a3d
+
+
+- Para ejecutar Windows (desde codigo)
+wat2wasm.exe codigoPrueba.wat
+node main.js

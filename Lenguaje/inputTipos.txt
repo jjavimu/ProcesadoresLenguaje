@@ -73,7 +73,7 @@ void main(){
     // bool okis = (p==par1);
 
     par3 pa;
-    bool okis1 = (pa == par1);
+    bool okis1 = (pa == par1);    // Tipo estructural
 
     return;
     // return 3;

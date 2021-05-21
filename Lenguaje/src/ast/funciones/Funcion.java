@@ -18,6 +18,9 @@ public class Funcion extends ASTnodo {
         this.lista_ins = lista_ins;
     }
 
+    public void generaCodigo(){}
+    public void calculos(){}
+
     public String getNombre(){
         return nombre;
     }

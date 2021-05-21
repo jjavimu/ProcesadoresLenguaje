@@ -12,37 +12,69 @@ public class DecClass extends Ins {
     protected String nombre;
     protected Expresion exp;
 
-    public DecClass(TipoClass tipo, String nombre, Expresion exp){ // No inicializado
+    public DecClass(TipoClass tipo, String nombre, Expresion exp) { // No inicializado
         this.tipo = tipo;
-        this.nombre = nombre; 
+        this.nombre = nombre;
         this.exp = exp;
     }
 
-    public String getNombre(){
+    public void calculos() {
+        this.etiqueta = Programa.etiquetas.peek();
+        int e = Programa.etiquetas.pop();
+        int tam_tipo = tipo.getTam();
+        e = e + tam_tipo;
+        Programa.etiquetas.push(e);
+        System.out.println("Etiqueta: " + etiqueta);
+    }
+
+    public int maxMemoria() {
+        return tipo.getTam()*4; // (sizeof int = 4) arrays de enteros y enteros
+    }
+
+    public void generaCodigo() {
+        if (exp != null) {
+            Programa.escribir.println("i32.const " + etiqueta);
+            Programa.escribir.println("i32.const 4");
+            Programa.escribir.println("i32.mul");
+            Programa.escribir.println("get_local $localsStart");
+            Programa.escribir.println("i32.add");
+
+            exp.generaCodigo();
+            if (exp instanceof Acceso) {
+                Programa.escribir.println("i32.load"); // devuelve direccion
+            }
+
+            Programa.escribir.println("i32.store"); // 1º arg, 2º arg, store
+        }
+    }
+
+    public String getNombre() {
         return nombre;
     }
 
-    public void chequea(){
+    public void chequea() {
         // El tipo de la parte izquierda es this.tipo
         tipo.chequea();
-        if(exp!=null) {
+        if (exp != null) {
             exp.chequea();
 
-            if(!this.tipo.comparar(exp.tipo)){
-                System.out.println("Error tipo: Declaracion " + tipo + " " + nombre + "=" + exp + "(" + nombre + "," + exp.tipo + ")");
+            if (!this.tipo.comparar(exp.tipo)) {
+                System.out.println("Error tipo: Declaracion " + tipo + " " + nombre + "=" + exp + "(" + nombre + ","
+                        + exp.tipo + ")");
                 Programa.okTipos = false;
             }
-    }
+        }
     }
 
     public void vincular() {
         // Tenemos un buscaId particular para este caso
-        // Va a permitir de declarar con un mismo identificador siempre y cuado no se haya declarado uno con el 
+        // Va a permitir de declarar con un mismo identificador siempre y cuado no se
+        // haya declarado uno con el
         // mismo nombre en ese bloque
         ASTnodo nodo = Programa.pila.buscaIdCima(nombre);
-        if (nodo == null) { //devuelve null cuando no esta
+        if (nodo == null) { // devuelve null cuando no esta
             Programa.pila.insertaId(nombre, this);
-             if (exp != null)
+            if (exp != null)
                 exp.vincular();
         } else {
             System.out.println("Error vinculacion: Este identificador ya esta usado: " + nombre);
@@ -50,13 +82,11 @@ public class DecClass extends Ins {
         }
     }
 
-
     public void setReturn(ASTnodo nodo) {
     }
-       
 
-    public String toString(){
-        return "Declaracion(Tipo: " + tipo + ", nombre:" + nombre + ", exp: " + exp + ")"; 
+    public String toString() {
+        return "Declaracion(Tipo: " + tipo + ", nombre:" + nombre + ", exp: " + exp + ")";
     }
-    
+
 }

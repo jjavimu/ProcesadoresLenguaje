@@ -22,6 +22,19 @@ public class TipoArrayClass extends TipoClass{
         tipo.chequea();
     }
 
+    public int getTam(){
+        int tam_tipo =  Integer.parseInt(tam)* tipo.getTam();
+        return tam_tipo;
+    }
+
+    public int getTamElem(){
+        return tipo.getTam();
+    }
+
+    public TipoClass getTipoDelArray(){
+        return tipo;
+    }
+
     public String toString(){
         if(tam != null)
             return tipo.toString() + "<" + tam + ">";
@@ -29,8 +42,6 @@ public class TipoArrayClass extends TipoClass{
             return tipo.toString() + "<>";
     }
 
-     public TipoClass getTipoDelArray(){
-        return tipo;
-    }
+    
     
 }

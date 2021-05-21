@@ -14,6 +14,14 @@ public class AccesoVar extends Acceso {
         this.direccionInicial = nombreVar;
     }
 
+    public void generaCodigo(){
+        Programa.escribir.println("i32.const " + this.nodoVinculo.etiqueta);
+        Programa.escribir.println("i32.const 4");
+        Programa.escribir.println("i32.mul");
+        Programa.escribir.println("get_local $localsStart");
+        Programa.escribir.println("i32.add");
+    }
+
     public void chequea(){
         // Constante para los enumerados o una declaracion
         // para que no permita hacer int a = main; (encontraria a main en la tabla)

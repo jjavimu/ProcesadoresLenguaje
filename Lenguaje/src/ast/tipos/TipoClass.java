@@ -7,4 +7,5 @@ public abstract class TipoClass{
     public abstract boolean comparar(TipoClass otro);
 
     public abstract void chequea();
+    public abstract int getTam(); // Para las etiquetas del codigo
 }

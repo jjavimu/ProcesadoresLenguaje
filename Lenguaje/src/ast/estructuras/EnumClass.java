@@ -20,6 +20,9 @@ public class EnumClass extends ASTnodo {
         Programa.tipos_enum.add(this);
     }
 
+    public void generaCodigo(){}
+    public void calculos(){}
+
     public String getNombre(){
         return nombre;
     }

@@ -15,6 +15,56 @@ public class WhileClass extends Ins {
         this.instrucciones = instrucciones;
     }
 
+    public void calculos(){
+        int cima = Programa.etiquetas.peek();
+        Programa.etiquetas.push(cima);
+        for (Ins ins : instrucciones) {
+            ins.calculos();
+        }
+        Programa.etiquetas.pop();
+    }
+
+    public int maxMemoria(){
+        int tam_max = 0; 
+
+        for (Ins ins : instrucciones){
+            if(ins instanceof DecClass){
+                tam_max += ins.maxMemoria(); //tamaño de la declaracion
+            }
+        }
+
+        int c = tam_max;
+        for (Ins ins : this.instrucciones){
+            if(ins instanceof ForClass || ins instanceof WhileClass
+            || ins instanceof IfClass || ins instanceof SwitchClass){
+                int tam_bloque = ins.maxMemoria(); //tamaño_max del bloque
+                if(c+tam_bloque > tam_max){
+                    tam_max = c+tam_bloque;
+                }
+            }
+        }
+        return tam_max;
+    }
+
+    public void generaCodigo(){
+       
+        Programa.escribir.println("block");
+        Programa.escribir.println("loop");
+
+        condicion.generaCodigo();
+        
+        Programa.escribir.println("i32.eqz");
+        Programa.escribir.println("br_if 1");
+        
+        for (Ins ins : instrucciones){
+            ins.generaCodigo();
+        }
+
+        Programa.escribir.println("br 0");
+        Programa.escribir.println("end");
+        Programa.escribir.println("end");
+    }
+
     public void chequea(){
         condicion.chequea();
         if(!condicion.tipo.comparar(new TipoBasicoClass("bool"))){ // La condicion tiene que ser bool

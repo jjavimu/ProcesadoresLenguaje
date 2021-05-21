@@ -24,6 +24,9 @@ public class Main {
 		p.chequea();
 		if(Programa.okTipos){
 			System.out.println("TIPOS BIEN :)");
+			p.calculos();
+			p.maxMemoria();
+	 		p.generaCodigo();
 		}
 		else System.out.println("TIPOS MAL :(");
 	 }

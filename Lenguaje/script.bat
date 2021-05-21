@@ -8,7 +8,11 @@ del ClaseLexica.java
 
 cd src
 javac -cp "../lib/cup.jar;." alex/*.java asint/*.java errors/*.java ast/*.java ast/accesos/*.java ast/estructuras/*.java ast/expresiones/*.java ast/funciones/*.java ast/instrucciones/*.java ast/tipos/*.java
-java -cp ".;../lib/cup.jar" asint/Main ../inputTipos.txt 
+java -cp ".;../lib/cup.jar" asint/Main ../codigoB.txt 
 
+cd ../
+cd codigo
+wat2wasm.exe codigoPrueba.wat
+node main.js
 cd ../
 pause

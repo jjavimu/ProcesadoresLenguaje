@@ -2,11 +2,21 @@ package ast.expresiones;
 
 import ast.Programa;
 import ast.tipos.*;
+import ast.accesos.*;
 
 public class OpCambioSigno extends ExpresionUnaria {
 
     public OpCambioSigno(Expresion exp){
         super(exp);
+    }
+
+    public void generaCodigo(){
+        Programa.escribir.println("i32.const 0");
+        exp.generaCodigo();
+        if(exp instanceof Acceso)
+            Programa.escribir.println("i32.load"); // devuelve direccion
+        
+        Programa.escribir.println("i32.sub");
     }
 
     public void chequea(){
