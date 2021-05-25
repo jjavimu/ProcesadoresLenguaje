@@ -5,6 +5,7 @@ import ast.Programa;
 import ast.expresiones.*;
 import ast.tipos.*;
 import ast.ASTnodo;
+import ast.accesos.*;
 
 public class SwitchClass extends Ins {
 
@@ -33,7 +34,22 @@ public class SwitchClass extends Ins {
         return max;
     }
 
-    public void generaCodigo(){}
+    public void generaCodigo(){
+        Programa.escribir.println("block"); // block etiqueta en end para saltar cuando entre en un caso
+        condicion.generaCodigo(); // evaluo la condicion 
+        if(condicion instanceof Acceso){
+            Programa.escribir.println("i32.load"); // si es acceso, obtengo su valor
+        }
+        Programa.escribir.println("tee_local $temp"); // guardo la condicion en temp y la dejo en la cima de la pila
+        for (CaseSwitch caso : casos){
+            caso.generaCodigo();
+            // ahora tengo que volver a darle a temp la expresion evaludada que estará en la cima de la pila
+            Programa.escribir.println("tee_local $temp");
+        }
+
+        Programa.escribir.println("drop"); // para quitar de la cima el valor
+        Programa.escribir.println("end ;; para salir del switch con break");
+    }
 
     public void chequea(){
         condicion.chequea();

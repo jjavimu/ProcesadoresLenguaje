@@ -77,3 +77,48 @@ Acceso ::= IDEN:nombre
 //            {: RESULT = lista ; lista.add(new AccesoStruct(campo.lexema)); :}
 //            |                                   
 //            {: RESULT = new ArrayList<Acceso>(); :};
+
+
+
+ int a = 3;
+    int b = 2;
+    bool verdadero = true;
+    bool falso = false;
+    if (verdadero || falso){
+        Figura fig;
+        fig.otro = 4;
+        fig.ok = true;
+        //fig.datos[0] = 6;
+        print(fig.otro);
+        print(fig.ok);
+        print(a+b);
+
+        //print(fig.datos[0]);
+    }
+    else {
+        switch(a+b){
+            case 5:
+                switch (a-b){
+                    case 1:
+                        switch (a-b+2){
+                        case 3:
+                            print(3333);
+                            break;
+                        default:
+                            print(131313);
+                        }
+                        break;
+                    default:
+                        print(9090);
+                }
+                print(100 * a);
+                break;
+            case 9:
+                print(a+b);
+                break;
+            default:
+                print(29011999);
+
+        }
+    }
+    return;

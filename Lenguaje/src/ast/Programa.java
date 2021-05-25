@@ -37,6 +37,7 @@ public class Programa extends ASTnodo {
     }
 
     public void calculos() {
+        definiciones.calculos(); // Para los struct
         fmain.calculos();
     }
 
@@ -100,6 +101,7 @@ public class Programa extends ASTnodo {
             escribir.close();
         } catch (Exception e) {
             System.out.println("CODIGO MAL");
+            System.exit(1);
         }
     }
 

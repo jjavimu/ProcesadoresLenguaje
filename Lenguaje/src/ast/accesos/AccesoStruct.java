@@ -4,10 +4,11 @@ import ast.tipos.*;
 import ast.Programa;
 import ast.instrucciones.*;
 import java.util.*;
+import ast.estructuras.*;
 
 public class AccesoStruct extends Acceso {
     protected Acceso acceso;
-    protected String campo; //aceso.campo
+    protected String campo; // aceso.campo
 
     public AccesoStruct(Acceso acceso, String campo) {
         this.campo = campo;
@@ -15,8 +16,17 @@ public class AccesoStruct extends Acceso {
     }
 
     public void generaCodigo(){
-        // acceso.generaCodigo();
-        // i32.const etiqueta del campo
+        acceso.generaCodigo(); 
+        //i32.const etiqueta del campo
+        int etiqueta_campo = 0;
+        for(DecClass dec : ((TipoEstructuraClass) nodoVinculo.tipo).getSusCampos()){
+            if(dec.getNombre().compareTo(campo) == 0){
+                etiqueta_campo = dec.etiqueta*4; // *4 solo int 
+                break;
+            }
+        }
+        Programa.escribir.println("i32.const " + etiqueta_campo);
+        Programa.escribir.println("i32.add");
         // i32.add
     }
 

@@ -19,7 +19,13 @@ public class StructClass extends ASTnodo {
     }
 
     public void generaCodigo(){}
-    public void calculos(){}
+    public void calculos(){
+        Programa.etiquetas.push(0);
+        for(DecClass dec:valores){
+            dec.calculos();
+        }
+        Programa.etiquetas.pop();
+    }
 
     public List<DecClass> getDeclaraciones(){
         return this.valores;

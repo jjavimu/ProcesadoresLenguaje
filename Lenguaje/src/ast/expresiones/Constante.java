@@ -19,7 +19,17 @@ public class Constante extends Expresion {
     public void vincular(){}
 
     public void generaCodigo(){
-        Programa.escribir.println("i32.const " + valor);
+        // Nuestras constantes solo pueden ser int
+        // Podemos tratar true y false como 1 y 0 respectivamente
+        if (valor.compareTo("true") == 0){ 
+            Programa.escribir.println("i32.const " + 1);
+        }
+        else if (valor.compareTo("false") == 0){
+            Programa.escribir.println("i32.const " + 0);
+        }
+        else{ // solo puede ser int desde aqui
+            Programa.escribir.println("i32.const " + valor);
+        }
     }
 
     

@@ -85,9 +85,14 @@ public class TipoEstructuraClass extends TipoClass {
         return se;
     }
     
-    public int getTam(){
-        // no nos da tiempo :(
-        return 0;
+    public int getTam(){ // solo para struct
+        int tam = 0;
+        if(susCampos instanceof StructClass){
+            for (DecClass dec : ((StructClass) susCampos).getDeclaraciones()){
+                tam += dec.tipo.getTam();
+            }
+        }
+        return tam;
     }
 
     public String getNombre() {

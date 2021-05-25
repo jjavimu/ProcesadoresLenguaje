@@ -36,8 +36,8 @@ terminal TokenValue IDEN, ENT, REAL,
              AND, OR, NEG,
              INT, VOID, CHAR, FLOAT, BOOL, ENUM, STRING, 
              TRUE, FALSE, CARACTER, CADENA, 
-             NEW, REF, 
-             WHILE, FOR, IF, ELSIF, ELSE, SWITCH, STRUCT, CASE, BREAK, DEFAULT,
+             NEW, 
+             WHILE, FOR, IF, ELSE, SWITCH, STRUCT, CASE, BREAK, DEFAULT,
              RETURN, MAIN, PRINT;
 
 

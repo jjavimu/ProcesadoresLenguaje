@@ -30,6 +30,12 @@ public class ListaDefiniciones {
         lista_funcion.add(f);
     }
 
+    public void calculos(){
+        for(StructClass s:lista_struct){
+            s.calculos();
+        }
+    }
+
 
     public void chequea(){
         for(StructClass s:lista_struct){

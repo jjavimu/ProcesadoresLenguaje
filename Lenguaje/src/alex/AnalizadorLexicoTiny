@@ -91,12 +91,10 @@ false = false
 caracter = '.'
 cadenaCaracteres = \".*\" 
 new = new
-referencia = &
 
 while = while
 for = for
 if = if
-elsif = elsif
 else = else
 struct = struct
 switch = switch
@@ -159,11 +157,9 @@ identificador = {letra}({letra}|{digito}|_)*
 {caracter}                {return ops.unidadCaracter();}
 {cadenaCaracteres}        {return ops.unidadCadenaCaracteres();}
 {new}                     {return ops.unidadNew();}
-{referencia}              {return ops.unidadReferencia();}
 {while}                   {return ops.unidadWhile();}
 {for}                     {return ops.unidadFor();}
 {if}                      {return ops.unidadIf();}
-{elsif}                   {return ops.unidadElsif();}
 {else}                    {return ops.unidadElse();}
 {struct}                  {return ops.unidadStruct();}
 {switch}                  {return ops.unidadSwitch();}

@@ -6,67 +6,89 @@ import ast.expresiones.*;
 import ast.Programa;
 import ast.ASTnodo;
 import ast.tipos.*;
+import ast.accesos.*;
 
-
-public class CaseSwitch{
+public class CaseSwitch {
 
     protected Expresion caso;
     protected List<Ins> instrucciones;
 
-    public CaseSwitch(Expresion condicion, List<Ins> instrucciones){
+    public CaseSwitch(Expresion condicion, List<Ins> instrucciones) {
         this.caso = condicion;
         this.instrucciones = instrucciones;
     }
-    
-    public CaseSwitch(List<Ins> instrucciones){
+
+    public CaseSwitch(List<Ins> instrucciones) {
         this.caso = null;
         this.instrucciones = instrucciones;
     }
 
-    public void calculos(){
+    public void generaCodigo() {
+        if (caso != null) {
+            caso.generaCodigo();
+            if (caso instanceof Acceso) {
+                Programa.escribir.println("i32.load"); // si es acceso, obtengo su valor
+            }
+            Programa.escribir.println("get_local $temp"); // temp tiene el valor de la exp del switch
+            Programa.escribir.println("i32.eq");
+            // si son iguales entro a sus instrucciones
+            Programa.escribir.println("if");
+        } 
+        // si caso == null (default: ) hago sus instrucciones
+        for (Ins instruccion : instrucciones) {
+            instruccion.generaCodigo();
+        }
+        Programa.escribir.println("br 1"); // ;; jump to the end of switch bc of break
+        if (caso != null)
+            Programa.escribir.println("end"); // si es default no hay que acabar el if
+    }
+
+    public void calculos() {
         int cima = Programa.etiquetas.peek();
         Programa.etiquetas.push(cima);
-        for(Ins instruccion : instrucciones){
+        for (Ins instruccion : instrucciones) {
             instruccion.calculos();
         }
         Programa.etiquetas.pop();
     }
 
-    public int maxMemoria(){
-        int tam_max = 0; 
+    public int maxMemoria() {
+        int tam_max = 0;
 
-        for (Ins ins : instrucciones){
-            if(ins instanceof DecClass){
-                tam_max += ins.maxMemoria(); //tamaño de la declaracion
+        for (Ins ins : instrucciones) {
+            if (ins instanceof DecClass) {
+                tam_max += ins.maxMemoria(); // tamaño de la declaracion
             }
         }
 
         int c = tam_max;
-        for (Ins ins : this.instrucciones){
-            if(ins instanceof ForClass || ins instanceof WhileClass
-            || ins instanceof IfClass || ins instanceof SwitchClass){
-                int tam_bloque = ins.maxMemoria(); //tamaño_max del bloque
-                if(c+tam_bloque > tam_max){
-                    tam_max = c+tam_bloque;
+        for (Ins ins : this.instrucciones) {
+            if (ins instanceof ForClass || ins instanceof WhileClass || ins instanceof IfClass
+                    || ins instanceof SwitchClass) {
+                int tam_bloque = ins.maxMemoria(); // tamaño_max del bloque
+                if (c + tam_bloque > tam_max) {
+                    tam_max = c + tam_bloque;
                 }
             }
         }
         return tam_max;
     }
 
-    public TipoClass getTipo(){
+    public TipoClass getTipo() {
         return caso == null ? null : caso.tipo;
     }
 
-    public void chequea(){
-        if (caso!=null) caso.chequea();
-        for(Ins instruccion : instrucciones){
+    public void chequea() {
+        if (caso != null)
+            caso.chequea();
+        for (Ins instruccion : instrucciones) {
             instruccion.chequea();
         }
     }
 
     public void vincular() {
-        if (caso!=null) caso.vincular();
+        if (caso != null)
+            caso.vincular();
 
         Programa.pila.abreBloque();
         for (Ins instruccion : instrucciones) {
@@ -84,11 +106,11 @@ public class CaseSwitch{
             }
         }
     }
-    
 
-    public String toString(){
-        if(caso == null)
+    public String toString() {
+        if (caso == null)
             return "default: " + instrucciones.toString();
-        else return "case " + caso.toString() + ": " + instrucciones.toString();
+        else
+            return "case " + caso.toString() + ": " + instrucciones.toString();
     }
 }

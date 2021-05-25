@@ -177,10 +177,6 @@ public class ALexOperations {
       return new UnidadLexica(alex.fila(), alex.columna(), ClaseLexica.NEW, alex.lexema());
    }
 
-   public UnidadLexica unidadReferencia() {
-      return new UnidadLexica(alex.fila(), alex.columna(), ClaseLexica.REF, alex.lexema());
-   }
-
    public UnidadLexica unidadWhile() {
       return new UnidadLexica(alex.fila(), alex.columna(), ClaseLexica.WHILE, alex.lexema());
    }
@@ -191,10 +187,6 @@ public class ALexOperations {
 
    public UnidadLexica unidadIf() {
       return new UnidadLexica(alex.fila(), alex.columna(), ClaseLexica.IF, alex.lexema());
-   }
-
-   public UnidadLexica unidadElsif() {
-      return new UnidadLexica(alex.fila(), alex.columna(), ClaseLexica.ELSIF, alex.lexema());
    }
 
    public UnidadLexica unidadElse() {

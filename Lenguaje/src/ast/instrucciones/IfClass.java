@@ -87,7 +87,7 @@ public class IfClass extends Ins {
     }
 
     public void generaCodigo(){
-        condicion.generaCodigo();
+        condicion.generaCodigo(); // es booleana
 
         Programa.escribir.println("if");
 

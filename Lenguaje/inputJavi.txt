@@ -1,0 +1,16 @@
+
+void main(){
+
+        switch(a+b){
+            case 5:
+                print(100 * a);
+                break;
+            case 9:
+                print(a+b);
+                break;
+            default:
+                print(29011999);
+
+        }
+    return;
+}

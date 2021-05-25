@@ -13,6 +13,8 @@ java -cp lib/jlex.jar JLex.Main src/alex/AnalizadorLexicoTiny &&
  # Compila todos los archivos .java del proyecto. Los .class se crearán dentro de bin/
  javac -cp "../lib/cup.jar:." -d ../bin */*.java &&
  # Ejecuta el programa Main con la entrada input.txt
- java -cp ".:../lib/cup.jar:../bin/" asint.Main ../inputVinculacion.txt &&
- ../codigo/wat2wasm ../codigo/codigoPrueba.wat
- node ../codigo/main.js
+ java -cp ".:../lib/cup.jar:../bin/" asint.Main ../inputJavi.txt &&
+ cd ../codigo && 
+ ./wat2wasm codigoPrueba.wat && 
+ node main.js && 
+ cd ..
