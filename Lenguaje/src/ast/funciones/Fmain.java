@@ -48,7 +48,6 @@ public class Fmain extends Funcion {
                 }
             }
         }
-        System.out.println(tam_memoria);
         return tam_memoria;
     }
 
@@ -78,5 +77,9 @@ public class Fmain extends Funcion {
 
         Programa.escribir.println(" call $freeStack");
         Programa.escribir.println(")");
+    }
+
+    public int getTamMemoria(){ // Devuelve el tamaño de memoria de la función memoria
+        return tam_memoria;
     }
 }

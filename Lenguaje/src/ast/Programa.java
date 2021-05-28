@@ -58,7 +58,7 @@ public class Programa extends ASTnodo {
     // Generar Codigo
     public void generaCodigo() {
         try {
-            escribir = new PrintWriter(new FileWriter("../codigo/codigoPrueba.wat"));
+            escribir = new PrintWriter(new FileWriter("../codigo/codigoInput.wat"));
 
             escribir.println("(module");
 
@@ -75,7 +75,6 @@ public class Programa extends ASTnodo {
             escribir.println("(global $SP (mut i32) (i32.const 0)) ;; start of stack");
             escribir.println("(global $MP (mut i32) (i32.const 0)) ;; mark pointer");
             escribir.println("(global $NP (mut i32) (i32.const 131071996)) ;; heap 2000*64*1024-4");
-
             escribir.println("(start $main)");
 
             fmain.generaCodigo(); // genera codigo del main
@@ -110,7 +109,7 @@ public class Programa extends ASTnodo {
             escribir.println(")");
             escribir.close();
         } catch (Exception e) {
-            System.out.println("CODIGO MAL");
+            System.out.println(" -> El codigo no se ha generado correctamente");
             System.exit(1);
         }
     }

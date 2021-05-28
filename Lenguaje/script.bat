@@ -13,9 +13,9 @@ java -cp ".;../lib/cup.jar" asint/Main ../input5Codigo.txt
 cd ../
 
 REM ------- solo para ejecucion del ejemplo de codigo
-cd codigo
-wat2wasm.exe codigoPrueba.wat
-node main.js
-cd ../
+ cd codigo
+ wat2wasm.exe codigoInput.wat
+ node main.js
+ cd ../
 REM -------
 pause

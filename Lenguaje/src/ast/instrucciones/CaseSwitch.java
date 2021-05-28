@@ -25,23 +25,23 @@ public class CaseSwitch {
 
     // GENERACION CODIGO -----------------------------------------------------------------
     public void generaCodigo() {
+        Programa.escribir.println("end"); // comienzo del caso
+        Programa.escribir.println("get_local $temp"); // dejo en la cima de la pila la condicion pa no perderla
         if (caso != null) {
             caso.generaCodigo();
             if (caso instanceof Acceso) {
                 Programa.escribir.println("i32.load"); // si es acceso, obtengo su valor
             }
             Programa.escribir.println("get_local $temp"); // temp tiene el valor de la exp del switch
-            Programa.escribir.println("i32.eq");
-            // si son iguales entro a sus instrucciones
-            Programa.escribir.println("if");
+            Programa.escribir.println("i32.eq"); // si es es caso adecuado
+            Programa.escribir.println("i32.eqz"); // cambio el valor
+            Programa.escribir.println("br_if 0"); // si no es el valor entonces salto al siguiente caso
         } 
-        // si caso == null (default: ) hago sus instrucciones
+        // si es el caso, tengo que hacer sus instrucciones
         for (Ins instruccion : instrucciones) {
             instruccion.generaCodigo();
         }
-        Programa.escribir.println("br 1"); // ;; jump to the end of switch bc of break
-        if (caso != null)
-            Programa.escribir.println("end"); // si es default no hay que acabar el if
+        Programa.escribir.println("br $break"); // ;; salto al end del switch bc of break
     }
 
     public void calculos() {

@@ -16,22 +16,23 @@ public class Main {
 	 AnalizadorSintacticoTiny asint = new AnalizadorSintacticoTiny(alex);
 
 	 Programa p = (Programa) asint.parse().value;
-	 
+	
 	 System.out.println(p); // mostramos el AST
 	 p.vincular(); // vinculamos
 	 if (Programa.okVinculacion){
-	 	System.out.println("SE HA VINCULADO BIEN :)");
+	 	System.out.println(" -> Vinculacion correcta :)");
 		p.chequea(); // chequeamos tipos
 		if(Programa.okTipos){
-			System.out.println("TIPOS BIEN :)");
+			System.out.println(" -> Comprobacion de tipos correcto :)");
 			p.calculos(); // colocamos etiquetas
 			p.maxMemoria(); // calculamos maxMem de la funcion
 	 		p.generaCodigo(); // generamos el codigo
+			 System.out.println(" -> Codigo generado correctamente :)");
 		}
-		else System.out.println("TIPOS MAL :(");
+		else System.out.println(" -> Error en comprobacion de tipos :(");
 	 }
 	 else{
-		System.out.println("NO SE HA VINCULADO BIEN :/");
+		System.out.println(" -> Error en vinculacion :/");
 	 }
  }
  	// Funcion para sacar los lexemas de la parte lexica

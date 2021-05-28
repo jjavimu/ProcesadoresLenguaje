@@ -183,63 +183,133 @@ i32.store
 br 0
 end
 end
-block
-i32.const 0
-i32.const 4
-i32.mul
-get_local $localsStart
+i32.const 2
+i32.const 3
 i32.add
-i32.load
-i32.const 1
-i32.const 4
-i32.mul
-get_local $localsStart
-i32.add
-i32.load
-i32.add
-tee_local $temp
+set_local $temp
+block $break
+block ;; un caso
+block ;; un caso
+block ;; un caso
+end
+get_local $temp
 i32.const 5
 get_local $temp
 i32.eq
-if
-i32.const 100
+i32.eqz
+br_if 0
+i32.const 0
+set_local $temp
+block $break
+block ;; un caso
+block ;; un caso
+block ;; un caso
+block ;; un caso
+block ;; un caso
+block ;; un caso
+end
+get_local $temp
+i32.const 0
+i32.const 1
+i32.sub
+get_local $temp
+i32.eq
+i32.eqz
+br_if 0
+i32.const 0
+i32.const 1
+i32.sub
+call $print
+br $break
+set_local $temp
+end
+get_local $temp
+i32.const 0
+i32.const 2
+i32.sub
+get_local $temp
+i32.eq
+i32.eqz
+br_if 0
+i32.const 0
+i32.const 2
+i32.sub
+call $print
+br $break
+set_local $temp
+end
+get_local $temp
+i32.const 0
+i32.const 3
+i32.sub
+get_local $temp
+i32.eq
+i32.eqz
+br_if 0
+i32.const 0
+i32.const 3
+i32.sub
+call $print
+br $break
+set_local $temp
+end
+get_local $temp
+i32.const 0
+get_local $temp
+i32.eq
+i32.eqz
+br_if 0
+i32.const 0
+call $print
+br $break
+set_local $temp
+end
+get_local $temp
 i32.const 0
 i32.const 4
-i32.mul
-get_local $localsStart
-i32.add
-i32.load
-i32.mul
+i32.sub
+get_local $temp
+i32.eq
+i32.eqz
+br_if 0
+i32.const 0
+i32.const 4
+i32.sub
 call $print
-br 1
+br $break
+set_local $temp
 end
-tee_local $temp
+get_local $temp
+i32.const 29031999
+call $print
+br $break
+set_local $temp
+end ;; para salir del switch con break
+i32.const 2
+i32.const 3
+i32.add
+call $print
+br $break
+set_local $temp
+end
+get_local $temp
 i32.const 9
 get_local $temp
 i32.eq
-if
-i32.const 0
-i32.const 4
+i32.eqz
+br_if 0
+i32.const 2
+i32.const 3
 i32.mul
-get_local $localsStart
-i32.add
-i32.load
-i32.const 1
-i32.const 4
-i32.mul
-get_local $localsStart
-i32.add
-i32.load
-i32.add
 call $print
-br 1
+br $break
+set_local $temp
 end
-tee_local $temp
+get_local $temp
 i32.const 29011999
 call $print
-br 1
-tee_local $temp
-drop
+br $break
+set_local $temp
 end ;; para salir del switch con break
 i32.const 4
 i32.const 4

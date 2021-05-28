@@ -10,7 +10,15 @@
 // Comentar la parte de vinculacion, tipos y generacion de codigo en el main
 //---------------------------------------------------------------------
 
+// enum figura = triangulo,circulo};
+// enum figura = triangulo,circulo}
+
+struct cosa{
+    int hola;
+}; //probar quitar ;
+
 void errores(){
+    // in a = 3; // error de tipo lo detecta
     int hola = 45 // error ;
     hola = 45;
     

@@ -25,7 +25,6 @@ public class DecClass extends Ins {
         int tam_tipo = tipo.getTam();
         e = e + tam_tipo;
         Programa.etiquetas.push(e);
-        System.out.println("Etiqueta: " + etiqueta);
     }
 
     public int maxMemoria() {

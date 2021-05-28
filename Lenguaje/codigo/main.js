@@ -50,7 +50,7 @@ var importObjects = {
     }};
 
 async function start() {
-    const code = readFileSync("codigoPrueba.wasm");
+    const code = readFileSync("codigoInput.wasm");
     wasmModule = await WebAssembly.compile(code);
     instance = await WebAssembly.instantiate(wasmModule, importObjects);
 //    await instance.exports.init();

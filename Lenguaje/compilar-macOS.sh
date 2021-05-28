@@ -15,6 +15,7 @@ java -cp lib/jlex.jar JLex.Main src/alex/AnalizadorLexicoTiny &&
  # Ejecuta el programa Main con la entrada input.txt
  java -cp ".:../lib/cup.jar:../bin/" asint.Main ../inputJavi.txt &&
  cd ../codigo && 
- ./wat2wasm codigoPrueba.wat && 
+ # Para la generación de código
+ ./wat2wasm codigoInput.wat && 
  node main.js && 
  cd ..
