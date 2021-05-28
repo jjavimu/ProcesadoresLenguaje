@@ -8,7 +8,6 @@ public abstract class Acceso extends Expresion {
 
     public abstract void vincular();
     public abstract void chequea();
-    public abstract void generaCodigo();
-    
     public void calculos(){}
+    public abstract void generaCodigo();
 }

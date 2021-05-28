@@ -23,6 +23,7 @@ public class CaseSwitch {
         this.instrucciones = instrucciones;
     }
 
+    // GENERACION CODIGO -----------------------------------------------------------------
     public void generaCodigo() {
         if (caso != null) {
             caso.generaCodigo();
@@ -74,10 +75,7 @@ public class CaseSwitch {
         return tam_max;
     }
 
-    public TipoClass getTipo() {
-        return caso == null ? null : caso.tipo;
-    }
-
+    // CHEQUEAR TIPOS -----------------------------------------------------------------
     public void chequea() {
         if (caso != null)
             caso.chequea();
@@ -86,6 +84,7 @@ public class CaseSwitch {
         }
     }
 
+    // VINCULACION -----------------------------------------------------------------
     public void vincular() {
         if (caso != null)
             caso.vincular();
@@ -97,6 +96,15 @@ public class CaseSwitch {
         Programa.pila.cierraBloque();
     }
 
+    // AST TOSTRING -----------------------------------------------------------------
+    public String toString() {
+        if (caso == null)
+            return "default: " + instrucciones.toString();
+        else
+            return "case " + caso.toString() + ": " + instrucciones.toString();
+    }
+
+    // AUXILIARES -----------------------------------------------------------------
     public void setReturn(ASTnodo nodoFuncion) {
         for (Ins instruccion : instrucciones) {
             // Vincular el return
@@ -107,10 +115,7 @@ public class CaseSwitch {
         }
     }
 
-    public String toString() {
-        if (caso == null)
-            return "default: " + instrucciones.toString();
-        else
-            return "case " + caso.toString() + ": " + instrucciones.toString();
+    public TipoClass getTipo() {
+        return caso == null ? null : caso.tipo;
     }
 }

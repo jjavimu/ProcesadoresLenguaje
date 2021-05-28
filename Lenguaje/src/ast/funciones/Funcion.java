@@ -18,17 +18,11 @@ public class Funcion extends ASTnodo {
         this.lista_ins = lista_ins;
     }
 
+    // GENERACION CODIGO -----------------------------------------------------------------
     public void generaCodigo(){}
     public void calculos(){}
 
-    public String getNombre(){
-        return nombre;
-    }
-    
-    public List<ParTipoIden> getListaArgs(){
-        return lista_args;
-    }
-
+    // CHEQUEAR TIPOS -----------------------------------------------------------------
     public void chequea() {
         this.tipo.chequea();
 
@@ -41,6 +35,7 @@ public class Funcion extends ASTnodo {
         }
     }
 
+    // VINCULAR -----------------------------------------------------------------
     public void vincular() {
         ASTnodo nodo = Programa.pila.buscaId(nombre);
         if (nodo == null) {
@@ -69,6 +64,7 @@ public class Funcion extends ASTnodo {
 
     }
 
+    // AST TOSTRING -----------------------------------------------------------------
     public String toString() {
         String listains = "\n    ";
         for (Ins i : lista_ins) {
@@ -76,6 +72,15 @@ public class Funcion extends ASTnodo {
                 listains = listains + i.toString() + "\n    ";
         }
         return "\n  " + tipo + " " + nombre + "(" + lista_args + ") " + listains;
+    }
+
+    // AUXILIARES -----------------------------------------------------------------
+    public String getNombre(){
+        return nombre;
+    }
+    
+    public List<ParTipoIden> getListaArgs(){
+        return lista_args;
     }
 
 }

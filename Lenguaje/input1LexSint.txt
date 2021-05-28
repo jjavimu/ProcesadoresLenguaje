@@ -1,0 +1,80 @@
+
+// EJEMPLO PRUEBA LEXICO Y AST ----------------------------------------
+
+// -- Tenemos un programa con una funcion main, funciones variadas --
+// -- declaraciones de structs y enumerados.                       --
+
+//---------------------------------------------------------------------
+// Instrucciones para el ejemplo:
+// Probar este ejemplo sacando solamente el AST toString
+// Comentar la parte de vinculacion, tipos y generacion de codigo en el main
+//---------------------------------------------------------------------
+
+
+struct solucion { // definición del struct
+    int max; 
+    int min;
+};
+
+enum TipoFigura = { Cuadrado, Triangulo, Circulo }; 
+
+void probar(){ //funcion
+    TipoFigura figura; 
+    figura = Circulo;
+    switch (figura) {
+        case Cuadrado: print("Cuadrado"); break;
+        case Triangulo: print("Triángulo"); break;
+        case Circulo: print("Círculo"); break;
+        default: print("Función no implementada");
+    }
+}
+
+solucion calcular(int<> vector, int tam) {
+    solucion sol;
+    sol.max = 0; 
+    sol.min = vector[0]; 
+
+    int i = 0;
+    while (i < tam) { 
+        if (vector[i] > sol.max) {
+            sol.max=vector[i];
+        }
+        if (vector[i] < sol.min) {
+            sol.min = vector[i];
+        }
+        i = i + 1;
+    }
+    return sol; 
+}
+
+void punteros(){
+    a = 3 exp 2;
+    *figura.circulo = 3; 
+    *(figura.circulo) = 3;
+    
+    a = *p[i];
+    b = *(p[i]);
+
+
+    sol.max = figura[i].circulo[j].area;
+    int * a = new int();
+    D.s[i] = 3;
+    //e = 3^2;
+    int*<3> v = new int*<3>();
+    *v[i] = 3;
+
+    int<3>* p = new int<3>*();
+    *p[i] = 3;
+
+    return;
+}
+
+
+void main() { // funcion main
+    int<7> vector; 
+    solucion sol;
+    sol = calcular(vector,7);
+    probar();
+    print(sol.min + ' ' + sol.max);
+    return; 
+}

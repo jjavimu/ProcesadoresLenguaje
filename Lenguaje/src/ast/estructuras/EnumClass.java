@@ -20,17 +20,16 @@ public class EnumClass extends ASTnodo {
         Programa.tipos_enum.add(this);
     }
 
+    // GENERAR CODIGO -----------------------------------------------------------------
     public void generaCodigo(){}
     public void calculos(){}
 
-    public String getNombre(){
-        return nombre;
-    }
-
+    // CHEQUEAR TIPOS -----------------------------------------------------------------
     public void chequea(){
         // No hay que chequear nada porque es un tipo en si mismo
     }
 
+    // VINCULAR -----------------------------------------------------------------
     public void vincular() {
         ASTnodo nodo = Programa.pila.buscaId(nombre);
         if (nodo == null) { // devuelve null cuando no esta
@@ -44,7 +43,13 @@ public class EnumClass extends ASTnodo {
         }
     }
 
+    // AST TOSTRING -----------------------------------------------------------------
     public String toString() {
         return "\nNombreEnum: " + nombre + valores + "\n";
+    }
+
+    // AUXILIARES -----------------------------------------------------------------
+    public String getNombre(){
+        return nombre;
     }
 }

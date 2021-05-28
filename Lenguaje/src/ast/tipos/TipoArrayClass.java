@@ -10,18 +10,20 @@ public class TipoArrayClass extends TipoClass{
         this.tam = tamanio;
     }
 
-    public boolean comparar(TipoClass otro){
-        if(!(otro instanceof TipoArrayClass)){
-            return false;
-        }
-        else return tipo.comparar(((TipoArrayClass) otro).getTipoDelArray());
-
-    }
-
+    // CHEQUEAR TIPOS ----------------------------------------------------------------- 
     public void chequea(){
         tipo.chequea();
     }
 
+    // AST TOSTRING -----------------------------------------------------------------
+    public String toString(){
+        if(tam != null)
+            return tipo.toString() + "<" + tam + ">";
+        else 
+            return tipo.toString() + "<>";
+    }
+
+    // AUXILIARES -----------------------------------------------------------------
     public int getTam(){
         int tam_tipo =  Integer.parseInt(tam)* tipo.getTam();
         return tam_tipo;
@@ -35,13 +37,12 @@ public class TipoArrayClass extends TipoClass{
         return tipo;
     }
 
-    public String toString(){
-        if(tam != null)
-            return tipo.toString() + "<" + tam + ">";
-        else 
-            return tipo.toString() + "<>";
-    }
+    public boolean comparar(TipoClass otro){
+        if(!(otro instanceof TipoArrayClass)){
+            return false;
+        }
+        else return tipo.comparar(((TipoArrayClass) otro).getTipoDelArray());
 
-    
+    }  
     
 }

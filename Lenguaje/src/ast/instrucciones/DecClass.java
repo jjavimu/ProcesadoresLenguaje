@@ -18,6 +18,7 @@ public class DecClass extends Ins {
         this.exp = exp;
     }
 
+    // GENERACION CODIGO -----------------------------------------------------------------
     public void calculos() {
         this.etiqueta = Programa.etiquetas.peek();
         int e = Programa.etiquetas.pop();
@@ -48,10 +49,7 @@ public class DecClass extends Ins {
         }
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
+    // CHEQUEAR TIPO -----------------------------------------------------------------
     public void chequea() {
         // El tipo de la parte izquierda es this.tipo
         tipo.chequea();
@@ -66,6 +64,7 @@ public class DecClass extends Ins {
         }
     }
 
+    // VINCULACION -----------------------------------------------------------------
     public void vincular() {
         // Tenemos un buscaId particular para este caso
         // Va a permitir de declarar con un mismo identificador siempre y cuado no se
@@ -85,8 +84,15 @@ public class DecClass extends Ins {
     public void setReturn(ASTnodo nodo) {
     }
 
+    // AST TOSTRING -----------------------------------------------------------------
     public String toString() {
         return "Declaracion(Tipo: " + tipo + ", nombre:" + nombre + ", exp: " + exp + ")";
     }
+
+    // AUXILIARES -----------------------------------------------------------------
+    public String getNombre() {
+        return nombre;
+    }
+
 
 }

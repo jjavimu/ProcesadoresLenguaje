@@ -19,6 +19,7 @@ public class ForClass extends Ins {
         this.instrucciones = ins;
     }
 
+    // GENERAR CODIGO -----------------------------------------------------------------
     public void calculos(){
         int cima = Programa.etiquetas.peek();
         Programa.etiquetas.push(cima);
@@ -73,6 +74,7 @@ public class ForClass extends Ins {
         Programa.escribir.println("end");
     }
 
+    // CHEQUEAR TIPOS -----------------------------------------------------------------
     public void chequea(){
         dec.chequea();
         if(dec.tipo == null)
@@ -95,6 +97,7 @@ public class ForClass extends Ins {
         }
     }
 
+    // VINCULACION -----------------------------------------------------------------
     public void vincular(){
         Programa.pila.abreBloque();
         dec.vincular();
@@ -108,7 +111,6 @@ public class ForClass extends Ins {
         Programa.pila.cierraBloque();
     }
 
-
     public void setReturn(ASTnodo nodoFuncion) {
         for (Ins instruccion : instrucciones) {
             // Vincular el return
@@ -119,6 +121,7 @@ public class ForClass extends Ins {
         }
     }
 
+    // AST TOSTRING -----------------------------------------------------------------
     public String toString(){
         String inst = "";
         for(Ins i : instrucciones){

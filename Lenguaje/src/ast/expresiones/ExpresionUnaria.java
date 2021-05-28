@@ -7,8 +7,10 @@ public abstract class ExpresionUnaria extends Expresion{
       this.exp = exp;
     }
 
+    // CHEQUEAR TIPOS -----------------------------------------------------------------
     public abstract void chequea();
-    
+
+    // VINCULAR -----------------------------------------------------------------
     public void vincular(){
       exp.vincular();
     }

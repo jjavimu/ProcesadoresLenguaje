@@ -16,6 +16,7 @@ public class AsigClass extends Ins {
         this.nombre=nombre;
     }
 
+    // GENERACION CODIGO -----------------------------------------------------------------
     public void calculos(){}
 
     public void generaCodigo(){
@@ -27,6 +28,7 @@ public class AsigClass extends Ins {
         Programa.escribir.println("i32.store");
     }
 
+    // CHEQUEAR TIPOS -----------------------------------------------------------------
     public void chequea(){
         nombre.chequea();
         exp.chequea();
@@ -37,16 +39,18 @@ public class AsigClass extends Ins {
         }
     }
 
+    // VINCULACION -----------------------------------------------------------------
     public void vincular(){
         nombre.vincular();
         exp.vincular();
     }
 
-
     public void setReturn(ASTnodo nodo) {
     }
     
+    // AST TOSTRING -----------------------------------------------------------------
     public String toString(){
         return "Asignacion( Nombre:" + nombre + ", exp:  " + exp + ")";
     } 
+    
 }

@@ -17,6 +17,7 @@ public class ReturnClass extends Ins {
         this.valorRetorno = null;
     }
 
+    // GENERACION CODIGO -----------------------------------------------------------------
     public void calculos() {
     }
 
@@ -29,6 +30,7 @@ public class ReturnClass extends Ins {
         }
     }
 
+    // CHEQUEAR TIPOS -----------------------------------------------------------------
     public void chequea() {
         if (valorRetorno != null) {
             valorRetorno.chequea();
@@ -45,6 +47,7 @@ public class ReturnClass extends Ins {
 
     }
 
+    // VINCULACION -----------------------------------------------------------------
     public void vincular() {
         if (valorRetorno != null) {
             valorRetorno.vincular();
@@ -55,6 +58,7 @@ public class ReturnClass extends Ins {
         this.nodoVinculo = funcion;
     }
 
+    // AST TOSTRING -----------------------------------------------------------------
     public String toString() {
         return "return(" + valorRetorno + ")";
     }

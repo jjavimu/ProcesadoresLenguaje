@@ -18,6 +18,7 @@ public class StructClass extends ASTnodo {
         Programa.tipos_struct.add(this);
     }
 
+    // GENERAR CODIGO -----------------------------------------------------------------
     public void generaCodigo(){}
     public void calculos(){
         Programa.etiquetas.push(0);
@@ -27,20 +28,14 @@ public class StructClass extends ASTnodo {
         Programa.etiquetas.pop();
     }
 
-    public List<DecClass> getDeclaraciones(){
-        return this.valores;
-    }
-
-    public String getNombre(){
-        return nombre;
-    }
-
+    // CHEQUEAR TIPOS  -----------------------------------------------------------------
     public void chequea(){
         for(DecClass dec:valores){
             dec.chequea();
         }
     }
 
+    // VINCULAR -----------------------------------------------------------------
     public void vincular() {
         ASTnodo nodo = Programa.pila.buscaId(nombre);
         if (nodo == null) { //devuelve null cuando no esta
@@ -51,7 +46,17 @@ public class StructClass extends ASTnodo {
         }
     }
 
+    // TOSTRING -----------------------------------------------------------------
     public String toString() {
         return "\nNombreStruct: " + nombre + valores + "\n";
+    }
+
+    // AUXILIARES -----------------------------------------------------------------
+    public List<DecClass> getDeclaraciones(){
+        return this.valores;
+    }
+
+    public String getNombre(){
+        return nombre;
     }
 }

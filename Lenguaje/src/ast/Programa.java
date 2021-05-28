@@ -7,19 +7,24 @@ import java.io.*;
 
 public class Programa extends ASTnodo {
 
+    // ATRIBUTOS CONSTRUCTOR -----------------------------------------------------------------
     private ListaDefiniciones definiciones; // Structs, enums y funciones
     private Fmain fmain; // Funcion main del programa
 
-    // Pila de tabla se simbolos
+    // Vinculacion
     public static PilaTablaSimbolos pila;
     public static Boolean okVinculacion;
 
-    // Tipos
+    // Chequear Tipos
+    public static Boolean okTipos;
+
+    // Nombres Tipos
     public static List<String> tipos_basicos = new ArrayList<String>();
     public static List<EnumClass> tipos_enum = new ArrayList<EnumClass>();
     public static List<StructClass> tipos_struct = new ArrayList<StructClass>();
+
+    // Generar codigo
     public static Stack<Integer> etiquetas = new Stack<Integer>();
-    public static Boolean okTipos;
     public static PrintWriter escribir;
 
     public Programa(ListaDefiniciones l, Fmain fmain) {
@@ -35,17 +40,22 @@ public class Programa extends ASTnodo {
         tipos_basicos.add("char");
         tipos_basicos.add("string");
     }
+    
+    // GENERAR CODIGO -----------------------------------------------------------------
 
+    // Calcular etiquetas
     public void calculos() {
         definiciones.calculos(); // Para los struct
         fmain.calculos();
     }
 
+    // Calcular max memoria de la funcion
     public int maxMemoria() {
         fmain.maxMemoria();
         return 0;
     }
 
+    // Generar Codigo
     public void generaCodigo() {
         try {
             escribir = new PrintWriter(new FileWriter("../codigo/codigoPrueba.wat"));
@@ -105,11 +115,13 @@ public class Programa extends ASTnodo {
         }
     }
 
+    // CHEQUEAR TIPOS -----------------------------------------------------------------
     public void chequea() {
         definiciones.chequea();
         fmain.chequea();
     }
 
+    // VINCULAR -----------------------------------------------------------------
     public void vincular() {
         pila = new PilaTablaSimbolos();
         pila.abreBloque();
@@ -118,6 +130,7 @@ public class Programa extends ASTnodo {
         pila.cierraBloque();
     }
 
+    // AST ToString -----------------------------------------------------------------
     public String toString() {
         return definiciones.toString() + "\nFuncion Main: " + fmain.toString();
     }

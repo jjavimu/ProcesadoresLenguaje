@@ -17,6 +17,7 @@ public class SwitchClass extends Ins {
         this.casos = casos;
     }
 
+    // GENERAR CODIGO -----------------------------------------------------------------
     public void calculos(){
         for(CaseSwitch caso:casos){
             caso.calculos();
@@ -51,6 +52,7 @@ public class SwitchClass extends Ins {
         Programa.escribir.println("end ;; para salir del switch con break");
     }
 
+    // CHEQUEAR TIPOS -----------------------------------------------------------------
     public void chequea(){
         condicion.chequea();
         // los casos tienen que ser del mismo tipo que la condicion
@@ -64,6 +66,7 @@ public class SwitchClass extends Ins {
         }
     }
 
+    // VINCULACION -----------------------------------------------------------------
     public void vincular(){
         condicion.vincular();
         Programa.pila.abreBloque();
@@ -81,6 +84,7 @@ public class SwitchClass extends Ins {
          }
     }
 
+    // AST TOSTRING -----------------------------------------------------------------
     public String toString(){
         return "Switch (Condición: " + condicion.toString() + ", Casos:" +casos.toString()+ ")";
     }

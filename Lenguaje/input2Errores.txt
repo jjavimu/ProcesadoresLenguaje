@@ -1,0 +1,94 @@
+// EJEMPLO ERRORES GRAMATICA ----------------------------------------
+
+// -- Este fichero contiene instrucciones con errores de gramatica --
+// -- Comprobamos que somos capaces de reconocerlos y recuperarnos --
+// -- El AST se muestra por pantalla                               --
+
+//---------------------------------------------------------------------
+// Instrucciones para el ejemplo:
+// Probar este ejemplo sacando solamente el AST toString
+// Comentar la parte de vinculacion, tipos y generacion de codigo en el main
+//---------------------------------------------------------------------
+
+void errores(){
+    int hola = 45 // error ;
+    hola = 45;
+    
+    hola = 45 //error ;
+    hola = 45;
+    int a = 5;
+    hola 45; // error =
+    hola = 43;
+    
+     if (3=2){
+      hola = 3 // error ;
+    }
+
+    if (a==b {  // error )
+        int hola;
+    }
+
+    if (a==b) { 
+        int; // error falta variable
+    }
+    
+    for (int i=0 ;i<3;i = i+1){
+        int a = 0;
+    }
+
+    for (int i=0 ;i<3;i = i+1){
+        int a = 0 // error ;
+    }
+    
+    for (int i=0 i<3;i = i+1){
+        int a = 0;
+    }
+
+    while(true { // error )
+        a = b;
+    }
+
+    while(true){
+        a = b;
+    }
+
+    while(true){
+        print ("hola") // error ;
+    }
+
+    switch(valor){
+        case 3: a = 3; break;
+        case 4: a = 4; break;
+        default: a = 5;
+    }
+
+    switch(valor{ // error )
+        case 3: a = 3; break;
+        case 4: a = 4; break;
+        default: a = 5; 
+    }
+
+    switch(valor){
+        case : a = 3; break; // error caso
+        case 4: a = 4; break; 
+        default: a = 5; 
+    }
+
+    switch(valor{
+        case 3: a = 3;;
+        case 4: a = ; break; // error en instruccion
+        default: a = 5; 
+    }
+}
+
+void main(){
+        switch(valor){
+        case 5: a = 3; break;
+        case 4: a = 4; break;
+        default: a = 5         // error ;
+                 int a = 4;
+    }
+
+    int a = 2; 
+    return; 
+}

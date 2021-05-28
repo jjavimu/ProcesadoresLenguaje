@@ -15,8 +15,10 @@ public class FuncallExp extends Expresion {
         this.parametros = parametros;
     }
 
+    // GENERAR CODIGO -----------------------------------------------------------------
     public void generaCodigo(){}
 
+    // CHEQUEAR TIPOS -----------------------------------------------------------------
     public void chequea(){
         this.tipo = nodoVinculo.tipo;
 
@@ -36,6 +38,7 @@ public class FuncallExp extends Expresion {
         }   
     }
 
+    // VINCULAR -----------------------------------------------------------------
     public void vincular(){
         ASTnodo nodo = Programa.pila.buscaId(nombre);
         if(nodo == null){
@@ -48,7 +51,7 @@ public class FuncallExp extends Expresion {
         this.nodoVinculo = nodo;
     }
 
-   
+    // AST TOSTRING -----------------------------------------------------------------
     public String toString(){
         return "Llamada" + nombre + "(" + parametros.toString() + ")";
     }

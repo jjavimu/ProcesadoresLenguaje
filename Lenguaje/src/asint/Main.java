@@ -14,19 +14,19 @@ public class Main {
 	 AnalizadorLexicoTiny alex = new AnalizadorLexicoTiny(input);
 	 // sacaLexemas(alex);
 	 AnalizadorSintacticoTiny asint = new AnalizadorSintacticoTiny(alex);
-	 // asint.setScanner(alex);
-	 // asint.parse();
+
 	 Programa p = (Programa) asint.parse().value;
-	 System.out.println(p);
-	 p.vincular();
+	 
+	 System.out.println(p); // mostramos el AST
+	 p.vincular(); // vinculamos
 	 if (Programa.okVinculacion){
 	 	System.out.println("SE HA VINCULADO BIEN :)");
-		p.chequea();
+		p.chequea(); // chequeamos tipos
 		if(Programa.okTipos){
 			System.out.println("TIPOS BIEN :)");
-			p.calculos();
-			p.maxMemoria();
-	 		p.generaCodigo();
+			p.calculos(); // colocamos etiquetas
+			p.maxMemoria(); // calculamos maxMem de la funcion
+	 		p.generaCodigo(); // generamos el codigo
 		}
 		else System.out.println("TIPOS MAL :(");
 	 }
@@ -34,6 +34,7 @@ public class Main {
 		System.out.println("NO SE HA VINCULADO BIEN :/");
 	 }
  }
+ 	// Funcion para sacar los lexemas de la parte lexica
  	public static void sacaLexemas(AnalizadorLexicoTiny alex) throws IOException{
 		UnidadLexica unidad;
 		do {

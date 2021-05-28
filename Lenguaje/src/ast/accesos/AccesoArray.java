@@ -13,6 +13,7 @@ public class AccesoArray extends Acceso {
         this.acceso = acceso;
     }
 
+    // GENERAR CODIGO -----------------------------------------------------------------
     public void generaCodigo() {
         int tam_elem = tipo.getTamElem() * 4;
         Programa.escribir.println("i32.const " + tam_elem); // tam un elemento
@@ -25,6 +26,7 @@ public class AccesoArray extends Acceso {
         Programa.escribir.println("i32.add");
     }
 
+    // CHEQUEAR TIPOS -----------------------------------------------------------------
     public void chequea() {
         acceso.chequea();
         exp.chequea();
@@ -45,12 +47,14 @@ public class AccesoArray extends Acceso {
         }
     }
 
+    // VINCULAR -----------------------------------------------------------------
     public void vincular() {
         acceso.vincular();
         this.nodoVinculo = acceso.nodoVinculo;
         exp.vincular();
     }
 
+    // ASTO TOSTRING -----------------------------------------------------------------
     public String toString() {
         return "ExpAccArr(" + acceso + "[" + exp + "])";
     }

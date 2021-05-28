@@ -16,6 +16,7 @@ public class TipoEstructuraClass extends TipoClass {
         this.nombre_tipo = tipo;
     }
 
+    // CHEQUEAR TIPOS -----------------------------------------------------------------
     public void chequea() {
         boolean ok = false;
         for (EnumClass nodo : Programa.tipos_enum) {
@@ -40,6 +41,12 @@ public class TipoEstructuraClass extends TipoClass {
         }
     }
 
+    // AST TOSTRING -----------------------------------------------------------------
+    public String toString() {
+        return nombre_tipo;
+    }
+
+    // AUXILIARES -----------------------------------------------------------------
     public boolean comparar(TipoClass otro) {
         if (!(otro instanceof TipoEstructuraClass)) {
             if (!((otro instanceof TipoBasicoClass) && otro.toString().compareTo(nombre_tipo) == 0)) {
@@ -69,13 +76,11 @@ public class TipoEstructuraClass extends TipoClass {
                     return true;
                 }
             }
-            else
+            else // si es enum
                 return false;
         } else
-            return true; // si tienen igual nombre son iguales
+            return true; // si tienen igual nombre y los dos struct o los dos enum -> son iguales
     }
-
-    // FUNCIONES GET/SET
 
     public List<DecClass> getSusCampos() {
         return ((StructClass) susCampos).getDeclaraciones();
@@ -96,10 +101,6 @@ public class TipoEstructuraClass extends TipoClass {
     }
 
     public String getNombre() {
-        return nombre_tipo;
-    }
-
-    public String toString() {
         return nombre_tipo;
     }
 

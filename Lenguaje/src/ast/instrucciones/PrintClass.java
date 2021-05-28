@@ -13,6 +13,7 @@ public class PrintClass extends Ins {
         this.exp = exp;
     }
 
+    // GENERAR CODIGO -----------------------------------------------------------------
     public void calculos(){}
 
     public void generaCodigo(){
@@ -23,10 +24,12 @@ public class PrintClass extends Ins {
         Programa.escribir.println("call $print");
     }
 
+    // CHEQUEAR TIPOS -----------------------------------------------------------------
     public void chequea(){
         exp.chequea();
     }
 
+    // VINCULACION -----------------------------------------------------------------
     public void vincular(){
         exp.vincular();
     }
@@ -35,7 +38,7 @@ public class PrintClass extends Ins {
     public void setReturn(ASTnodo nodo) {
     }
 
-
+    // AST TOSTRING -----------------------------------------------------------------
     public String toString(){
         return "Print (" + exp.toString() + ")";
     }

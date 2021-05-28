@@ -11,13 +11,8 @@ public class Constante extends Expresion {
         this.valor = cte;
         this.tipo = tipo;
     }
-    
-    public void chequea(){
-        tipo.chequea(); //Aunque en realidad solo se crean constantes con tipo basico
-    }
 
-    public void vincular(){}
-
+    // GENERAR CODIGO -----------------------------------------------------------------
     public void generaCodigo(){
         // Nuestras constantes solo pueden ser int
         // Podemos tratar true y false como 1 y 0 respectivamente
@@ -31,14 +26,22 @@ public class Constante extends Expresion {
             Programa.escribir.println("i32.const " + valor);
         }
     }
-
     
-
-    public String getValor(){
-        return valor;
+    // CHEQUEAR TIPOS -----------------------------------------------------------------
+    public void chequea(){
+        tipo.chequea(); //Aunque en realidad solo se crean constantes con tipo basico
     }
 
+    // VINCULAR -----------------------------------------------------------------
+    public void vincular(){}
+
+    // AST TOSTRING -----------------------------------------------------------------
     public String toString(){
         return "Expresion(" + valor+ ")";
+    }
+
+    // AUXILIARES -----------------------------------------------------------------
+    public String getValor(){
+        return valor;
     }
 }

@@ -14,7 +14,7 @@
 (func $main  (type $_sig_void)
  (local $localsStart i32)
  (local $temp i32)
- i32.const 48
+ i32.const 80
  call $reserveStack
  set_local $temp
  get_global $MP
@@ -32,85 +32,33 @@ i32.const 4
 i32.mul
 get_local $localsStart
 i32.add
-i32.const 12
-i32.add
-i32.const 5
-i32.store
-i32.const 0
-i32.const 4
-i32.mul
-get_local $localsStart
-i32.add
-i32.const 16
-i32.add
-i32.const 1
-i32.store
-i32.const 0
-i32.const 4
-i32.mul
-get_local $localsStart
-i32.add
-i32.const 12
-i32.add
-i32.load
-call $print
-i32.const 0
-i32.const 4
-i32.mul
-get_local $localsStart
-i32.add
-i32.const 16
-i32.add
-i32.load
-call $print
-i32.const 5
-i32.const 4
-i32.mul
-get_local $localsStart
-i32.add
 i32.const 0
 i32.store
 block
 loop
-i32.const 5
+i32.const 0
 i32.const 4
 i32.mul
 get_local $localsStart
 i32.add
 i32.load
-i32.const 3
+i32.const 1
 i32.lt_s
 i32.eqz
 br_if 1
-i32.const 4
-i32.const 5
+i32.const 0
 i32.const 4
 i32.mul
 get_local $localsStart
 i32.add
 i32.load
-i32.mul
+call $print
 i32.const 0
 i32.const 4
 i32.mul
 get_local $localsStart
 i32.add
 i32.const 0
-i32.add
-i32.add
-i32.const 5
-i32.const 4
-i32.mul
-get_local $localsStart
-i32.add
-i32.load
-i32.store
-i32.const 5
-i32.const 4
-i32.mul
-get_local $localsStart
-i32.add
-i32.const 5
 i32.const 4
 i32.mul
 get_local $localsStart
@@ -127,114 +75,122 @@ i32.const 4
 i32.mul
 get_local $localsStart
 i32.add
-i32.const 12
-i32.add
-i32.load
-i32.const 4
 i32.const 0
-i32.mul
-i32.const 0
-i32.const 4
-i32.mul
-get_local $localsStart
-i32.add
-i32.const 0
-i32.add
-i32.add
-i32.load
-i32.add
-i32.const 4
+i32.store
 i32.const 1
-i32.mul
-i32.const 0
 i32.const 4
 i32.mul
 get_local $localsStart
 i32.add
 i32.const 0
-i32.add
-i32.add
-i32.load
-i32.add
-i32.const 4
-i32.const 2
-i32.mul
-i32.const 0
 i32.const 4
 i32.mul
 get_local $localsStart
 i32.add
-i32.const 0
-i32.add
+i32.load
+i32.store
+i32.const 1
+i32.const 4
+i32.mul
+get_local $localsStart
 i32.add
 i32.load
-i32.add
 call $print
-i32.const 5
-i32.const 4
-i32.mul
-get_local $localsStart
-i32.add
-i32.const 3
-i32.store
-i32.const 6
-i32.const 4
-i32.mul
-get_local $localsStart
-i32.add
-i32.const 2
-i32.store
-i32.const 7
-i32.const 4
-i32.mul
-get_local $localsStart
-i32.add
-i32.const 1
-i32.store
-i32.const 8
-i32.const 4
-i32.mul
-get_local $localsStart
-i32.add
 i32.const 0
-i32.store
-i32.const 7
 i32.const 4
 i32.mul
 get_local $localsStart
 i32.add
 i32.load
-i32.const 8
-i32.const 4
-i32.mul
-get_local $localsStart
-i32.add
-i32.load
-i32.and
+i32.const 0
+i32.eq
 if
-i32.const 5
+i32.const 1
 i32.const 4
 i32.mul
 get_local $localsStart
 i32.add
-i32.load
-i32.const 6
-i32.const 4
-i32.mul
-get_local $localsStart
-i32.add
-i32.load
-i32.add
-call $print
+i32.const 101
+i32.store
 else
-block
-i32.const 5
+i32.const 1
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.const 201
+i32.store
+end
+i32.const 1
 i32.const 4
 i32.mul
 get_local $localsStart
 i32.add
 i32.load
-i32.const 6
+call $print
+i32.const 2
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.const 1
+i32.store
+i32.const 3
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.const 2
+i32.store
+block
+loop
+i32.const 2
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.load
+i32.const 3
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.load
+i32.lt_s
+i32.eqz
+br_if 1
+i32.const 2
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.load
+call $print
+i32.const 2
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.const 2
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.load
+i32.const 1
+i32.add
+i32.store
+br 0
+end
+end
+block
+i32.const 0
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.load
+i32.const 1
 i32.const 4
 i32.mul
 get_local $localsStart
@@ -247,7 +203,7 @@ get_local $temp
 i32.eq
 if
 i32.const 100
-i32.const 5
+i32.const 0
 i32.const 4
 i32.mul
 get_local $localsStart
@@ -262,13 +218,13 @@ i32.const 9
 get_local $temp
 i32.eq
 if
-i32.const 5
+i32.const 0
 i32.const 4
 i32.mul
 get_local $localsStart
 i32.add
 i32.load
-i32.const 6
+i32.const 1
 i32.const 4
 i32.mul
 get_local $localsStart
@@ -285,6 +241,450 @@ br 1
 tee_local $temp
 drop
 end ;; para salir del switch con break
+i32.const 4
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.const 3
+i32.store
+i32.const 5
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.const 5
+i32.store
+i32.const 6
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.const 0
+i32.store
+i32.const 1
+i32.const 1
+i32.eq
+if
+i32.const 6
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.const 6
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.load
+i32.const 1
+i32.add
+i32.store
+else
+end
+i32.const 4
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.load
+i32.const 1
+i32.ne
+if
+i32.const 6
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.const 6
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.load
+i32.const 1
+i32.add
+i32.store
+else
+end
+i32.const 4
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.load
+i32.const 5
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.load
+i32.lt_s
+if
+i32.const 6
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.const 6
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.load
+i32.const 1
+i32.add
+i32.store
+else
+end
+i32.const 5
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.load
+i32.const 4
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.load
+i32.gt_s
+if
+i32.const 6
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.const 6
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.load
+i32.const 1
+i32.add
+i32.store
+else
+end
+i32.const 4
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.load
+i32.const 5
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.load
+i32.le_s
+if
+i32.const 6
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.const 6
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.load
+i32.const 1
+i32.add
+i32.store
+else
+end
+i32.const 5
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.load
+i32.const 3
+i32.ge_s
+if
+i32.const 6
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.const 6
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.load
+i32.const 1
+i32.add
+i32.store
+else
+end
+i32.const 3
+i32.const 2
+i32.gt_s
+i32.const 5
+i32.const 5
+i32.eq
+i32.and
+if
+i32.const 6
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.const 6
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.load
+i32.const 1
+i32.add
+i32.store
+else
+end
+i32.const 3
+i32.const 2
+i32.ne
+i32.const 3
+i32.const 2
+i32.lt_s
+i32.or
+if
+i32.const 6
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.const 6
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.load
+i32.const 1
+i32.add
+i32.store
+else
+end
+i32.const 6
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.load
+call $print
+i32.const 10
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.const 0
+i32.store
+block
+loop
+i32.const 10
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.load
+i32.const 3
+i32.lt_s
+i32.eqz
+br_if 1
+i32.const 4
+i32.const 10
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.load
+i32.mul
+i32.const 7
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.add
+i32.const 10
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.load
+i32.store
+i32.const 4
+i32.const 10
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.load
+i32.mul
+i32.const 7
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.add
+i32.load
+call $print
+i32.const 10
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.const 10
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.load
+i32.const 1
+i32.add
+i32.store
+br 0
+end
+end
+i32.const 16
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.const 0
+i32.store
+block
+loop
+i32.const 16
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.load
+i32.const 2
+i32.lt_s
+i32.eqz
+br_if 1
+i32.const 16
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.load
+call $print
+i32.const 17
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.const 0
+i32.store
+block
+loop
+i32.const 17
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.load
+i32.const 3
+i32.lt_s
+i32.eqz
+br_if 1
+i32.const 4
+i32.const 17
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.load
+i32.mul
+i32.const 4
+i32.const 16
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.load
+i32.mul
+i32.const 10
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.add
+i32.add
+i32.const 6
+i32.store
+i32.const 17
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.load
+call $print
+i32.const 4
+i32.const 17
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.load
+i32.mul
+i32.const 4
+i32.const 16
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.load
+i32.mul
+i32.const 10
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.add
+i32.add
+i32.load
+call $print
+i32.const 17
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.const 17
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.load
+i32.const 1
+i32.add
+i32.store
+br 0
+end
+end
+i32.const 16
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.const 16
+i32.const 4
+i32.mul
+get_local $localsStart
+i32.add
+i32.load
+i32.const 1
+i32.add
+i32.store
+br 0
+end
 end
  call $freeStack
 )

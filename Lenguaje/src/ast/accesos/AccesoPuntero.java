@@ -10,11 +10,13 @@ public class AccesoPuntero extends Acceso{
         this.direccion = direccion;
     }
 
+    // GENERAR CODIGO -----------------------------------------------------------------
     public void generaCodigo(){
         direccion.generaCodigo();
         Programa.escribir.println("i32.load");           
     }
 
+    // CHEQUEAR TIPOS -----------------------------------------------------------------
     public void chequea(){
         direccion.chequea();
         //direccion.tipo; algo * ese algo es getTipoDelPuntero
@@ -27,11 +29,13 @@ public class AccesoPuntero extends Acceso{
         }
     }
 
+    // VINCULAR -----------------------------------------------------------------
     public void vincular(){
         direccion.vincular();
         this.nodoVinculo = direccion.nodoVinculo;
     }
-    
+
+    // AST TOSTRING-----------------------------------------------------------------
     public String toString(){
         return "ExpAccPtr(*" + direccion +")";
     }

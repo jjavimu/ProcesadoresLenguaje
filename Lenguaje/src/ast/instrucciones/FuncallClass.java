@@ -11,16 +11,19 @@ public class FuncallClass extends Ins {
         this.funcion = funcion;
     }
 
+    // GENERAR CODIGO -----------------------------------------------------------------
     public void calculos(){}
 
     public void generaCodigo(){
         
     }
 
+    // CHEQUEAR TIPOS -----------------------------------------------------------------
     public void chequea(){
         funcion.chequea(); //Cuando no interesa el resultado o es void
     }
 
+    // VINCULACION -----------------------------------------------------------------
     public void vincular(){
         funcion.vincular();
     }
@@ -28,7 +31,8 @@ public class FuncallClass extends Ins {
 
     public void setReturn(ASTnodo nodo) {
     }
-    
+
+    // AST TOSTRING -----------------------------------------------------------------
     public String toString(){
         return "Call(" + funcion.toString() + ")";
     }

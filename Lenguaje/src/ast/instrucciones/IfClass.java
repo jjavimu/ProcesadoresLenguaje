@@ -24,6 +24,7 @@ public class IfClass extends Ins {
         this.instrucciones_else = instrucciones_else;
     }
 
+    // GENERAR CODIGO -----------------------------------------------------------------
     public void calculos() {
         int cima = Programa.etiquetas.peek();
         Programa.etiquetas.push(cima);
@@ -106,6 +107,7 @@ public class IfClass extends Ins {
         Programa.escribir.println("end");
     }
 
+    // CHEQUEAR TIPOS -----------------------------------------------------------------
     public void chequea() {
         condicion.chequea();
         if (!condicion.tipo.comparar(new TipoBasicoClass("bool"))) { // La condicion tiene que ser bool
@@ -122,6 +124,7 @@ public class IfClass extends Ins {
         }
     }
 
+    // VINCULACION -----------------------------------------------------------------
     public void vincular() {
         condicion.vincular();
         Programa.pila.abreBloque();
@@ -158,6 +161,7 @@ public class IfClass extends Ins {
         }
     }
 
+    // AST TOSTRING -----------------------------------------------------------------
     public String toString() {
         String inst = "";
         for (Ins i : instrucciones_then) {

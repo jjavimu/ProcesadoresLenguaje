@@ -8,12 +8,15 @@ public class NewExp extends Expresion {
         this.tipo = tipo; 
     }
 
+    // CHEQUEAR TIPOS -----------------------------------------------------------------
     public void chequea(){
         tipo.chequea();
     }
 
+    // VINCULAR -----------------------------------------------------------------
     public void vincular(){}
 
+    // AST TOSTRING -----------------------------------------------------------------
     public String toString(){
         return "ExpNew(" + tipo.toString()+")";
     }

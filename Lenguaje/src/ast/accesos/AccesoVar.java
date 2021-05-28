@@ -14,6 +14,7 @@ public class AccesoVar extends Acceso {
         this.direccionInicial = nombreVar;
     }
 
+    // GENERAR CODIGO -----------------------------------------------------------------
     public void generaCodigo(){
         Programa.escribir.println("i32.const " + this.nodoVinculo.etiqueta);
         Programa.escribir.println("i32.const 4");
@@ -22,6 +23,7 @@ public class AccesoVar extends Acceso {
         Programa.escribir.println("i32.add");
     }
 
+    // CHEQUEAR TIPOS -----------------------------------------------------------------
     public void chequea(){
         // Constante para los enumerados o una declaracion
         // para que no permita hacer int a = main; (encontraria a main en la tabla)
@@ -33,7 +35,8 @@ public class AccesoVar extends Acceso {
             Programa.okTipos = false;
         } 
     }
-    
+
+    // VINCULAR -----------------------------------------------------------------
     public void vincular(){
         ASTnodo nodo = Programa.pila.buscaId(direccionInicial);
         if(nodo == null){
@@ -44,6 +47,7 @@ public class AccesoVar extends Acceso {
             this.nodoVinculo = nodo;
     }
 
+    // ASTO TOSTRING -----------------------------------------------------------------
     public String toString(){
         return direccionInicial;
     }

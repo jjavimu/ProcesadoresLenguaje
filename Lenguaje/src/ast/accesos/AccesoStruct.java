@@ -15,6 +15,7 @@ public class AccesoStruct extends Acceso {
         this.acceso = acceso;
     }
 
+    // GENERAR CODIGO -----------------------------------------------------------------
     public void generaCodigo(){
         acceso.generaCodigo(); 
         //i32.const etiqueta del campo
@@ -30,6 +31,7 @@ public class AccesoStruct extends Acceso {
         // i32.add
     }
 
+    // CHEQUEAR TIPOS -----------------------------------------------------------------
     public void chequea(){
         acceso.chequea();
         if(acceso.tipo != null){
@@ -57,11 +59,13 @@ public class AccesoStruct extends Acceso {
         }
     }
 
+    // VINCULAR -----------------------------------------------------------------
     public void vincular(){
         acceso.vincular();
         this.nodoVinculo = acceso.nodoVinculo;
     }
 
+    // AST TOSTRING -----------------------------------------------------------------
     public String toString(){
         return "ExpAccStr(" + acceso+ "." + this.campo + ")";
     }

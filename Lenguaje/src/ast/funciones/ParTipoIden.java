@@ -10,6 +10,12 @@ public class ParTipoIden extends DecClass{
         super(tipo,iden,null);
     }
 
+    // AST TOSTRING -----------------------------------------------------------------
+    public String toString(){
+        return tipo + nombre;
+    }
+
+    // AUXILIARES -----------------------------------------------------------------
     public TipoClass getTipo() {
         return this.tipo;
     }
@@ -24,10 +30,5 @@ public class ParTipoIden extends DecClass{
 
     public void setIden(String iden) {
         this.nombre = iden;
-    }
-
-    public String toString(){
-        return tipo + nombre;
-    }
-    
+    }    
 }

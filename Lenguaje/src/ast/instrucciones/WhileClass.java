@@ -15,6 +15,7 @@ public class WhileClass extends Ins {
         this.instrucciones = instrucciones;
     }
 
+    // GENERACION CODIGO -----------------------------------------------------------------
     public void calculos(){
         int cima = Programa.etiquetas.peek();
         Programa.etiquetas.push(cima);
@@ -65,6 +66,7 @@ public class WhileClass extends Ins {
         Programa.escribir.println("end");
     }
 
+    // CHEQUEAR TIPOS -----------------------------------------------------------------
     public void chequea(){
         condicion.chequea();
         if(!condicion.tipo.comparar(new TipoBasicoClass("bool"))){ // La condicion tiene que ser bool
@@ -76,6 +78,7 @@ public class WhileClass extends Ins {
         }
     }
 
+    // VINCULACION -----------------------------------------------------------------
     public void vincular(){
         Programa.pila.abreBloque();
         condicion.vincular();
@@ -95,6 +98,7 @@ public class WhileClass extends Ins {
         }
     }
 
+    // AST TOSTRING -----------------------------------------------------------------
     public String toString(){
         String inst = "";
         for(Ins i : instrucciones){

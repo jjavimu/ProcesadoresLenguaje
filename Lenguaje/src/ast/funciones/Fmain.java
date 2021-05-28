@@ -14,7 +14,8 @@ public class Fmain extends Funcion {
         super(new TipoBasicoClass("void"), nombre, new ArrayList<ParTipoIden>(), ins);
     }
 
-    public void calculos() {
+    // GENERAR CODIGO -----------------------------------------------------------------
+    public void calculos() { // calcular etiquetas
         Programa.etiquetas.push(0);
         for (Ins ins : this.lista_ins) { //si hubiese parametros se recorrerian
             ins.calculos();
@@ -22,7 +23,7 @@ public class Fmain extends Funcion {
         Programa.etiquetas.pop();
     }
 
-    public int maxMemoria() {
+    public int maxMemoria() { // calcular max memoria
         tam_memoria = 0;
 
         for (ParTipoIden param : lista_args) {
@@ -51,7 +52,7 @@ public class Fmain extends Funcion {
         return tam_memoria;
     }
 
-    public void generaCodigo() {
+    public void generaCodigo() { //generar codigo
         int tam = tam_memoria + 8;
 
         Programa.escribir.println("(func $main  (type $_sig_void)");

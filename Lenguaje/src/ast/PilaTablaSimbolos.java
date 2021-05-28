@@ -5,23 +5,26 @@ import java.util.HashMap;
 
 public class PilaTablaSimbolos {
 
+    // Pila con tabla de simbolos (nombreIden, ASTNodo)
     private Stack<HashMap<String, ASTnodo>> pila_tablas;
 
     public PilaTablaSimbolos(){
         inicializa();
     }
     
+    // Comprueba si vacia
     public boolean empty(){
         return pila_tablas.empty() || pila_tablas.peek().isEmpty();
     }
 
+    // Inicializa la pila
     public void inicializa(){
         //crea una pila de tablas vacía.
         pila_tablas = new Stack<HashMap<String, ASTnodo>>();
 
     }
 
-    // Cada vez que entro en un nuevo ambito
+    // Cada vez que entro en un nuevo ambito 
     public void abreBloque(){
         // que empieza un nuevo bloque apilando una nueva tabla vacía
         pila_tablas.push(new HashMap<String,ASTnodo>());
@@ -44,7 +47,7 @@ public class PilaTablaSimbolos {
         }
     }
 
-    // Buscamos el identificador en la tabla de la cima de la pila
+    // Buscamos el identificador en la pila
     public ASTnodo buscaId (String id){
         // busca la primera aparición de id en la pila de tablas empezando por la cima y devuelve su referencia.
         Stack<HashMap<String, ASTnodo>> pila_tablas_aux = new Stack<HashMap<String, ASTnodo>>();
@@ -67,6 +70,7 @@ public class PilaTablaSimbolos {
         return puntero;
     }
 
+    // Buscamos el identificador solo en la tabla de la cima
     public ASTnodo buscaIdCima (String id){
         ASTnodo puntero = null;
         if(!pila_tablas.empty()){

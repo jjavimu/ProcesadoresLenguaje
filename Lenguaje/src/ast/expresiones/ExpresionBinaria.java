@@ -9,8 +9,10 @@ public abstract class ExpresionBinaria extends Expresion {
         this.opdcha = opdcha;
     }
 
+    // CHEQUEAR TIPOS -----------------------------------------------------------------
     public abstract void chequea();
 
+    // VINCULAR -----------------------------------------------------------------
     public void vincular(){
         opizq.vincular();
         opdcha.vincular();

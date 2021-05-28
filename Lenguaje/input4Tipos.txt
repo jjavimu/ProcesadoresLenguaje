@@ -1,0 +1,101 @@
+// EJEMPLO PRUEBA TIPOS ----------------------------------------
+
+// -- Ejemplo en el que probamos si el chequeo de tipos se hace bien.                        --
+// -- Las instrucciones comentadas son erroneas y si se descomentan el programa las detecta. --
+
+//---------------------------------------------------------------------
+// Instrucciones para el ejemplo:
+// Probar este ejemplo sacando solamente el AST toString, vinculacion y tipos
+// Comentar la parte de generacion de codigo en el main
+//---------------------------------------------------------------------
+
+enum Figura = {Circulo, Triangulo};
+
+enum Cosa = {cosa1, cosa2, cosa3};
+
+struct par {
+    int primero = 1;
+    bool segundo;
+    int* tercero;
+};
+
+struct par2{
+    int primero2 = 2;
+};
+
+struct par3{
+    int primero2 = 2;
+    bool sec;
+    int* s;
+};
+
+int funcion (int uno, bool dos){
+    return 1;
+}
+
+void main(){
+    // --- --- enteros -----------------------------------
+    int a = 3;
+    int b = a;
+    a = b + 4;
+
+    // --- --- punteros -----------------------------------
+    int* c;
+    int* d = c;
+    *c=*d;
+    // *c=d;
+
+    // --- --- booleanos -----------------------------------
+    bool ok = true;
+    if(ok && false){
+        int a = 1;
+    }
+
+    // --- --- en el ámbito del for -----------------------------------
+    for(int a=1; a<3 ;a=a+1){ //probar c<3 : da error
+    }
+
+    // --- --- enumerados y structs -----------------------------------
+    Figura fig;
+    fig = Circulo;
+
+    par par1;
+    par1.primero = 2;
+    // par1.primero = true;
+    // par1 = Circulo;
+
+    if(Circulo == Triangulo){}
+
+     // ---- --- comparacion tipos del struct -----------------------------------
+    par2 p;
+    // bool okis = (p==par1);
+
+    par3 pa;
+    bool okis1 = (pa == par1);    // Tipo estructural
+
+    // --- --- comparacion de tipos del enum -----------------------------------
+    Cosa co = cosa1;
+    while(co == fig){
+
+    }
+
+    // --- --- recursividad de los tipos -----------------------------------
+    par* puntero_struct;
+    a = *puntero_struct.primero;
+
+    c = (par1.tercero);
+    a = *(par1.tercero);
+
+    // c = *(par1.tercero);
+
+    // --- --- llamadas a funciones -----------------------------------
+    int e = funcion(1,true);
+    // bool f = funcion(1,true);
+    // int f = funcion(1);
+    // int f = funcion;
+
+    return;
+
+    // --- --- valor de retorno -----------------------------------
+    // return 3;
+}

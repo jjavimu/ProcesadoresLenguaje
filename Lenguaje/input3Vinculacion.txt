@@ -1,3 +1,16 @@
+
+// EJEMPLO PRUEBA VINCULACION ----------------------------------------
+
+// -- Ejemplo en el que probamos vinculacion.                                                --
+// -- Las instrucciones comentadas son erroneas y si se descomentan el programa las detecta. --
+
+//---------------------------------------------------------------------
+// Instrucciones para el ejemplo:
+// Probar este ejemplo sacando solamente el AST toString y vinculacion
+// Comentar la parte de tipos y generacion de codigo en el main
+//---------------------------------------------------------------------
+
+
 enum Figura = {Circulo, Triangulo, Cuadrado};
 
 struct Numeros{
@@ -13,7 +26,7 @@ int funcion(int a, char b){
         int<3> nombre;
     }
 
-    Figura figura; // Definimos Figura de tipo enumerado TipoFigura
+    Figura figura; 
     figura = Circulo;
 
     switch (figura) {
@@ -36,6 +49,13 @@ void main(){
 
     while(c<0){
         int b;
+    }
+
+    if(a==c){
+        int b;
+        if(a==c){
+            int b;
+        }
     }
 
     if(true){
