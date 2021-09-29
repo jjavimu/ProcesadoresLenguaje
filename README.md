@@ -1,6 +1,6 @@
 ## Práctica de Procesadores del Lenguaje
 
-Creación de un lenguaje del programación C- creado por Ángela Ruiz y Javier Mulero para la asignartura de Procesadores del Lenguaje (UCM) creado con Java, JLex, CUP y webassembly.
+Creación de un compiladr de C- (lenguaje basado en C++) creado por Ángela Ruiz y Javier Mulero para la asignartura de Procesadores del Lenguaje (UCM) creado con Java, JLex, CUP y webassembly.
 
 ________
 
